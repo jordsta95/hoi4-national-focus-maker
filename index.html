@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HOI4 National Focus Tool</title>
+<meta name="description" content="Tool for making national foci in Hearts of Iron IV">
+<script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="js/script.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<!--[if IE]>
+<div class="alert">
+<p>You are using Internet Explorer! Although I do not believe this site will have any issues working on IE, I will not support it - and if you have any issues using this site my first response will be "Does this only happen in IE?".</p>
+<p>Web developers around the world hate IE, for many different reasons, please - if possible - change to a more modern browser today!</p>
+<p>You can click this box to make the message disappear... but don't forget the message.</p>
+</div>
+<![endif]-->
+<noscript><div class="alert">
+	<p style="text-align:center">This is awkward :/</p>
+	<p>It looks like you have Javascript disabled, unfortunately this site requires it to run. I do use Google Analytics on this page, to see how many people are using the site - however, if you wish for 100% anonymity you can find this same page without it (still requires Javascript to be enabled) <a href="/no-tracking.html">here</a></p>
+</div></noscript>
+<div id="menu">
+	<input type="checkbox" id="delete" name="delete"><label for="delete" id="delete-label"></label>
+	<table style="display:inline-block;">
+		<tr>
+			<td><button class="menu-button" id="add-focus">Add Focus</button></td>
+			<td><button class="menu-button" id="import">Import</button></td>
+			<td><button class="menu-button" id="export">Export</button></td>
+			<td><button class="menu-button" id="help">Help</button></td>
+		</tr>
+	</table>
+	<button id="savetostorage">SAVE</button>
+</div>
+<!-- ////// -->
+<div id="edit">
+	<p id="edit-close">X</p>
+	<p>
+		<p>Name</p>
+		<input id="name">
+	</p>
+	<p>
+		<p>Description</p>
+		<textarea id="desc"></textarea>
+	</p>
+	<p>
+		<p>Bypass</p>
+		<textarea id="bypass"></textarea>
+	</p>
+	<p>
+		<p>Available</p>
+		<textarea id="available"></textarea>
+	</p>
+	<p>
+		<p>Mutually Exclusive</p>
+		<input id="mutual">
+	</p>
+	<p>
+		<p>Prerequisite</p>
+		<input id="prefocus">
+	</p>
+	<p>
+		<p>AI Will Do Factor</p>
+		<input id="ai" type="number">
+	</p>
+	<p>
+		<p>Time to Complete</p>
+		<select id="time">
+			<option value="1">1 Week</option>
+			<option value="2">2 Weeks</option>
+			<option value="3">3 Weeks</option>
+			<option value="4">4 Weeks</option>
+			<option value="5">5 Weeks</option>
+			<option value="6">6 Weeks</option>
+			<option value="7">7 Weeks</option>
+			<option value="8">8 Weeks</option>
+			<option value="9">9 Weeks</option>
+			<option value="10" selected>10 Weeks</option>
+			<option value="11">11 Weeks</option>
+			<option value="12">12 Weeks</option>
+			<option value="13">13 Weeks</option>
+			<option value="14">14 Weeks</option>
+			<option value="15">15 Weeks</option>
+		</select>
+	</p>
+	<p>
+		<p>Location - X|Y</p>
+		<input id="x">|<input id="y">
+	</p>
+	<p>
+		<p>Reward</p>
+		<textarea id="reward"></textarea>
+	</p>
+	<p>
+		<button id="open-gfx">Choose GFX</button>
+		<input id="chosen-gfx" value="goal_unknown" hidden>
+		<img src="images/goal_unknown.png" id="display-gfx">
+	</p>
+	<div id="choosegfx">
+<img id="goal_unknown" class="nficon" src="images/goal_unknown.png">
+<img id="focus_AST_never_gallipoli" class="nficon" src="images/focus_AST_never_gallipoli.png">
+<img id="focus_AST_rats_tobruk" class="nficon" src="images/focus_AST_rats_tobruk.png">
+<img id="focus_AST_squander_bug" class="nficon" src="images/focus_AST_squander_bug.png">
+<img id="focus_AST_war_japan" class="nficon" src="images/focus_AST_war_japan.png">
+<img id="focus_generic_air_defense" class="nficon" src="images/focus_generic_air_defense.png">
+<img id="focus_generic_anti_fascist_diplomacy" class="nficon" src="images/focus_generic_anti_fascist_diplomacy.png">
+<img id="focus_generic_coastal_fort" class="nficon" src="images/focus_generic_coastal_fort.png">
+<img id="focus_generic_commonwealth_build_infantry" class="nficon" src="images/focus_generic_commonwealth_build_infantry.png">
+<img id="focus_generic_cryptologic_bomb" class="nficon" src="images/focus_generic_cryptologic_bomb.png">
+<img id="focus_generic_diplomatic_treaty" class="nficon" src="images/focus_generic_diplomatic_treaty.png">
+<img id="focus_generic_home_defense" class="nficon" src="images/focus_generic_home_defense.png">
+<img id="focus_generic_italy_first" class="nficon" src="images/focus_generic_italy_first.png">
+<img id="focus_generic_japanese_imperial_glory" class="nficon" src="images/focus_generic_japanese_imperial_glory.png">
+<img id="focus_generic_join_comintern" class="nficon" src="images/focus_generic_join_comintern.png">
+<img id="focus_generic_little_entente" class="nficon" src="images/focus_generic_little_entente.png">
+<img id="focus_generic_paratrooper" class="nficon" src="images/focus_generic_paratrooper.png">
+<img id="focus_generic_polish_deal" class="nficon" src="images/focus_generic_polish_deal.png">
+<img id="focus_generic_socialist_science" class="nficon" src="images/focus_generic_socialist_science.png">
+<img id="focus_generic_soviet_politics" class="nficon" src="images/focus_generic_soviet_politics.png">
+<img id="focus_generic_strike_at_democracy1" class="nficon" src="images/focus_generic_strike_at_democracy1.png">
+<img id="focus_generic_strike_at_democracy2" class="nficon" src="images/focus_generic_strike_at_democracy2.png">
+<img id="focus_generic_strike_at_democracy3" class="nficon" src="images/focus_generic_strike_at_democracy3.png">
+<img id="focus_generic_support_the_left_right" class="nficon" src="images/focus_generic_support_the_left_right.png">
+<img id="focus_generic_the_giant_wakes" class="nficon" src="images/focus_generic_the_giant_wakes.png">
+<img id="focus_NZL_bob_semple_tank" class="nficon" src="images/focus_NZL_bob_semple_tank.png">
+<img id="focus_RAJ_all_india_forward_bloc" class="nficon" src="images/focus_RAJ_all_india_forward_bloc.png">
+<img id="focus_RAJ_british investors" class="nficon" src="images/focus_RAJ_british investors.png">
+<img id="focus_RAJ_clamp_down_on_corruption" class="nficon" src="images/focus_RAJ_clamp_down_on_corruption.png">
+<img id="focus_RAJ_indianisation_of_army" class="nficon" src="images/focus_RAJ_indianisation_of_army.png">
+<img id="focus_RAJ_indian_gentlemen_offcers" class="nficon" src="images/focus_RAJ_indian_gentlemen_offcers.png">
+<img id="focus_RAJ_indian_gurkhas" class="nficon" src="images/focus_RAJ_indian_gurkhas.png">
+<img id="focus_RAJ_lions_of_the_great_war" class="nficon" src="images/focus_RAJ_lions_of_the_great_war.png">
+<img id="focus_RAJ_seek_help_from_germany" class="nficon" src="images/focus_RAJ_seek_help_from_germany.png">
+<img id="focus_RAJ_seek_help_from_soviet" class="nficon" src="images/focus_RAJ_seek_help_from_soviet.png">
+<img id="focus_RAJ_two_nation_theory" class="nficon" src="images/focus_RAJ_two_nation_theory.png">
+<img id="focus_research" class="nficon" src="images/focus_research.png">
+<img id="focus_rocketry" class="nficon" src="images/focus_rocketry.png">
+<img id="focus_SAF_colonialist_crusade" class="nficon" src="images/focus_SAF_colonialist_crusade.png">
+<img id="focus_SAF_german_coup" class="nficon" src="images/focus_SAF_german_coup.png">
+<img id="focus_SAF_secure_africa" class="nficon" src="images/focus_SAF_secure_africa.png">
+<img id="focus_SAF_support_ossewabrandwag" class="nficon" src="images/focus_SAF_support_ossewabrandwag.png">
+<img id="focus_wonderweapons" class="nficon" src="images/focus_wonderweapons.png">
+<img id="goal_anschluss" class="nficon" src="images/goal_anschluss.png">
+<img id="goal_anti_comintern_pact" class="nficon" src="images/goal_anti_comintern_pact.png">
+<img id="goal_continuous_air_production" class="nficon" src="images/goal_continuous_air_production.png">
+<img id="goal_continuous_armor_production" class="nficon" src="images/goal_continuous_armor_production.png">
+<img id="goal_continuous_boost_freedom" class="nficon" src="images/goal_continuous_boost_freedom.png">
+<img id="goal_continuous_def_against_influence" class="nficon" src="images/goal_continuous_def_against_influence.png">
+<img id="goal_continuous_increase_nu" class="nficon" src="images/goal_continuous_increase_nu.png">
+<img id="goal_continuous_naval_production" class="nficon" src="images/goal_continuous_naval_production.png">
+<img id="goal_continuous_non_factory_construct" class="nficon" src="images/goal_continuous_non_factory_construct.png">
+<img id="goal_continuous_reduce_training_time" class="nficon" src="images/goal_continuous_reduce_training_time.png">
+<img id="goal_continuous_repairments" class="nficon" src="images/goal_continuous_repairments.png">
+<img id="goal_continuous_research" class="nficon" src="images/goal_continuous_research.png">
+<img id="goal_continuous_restrict_freedom" class="nficon" src="images/goal_continuous_restrict_freedom.png">
+<img id="goal_continuous_suppression" class="nficon" src="images/goal_continuous_suppression.png">
+<img id="goal_demand_sudetenland" class="nficon" src="images/goal_demand_sudetenland.png">
+<img id="goal_generic_air_bomber" class="nficon" src="images/goal_generic_air_bomber.png">
+<img id="goal_generic_air_doctrine" class="nficon" src="images/goal_generic_air_doctrine.png">
+<img id="goal_generic_air_fighter" class="nficon" src="images/goal_generic_air_fighter.png">
+<img id="goal_generic_air_fighter2" class="nficon" src="images/goal_generic_air_fighter2.png">
+<img id="goal_generic_air_naval_bomber" class="nficon" src="images/goal_generic_air_naval_bomber.png">
+<img id="goal_generic_air_production" class="nficon" src="images/goal_generic_air_production.png">
+<img id="goal_generic_alliance" class="nficon" src="images/goal_generic_alliance.png">
+<img id="goal_generic_allies_build_infantry" class="nficon" src="images/goal_generic_allies_build_infantry.png">
+<img id="goal_generic_amphibious_assault" class="nficon" src="images/goal_generic_amphibious_assault.png">
+<img id="goal_generic_army_artillery" class="nficon" src="images/goal_generic_army_artillery.png">
+<img id="goal_generic_army_artillery2" class="nficon" src="images/goal_generic_army_artillery2.png">
+<img id="goal_generic_army_doctrines" class="nficon" src="images/goal_generic_army_doctrines.png">
+<img id="goal_generic_army_motorized" class="nficon" src="images/goal_generic_army_motorized.png">
+<img id="goal_generic_army_tanks" class="nficon" src="images/goal_generic_army_tanks.png">
+<img id="goal_generic_attack_allies" class="nficon" src="images/goal_generic_attack_allies.png">
+<img id="goal_generic_axis_build_infantry" class="nficon" src="images/goal_generic_axis_build_infantry.png">
+<img id="goal_generic_build_airforce" class="nficon" src="images/goal_generic_build_airforce.png">
+<img id="goal_generic_build_nay" class="nficon" src="images/goal_generic_build_nay.png">
+<img id="goal_generic_build_tank" class="nficon" src="images/goal_generic_build_tank.png">
+<img id="goal_generic_CAS" class="nficon" src="images/goal_generic_CAS.png">
+<img id="goal_generic_cavalry" class="nficon" src="images/goal_generic_cavalry.png">
+<img id="goal_generic_construction" class="nficon" src="images/goal_generic_construction.png">
+<img id="goal_generic_construction2" class="nficon" src="images/goal_generic_construction2.png">
+<img id="goal_generic_construct_civilian" class="nficon" src="images/goal_generic_construct_civilian.png">
+<img id="goal_generic_construct_civ_factory" class="nficon" src="images/goal_generic_construct_civ_factory.png">
+<img id="goal_generic_construct_infrastructure" class="nficon" src="images/goal_generic_construct_infrastructure.png">
+<img id="goal_generic_construct_military" class="nficon" src="images/goal_generic_construct_military.png">
+<img id="goal_generic_construct_mil_factory" class="nficon" src="images/goal_generic_construct_mil_factory.png">
+<img id="goal_generic_construct_naval_dockyard" class="nficon" src="images/goal_generic_construct_naval_dockyard.png">
+<img id="goal_generic_consumer_goods" class="nficon" src="images/goal_generic_consumer_goods.png">
+<img id="goal_generic_dangerous_deal" class="nficon" src="images/goal_generic_dangerous_deal.png">
+<img id="goal_generic_defence" class="nficon" src="images/goal_generic_defence.png">
+<img id="goal_generic_demand_territory" class="nficon" src="images/goal_generic_demand_territory.png">
+<img id="goal_generic_forceful_treaty" class="nficon" src="images/goal_generic_forceful_treaty.png">
+<img id="goal_generic_fortify_city" class="nficon" src="images/goal_generic_fortify_city.png">
+<img id="goal_generic_improve_relations" class="nficon" src="images/goal_generic_improve_relations.png">
+<img id="goal_generic_intelligence_exchange" class="nficon" src="images/goal_generic_intelligence_exchange.png">
+<img id="goal_generic_major_alliance" class="nficon" src="images/goal_generic_major_alliance.png">
+<img id="goal_generic_major_war" class="nficon" src="images/goal_generic_major_war.png">
+<img id="goal_generic_military_deal" class="nficon" src="images/goal_generic_military_deal.png">
+<img id="goal_generic_military_sphere" class="nficon" src="images/goal_generic_military_sphere.png">
+<img id="goal_generic_more_territorial_claims" class="nficon" src="images/goal_generic_more_territorial_claims.png">
+<img id="goal_generic_national_unity" class="nficon" src="images/goal_generic_national_unity.png">
+<img id="goal_generic_navy_anti_submarine" class="nficon" src="images/goal_generic_navy_anti_submarine.png">
+<img id="goal_generic_navy_battleship" class="nficon" src="images/goal_generic_navy_battleship.png">
+<img id="goal_generic_navy_carrier" class="nficon" src="images/goal_generic_navy_carrier.png">
+<img id="goal_generic_navy_cruiser" class="nficon" src="images/goal_generic_navy_cruiser.png">
+<img id="goal_generic_navy_doctrines_tactics" class="nficon" src="images/goal_generic_navy_doctrines_tactics.png">
+<img id="goal_generic_navy_submarine" class="nficon" src="images/goal_generic_navy_submarine.png">
+<img id="goal_generic_neutrality_focus" class="nficon" src="images/goal_generic_neutrality_focus.png">
+<img id="goal_generic_occypy_start_war" class="nficon" src="images/goal_generic_occypy_start_war.png">
+<img id="goal_generic_occypy_states_coastal" class="nficon" src="images/goal_generic_occypy_states_coastal.png">
+<img id="goal_generic_occypy_states_ongoing_war" class="nficon" src="images/goal_generic_occypy_states_ongoing_war.png">
+<img id="goal_generic_oil_refinery" class="nficon" src="images/goal_generic_oil_refinery.png">
+<img id="goal_generic_political_pressure" class="nficon" src="images/goal_generic_political_pressure.png">
+<img id="goal_generic_position_armies" class="nficon" src="images/goal_generic_position_armies.png">
+<img id="goal_generic_positive_trade_relations" class="nficon" src="images/goal_generic_positive_trade_relations.png">
+<img id="goal_generic_production" class="nficon" src="images/goal_generic_production.png">
+<img id="goal_generic_production2" class="nficon" src="images/goal_generic_production2.png">
+<img id="goal_generic_propaganda" class="nficon" src="images/goal_generic_propaganda.png">
+<img id="goal_generic_radar" class="nficon" src="images/goal_generic_radar.png">
+<img id="goal_generic_scientific_exchange" class="nficon" src="images/goal_generic_scientific_exchange.png">
+<img id="goal_generic_secret_weapon" class="nficon" src="images/goal_generic_secret_weapon.png">
+<img id="goal_generic_small_arms" class="nficon" src="images/goal_generic_small_arms.png">
+<img id="goal_generic_soviet_construction" class="nficon" src="images/goal_generic_soviet_construction.png">
+<img id="goal_generic_special_forces" class="nficon" src="images/goal_generic_special_forces.png">
+<img id="goal_generic_support_communism" class="nficon" src="images/goal_generic_support_communism.png">
+<img id="goal_generic_support_democracy" class="nficon" src="images/goal_generic_support_democracy.png">
+<img id="goal_generic_support_fascism" class="nficon" src="images/goal_generic_support_fascism.png">
+<img id="goal_generic_territory_or_war" class="nficon" src="images/goal_generic_territory_or_war.png">
+<img id="goal_generic_trade" class="nficon" src="images/goal_generic_trade.png">
+<img id="goal_generic_war_with_comintern" class="nficon" src="images/goal_generic_war_with_comintern.png">
+<img id="goal_generic_wolf_pack" class="nficon" src="images/goal_generic_wolf_pack.png">
+<img id="goal_molotov_ribbentrop_pact" class="nficon" src="images/goal_molotov_ribbentrop_pact.png">
+<img id="goal_poland_goal" class="nficon" src="images/goal_poland_goal.png">
+<img id="goal_rhineland" class="nficon" src="images/goal_rhineland.png">
+<img id="goal_support_fourth_int" class="nficon" src="images/goal_support_fourth_int.png">
+<img id="goal_tfv_burn_the_royal_portraits" class="nficon" src="images/goal_tfv_burn_the_royal_portraits.png">
+<img id="goal_tfv_can_compromise_with_quebec" class="nficon" src="images/goal_tfv_can_compromise_with_quebec.png">
+<img id="goal_tfv_can_forced_quebec_conscription" class="nficon" src="images/goal_tfv_can_forced_quebec_conscription.png">
+<img id="goal_tfv_generic_tech_sharing" class="nficon" src="images/goal_tfv_generic_tech_sharing.png">
+<img id="goal_tfv_sever_ties_with_uk" class="nficon" src="images/goal_tfv_sever_ties_with_uk.png">
+<img id="goal_tfv_smiling_buddha" class="nficon" src="images/goal_tfv_smiling_buddha.png">
+<img id="goal_tfv_strengthen_commonwealth_ties" class="nficon" src="images/goal_tfv_strengthen_commonwealth_ties.png">
+<img id="goal_tripartite_pact" class="nficon" src="images/goal_tripartite_pact.png">
+</div>
+	<p>
+		<button id="submit-focus">Submit</button>
+	</p>
+</div>
+<div id="selectfocusarea">
+	<div id="selector">
+	<p id="close-selector">x</p>
+	<p>Want to select multiple? Choose whether you want all to be required, or any to be required</p>
+	<p>ALL - <input type="checkbox" id="select-and" style="width:1rem;"> | ANY - <input type="checkbox" id="select-or" style="width:1rem;"></p>
+	</div>
+	<div id="selectfocus">
+	</div>
+</div>
+<div id="help-box">
+	<div style="max-width:1200px;margin:0 auto;">
+		<p id="close-help" style="text-align:right;cursor:pointer;">Close - X</p>
+		<h4>How to use this tool</h4>
+		<p>By pressing the "Add Focus" button at the top of the page you will be able to start creating your focus tree</p>
+		<p>Once you have created a focus you will be able to select it when creating a new focus as a prerequisite/mutually exclusive focus</p>
+		<p>If you have made a mistake in one of the focuses, simply click the one you want to edit, and the editor will open up with the focus information in it<br>You can also select the trash can at the top of the page, and delete the focus if you no longer want it</p>
+		<hr>
+		<h4>How does the available/rewards section work?</h4>
+		<p>At the minute, you will have to use the same sort of code you would use to create the NF tree in your text editor - In the future there will most likely be an option to do everything without code, if you so please</p>
+	</div>
+</div>
+<!-- ////// -->
+<div id="display">
+</div>
+<div style="display:none;">
+	<textarea id="workplace-lang"></textarea>
+	<textarea id="workplace-focus"></textarea>
+</div>
+</body>
+</html>
