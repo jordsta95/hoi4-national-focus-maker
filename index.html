@@ -27,11 +27,10 @@
 		<tr>
 			<td><button class="menu-button" id="add-focus">Add Focus</button></td>
 			<td><button class="menu-button" id="import">Import</button></td>
-			<td><button class="menu-button" id="export">Export</button></td>
+			<td><button class="menu-button" id="export">Export/Save</button></td>
 			<td><button class="menu-button" id="help">Help</button></td>
 		</tr>
 	</table>
-	<button id="savetostorage">SAVE</button>
 </div>
 <!-- ////// -->
 <div id="edit">
@@ -265,6 +264,19 @@
 		<hr>
 		<h4>How does the available/rewards section work?</h4>
 		<p>At the minute, you will have to use the same sort of code you would use to create the NF tree in your text editor - In the future there will most likely be an option to do everything without code, if you so please</p>
+	</div>
+</div>
+<div id="export-box">
+	<div style="max-width:1200px;margin:0 auto;">
+		<p id="close-export" style="text-align:right">Close - X</p>
+		<h4>Save</h4>
+		<p>Saving to local storage will allow you to leave this page, and return with your focus tree exactly how you left it.</p>
+		<p>Saving to server will allow you to save your current focus tree to the server, and access it from any location using the password you will be given once the focus tree has saved.</p>
+		<button id="savetostorage">Save To Local Storage</button>
+		<button id="savetoserver">Save To Server</button>
+		<h4>Export</h4>
+		<p>Export your focus tree to use in game.</p>
+		<button id="exportcontent">Export</button>
 	</div>
 </div>
 <!-- ////// -->

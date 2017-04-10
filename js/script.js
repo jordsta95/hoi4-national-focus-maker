@@ -254,9 +254,100 @@ $(document).ready(function(){
 		localStorage.setItem('nationalfocus', $('#display').html());
 	});
 	
+	$("#export, #close-export").click(function(){
+		$("#export-box").toggle();	
+	});
+	
 	/* Export text files*/
-	$("#export").click(function(){
+	$("#exportcontent").click(function(){
 		$("#workplace-focus").val("focus_tree = {<br>id = my_focus_tree<br>country = {<br>factor=0<br>modifier = {<br>add = 10\n#place country tag(s) here<br>}<br>}\ndefault = no<br>#Custom focuses start here<br>");
+		$('.all-info').each(function () {
+			var exportid = $(this).attr("id").replace("-all-info","");
+			var exportname = "#"+exportid+"_name";
+			var exportdesc = "#"+exportid+"_desc";
+			var exportprefocus = "#"+exportid+"_prefocus";
+			var exportavailable = "#"+exportid+"_available";
+			var exportmutual = "#"+exportid+"_mutual";
+			var exportimg = "#"+exportid+"_gfx";
+			var exportreward = "#"+exportid+"_reward";
+			var exportttc = "#"+exportid+"_time";
+			var exportbypass = "#"+exportid+"_bypass";
+			var exportai = "#"+exportid+"_ai";
+			var exportx = $("#"+exportid).attr("x-pos");
+			var exporty = $("#"+exportid).attr("y-pos");
+			var exportgfx = $(exportimg).attr("src");
+			var fixprefocus = $(exportprefocus).text().replace(/\&\&/g,"}\n prerequisite = { focus =").replace(/\|\|/g,"  focus = ");
+			var fixmutual = $(exportmutual).text().replace(/\&\&/g,"}\n mutually_exclusive = { focus =").replace(/\|\|/g,"  focus = ");
+		
+			$("#workplace-lang").val($("#workplace-lang").val() + exportid + ':0 "' + $(exportname).text() + '"<br>');
+			$("#workplace-lang").val($("#workplace-lang").val() + exportid + '_desc:0 "' + $(exportdesc).text() + '"<br>');
+			
+			$("#workplace-focus").val($("#workplace-focus").val() + '#Focus for - '+ $(exportname).text() + '<br>');
+			$("#workplace-focus").val($("#workplace-focus").val()+'focus = {<br>');
+			$("#workplace-focus").val($("#workplace-focus").val() + 'id ='+ exportid + '<br>');
+			$("#workplace-focus").val($("#workplace-focus").val() + 'icon ='+ exportgfx.replace(".png","").replace("images/","GFX_") + '<br>');
+			$("#workplace-focus").val($("#workplace-focus").val() + 'bypass ='+ $(exportbypass).text() + '<br>');
+			$("#workplace-focus").val($("#workplace-focus").val() + 'bypass ='+ $(exportai).text() + '<br>');
+			$("#workplace-focus").val($("#workplace-focus").val() + 'x ='+ exportx + '<br>');
+			$("#workplace-focus").val($("#workplace-focus").val() + 'y ='+ exporty + '<br>');
+			if(fixmutual == ""){
+				$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { }<br>');
+			}else{
+				$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { focus = '+ fixmutual + '}<br>');
+			}
+			if(fixprefocus == ""){
+				$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { }<br>');
+			}else{
+				$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { focus = '+fixprefocus + '}<br>');
+			}
+			$("#workplace-focus").val($("#workplace-focus").val() + 'available = { '+ $(exportavailable).text() + ' }<br>');
+			if($(exportttc).text() == "" || $(exportttc).text() == "0"){
+				$("#workplace-focus").val($("#workplace-focus").val() + 'cost = 10 <br> available_if_capitulated = yes <br>');
+			}else{
+				$("#workplace-focus").val($("#workplace-focus").val() + 'cost = '+ $(exportttc).text() + ' \n available_if_capitulated = yes <br>');	
+			}
+			$("#workplace-focus").val($("#workplace-focus").val() + 'completion_reward = {<br>'+ $(exportreward).text() + '<br>}<br>}<br>');
+		});
+		$("#workplace-focus").val($("#workplace-focus").val()+"#end<br>}");
+		
+		var a = document.body.appendChild(document.createElement("a"));
+		a.download = "national-focus-tree.yml";
+		a.href = "data:text/html," + $("#workplace-focus").val().replace(/\<br\>/g,"%0D%0A");
+		a.click();
+		
+		var a = document.body.appendChild(document.createElement("a"));
+		a.download = "national-focus-tree-lang.yml";
+		a.href = "data:text/html," + $("#workplace-lang").val().replace(/\<br\>/g,"%0D%0A");
+		a.click();
+	});
+	
+	$("#savetoserver").click(function(){
+		var ids = [];
+		var names = [];
+		var descs = [];
+		var prefocuses = [];
+		var availables = [];
+		var mutuals = [];
+		var imgs = [];
+		var rewards = [];
+		var ttcs = [];
+		var bypasses = [];
+		var xs = [];
+		var ys = [];
+		var ai = [];
+		ids = [];
+		names = [];
+		descs = [];
+		prefocuses = [];
+		availables = [];
+		mutuals = [];
+		imgs = [];
+		rewards = [];
+		ttcs = [];
+		bypasses = [];
+		xs = [];
+		ys = [];
+		ai = [];
 		$('.all-info').each(function () {
 			var exportid = $(this).attr("id").replace("-all-info","");
 			var exportname = "#"+exportid+"_name";
@@ -270,73 +361,38 @@ $(document).ready(function(){
 			var exportbypass = "#"+exportid+"_bypass";
 			var exportx = $("#"+exportid).attr("x-pos");
 			var exporty = $("#"+exportid).attr("y-pos");
-			var exportgfx = $(exportimg).text();
-			var fixprefocus = $(exportprefocus).text().replace(/&&/g,"}\n prerequisite = { focus =").replace(/||/g,"  focus = ");
-			var fixmutual = $(exportmutual).text().replace(/&&/g,"}\n mutually_exclusive = { focus =").replace(/||/g,"  focus = ");
+			var exportgfx = $(exportimg).attr("src");
+			var exportai = "#"+exportid+"_ai";
 		
-			$("#workplace-lang").val($("#workplace-lang").val() + exportid + ':0 "' + $(exportname).text() + '"\n');
-			$("#workplace-lang").val($("#workplace-lang").val() + exportid + '_desc:0 "' + $(exportdesc).text() + '"\n');
-			
-			$("#workplace-focus").val($("#workplace-focus").val() + '#Focus for - '+ $(exportname).text() + '<br>');
-			$("#workplace-focus").val($("#workplace-focus").val()+'focus = {<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'id ='+ exportid + '<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'icon ='+ exportgfx.replace(".png","").replace("images/","GFX_") + '<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'bypass ='+ exportbypass + '<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'x ='+ exportx + '<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'y ='+ exporty + '<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { focus = '+ fixmutual + '}<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { focus = '+fixprefocus + '}<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'available = { '+ $(exportavailable).text() + ' }<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'cost = '+ $(exportttc).text() + ' \n available_if_capitulated = yes <br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'completion_reward = {<br>'+ $(exportreward).text() + '<br>}<br>}<br>');
+			ids.push(exportid);
+			names.push($(exportname).text());
+			descs.push($(exportdesc).text());
+			imgs.push(exportgfx);
+			bypasses.push($(exportbypass).text());
+			xs.push(exportx);
+			ys.push(exporty);
+			mutuals.push($(exportmutual).text());
+			prefocuses.push($(exportprefocus).text());
+			availables.push($(exportavailable).text());
+			ttcs.push($(exportttc).text());	
+			rewards.push($(exportreward).text());
+			ai.push($(exportai).text());
 		});
-		$("#workplace-focus").val($("#workplace-focus").val()+"#end<br>}");
-		
-		var a = document.body.appendChild(document.createElement("a"));
-		a.download = "national-focus-tree.yml";
-		a.href = "data:text/html," + $("#workplace-focus").val().replace(/\<br\>/g,"%0D%0A");
-		a.click();
-		
-		var a = document.body.appendChild(document.createElement("a"));
-		a.download = "national-focus-tree-lang.yml";
-		a.href = "data:text/plain," + $("#workplace-lang").val();
-		a.click();
+		$.post( "upload.php",{ 
+			ids: ids, 
+			names: names,
+			descs: descs,
+			prefocuses: prefocuses,
+			availables:availables,
+			mutuals: mutuals,
+			imgs: imgs,
+			rewards: rewards,
+			ttcs: ttcs,
+			bypasses: bypasses,
+			xs: xs,
+			ys: ys,
+			ai: ai
+		});
 	});
-	
-	/*
-	$("#focustree").val($("#focustree").val()+"focus_tree = {\nid = my_focus_tree\ncountry = {\nfactor=0\nmodifier = {\nadd = 10\n#place country tag(s) here\n}\n}\ndefault = no\n#Custom focuses start here\n");
-$('.all-info').each(function () {
-		var exportid = $(this).attr("id").replace("-all-info","");
-		var exportname = "#"+exportid+"_name";
-		var exportdesc = "#"+exportid+"_desc";
-		var exportprefocus = "#"+exportid+"_prefocus";
-		var exportavailable = "#"+exportid+"_available";
-		var exportmutual = "#"+exportid+"_mutual";
-		var exportimg = "#"+exportid+"_gfx";
-		var exportreward = "#"+exportid+"_reward";
-		var exportttc = "#"+exportid+"_ttc";
-		var exportx = $(this).attr("x-pos");
-		var exporty = $(this).attr("y-pos");
-		var exportgfx = $(exportimg).text();
-		var fixprefocus = $(exportprefocus).text().replace(/&&/g,"}\n prerequisite = { focus =").replace(/||/g,"  focus = ");
-		var fixmutual = $(exportmutual).text().replace(/&&/g,"}\n mutually_exclusive = { focus =").replace(/||/g,"  focus = ");
-		/ Create Lang info /
-		$("#langfile").val($("#langfile").val() + exportid + ':0 "' + $(exportname).text() + '"\n');
-		$("#langfile").val($("#langfile").val() + exportid + '_desc:0 "' + $(exportdesc).text() + '"\n');
-		/ Create Focuses /
-		$("#focustree").val($("#focustree").val() + '#Focus for - '+ $(exportname).text() + '\n');
-		$("#focustree").val($("#focustree").val() + 'focus = {\n');
-		$("#focustree").val($("#focustree").val() + 'id ='+ exportid + '\n');
-		$("#focustree").val($("#focustree").val() + 'icon ='+ exportgfx.replace(".png","").replace("images/","GFX_") + '\n');
-		$("#focustree").val($("#focustree").val() + 'x ='+ exportx + '\n');
-		$("#focustree").val($("#focustree").val() + 'y ='+ exporty + '\n');
-		$("#focustree").val($("#focustree").val() + 'mutually_exclusive = { focus = '+ fixmutual + '}\n');
-		$("#focustree").val($("#focustree").val() + 'prerequisite = { focus = '+fixprefocus + '}\n');
-		$("#focustree").val($("#focustree").val() + 'available = { '+ $(exportavailable).text() + ' }\n');
-		$("#focustree").val($("#focustree").val() + 'cost = '+ $(exportttc).text() + ' \n available_if_capitulated = yes \n');
-		$("#focustree").val($("#focustree").val() + 'completion_reward = {\n'+ $(exportreward).text() + '\n}\n}\n');
-	});	
-	$("#focustree").val($("#focustree").val()+"#end\n}");
-	*/
 	
 });
