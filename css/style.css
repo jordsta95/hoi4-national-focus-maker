@@ -12,6 +12,9 @@ body{
 	padding:0.25rem;
 	color:#fff;
 	height:10vh;
+	width:100vw;
+	position:fixed;
+	z-index:10;
 }
 #delete{
 	display:none;
@@ -41,12 +44,16 @@ body{
 	background:#34495E;
 	color:#fff;
 	padding:0.25rem;
-	max-width:35vw;
-	min-height:90vh;
-	height:100%;
+	width:40vw;
+	height:90vh;
+	margin-top:calc(10vh + 0.5rem);
+	overflow:scroll;
+	position:fixed;
+	z-index:10;
 }
 #display{
-	position:relative;	
+	position:relative;
+	margin-top:10vh;
 }
 #edit-close{
 	text-align:right;
@@ -94,6 +101,7 @@ button{
 }
 .name > p{
 	margin:0.05rem;
+	font-size:0.75em;
 }
 .mover{
 	float:left;
@@ -141,13 +149,14 @@ button{
 }
 #selectfocusarea{
 	display:none;
-	position:absolute;
+	position:fixed;
 	top:calc(10vh + 0.5rem);
 	right:0;
 	width:30vw;
-	min-height:90vw;
-	height:100%;
+	height:85vh;
+	overflow:scroll;
 	background:#34495E;
+	z-index:10;
 }
 #close-selector{
 	text-align:right;
@@ -164,6 +173,11 @@ button{
 }
 #help-box,#export-box,#import-box{
 	display:none;
+	position:fixed;
+	top:10vh;
+	width:100vw;
+	z-index:9;
+	background:#22211d;
 }
 #display-password{
 	display:none;
@@ -174,7 +188,7 @@ button{
 	border:1px solid #fff;
 	margin:0 auto;
 	position:fixed;
-	z-index:5;
+	z-index:15;
 	font-size:1.4rem;
 }
 small{font-size:0.75em;}

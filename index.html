@@ -46,55 +46,7 @@
 		<p>Description</p>
 		<textarea id="desc"></textarea>
 	</p>
-	<p>
-		<p>Bypass</p>
-		<textarea id="bypass"></textarea>
-	</p>
-	<p>
-		<p>Available</p>
-		<textarea id="available"></textarea>
-	</p>
-	<p>
-		<p>Mutually Exclusive</p>
-		<input id="mutual">
-	</p>
-	<p>
-		<p>Prerequisite</p>
-		<input id="prefocus">
-	</p>
-	<p>
-		<p>AI Will Do Factor</p>
-		<input id="ai" type="number">
-	</p>
-	<p>
-		<p>Time to Complete</p>
-		<select id="time">
-			<option value="1">1 Week</option>
-			<option value="2">2 Weeks</option>
-			<option value="3">3 Weeks</option>
-			<option value="4">4 Weeks</option>
-			<option value="5">5 Weeks</option>
-			<option value="6">6 Weeks</option>
-			<option value="7">7 Weeks</option>
-			<option value="8">8 Weeks</option>
-			<option value="9">9 Weeks</option>
-			<option value="10" selected>10 Weeks</option>
-			<option value="11">11 Weeks</option>
-			<option value="12">12 Weeks</option>
-			<option value="13">13 Weeks</option>
-			<option value="14">14 Weeks</option>
-			<option value="15">15 Weeks</option>
-		</select>
-	</p>
-	<p>
-		<p>Location - X|Y</p>
-		<input id="x">|<input id="y">
-	</p>
-	<p>
-		<p>Reward</p>
-		<textarea id="reward"></textarea>
-	</p>
-	<p>
+		<p>
 		<button id="open-gfx">Choose GFX</button>
 		<input id="chosen-gfx" value="goal_unknown" hidden>
 		<img src="images/goal_unknown.png" id="display-gfx">
@@ -245,6 +197,58 @@
 <img id="goal_tripartite_pact" class="nficon" src="images/goal_tripartite_pact.png">
 </div>
 	<p>
+		<p>Bypass</p>
+		<textarea id="bypass"></textarea>
+	</p>
+	<p>
+		<p>Available</p>
+		<textarea id="available"></textarea>
+	</p>
+	<p>
+		<p>Mutually Exclusive</p>
+		<input id="mutual">
+	</p>
+	<p>
+		<p>Prerequisite</p>
+		<input id="prefocus">
+	</p>
+	<p>
+		<p>AI Will Do Factor</p>
+		<input id="ai" type="number">
+	</p>
+	<p>
+		<p>Time to Complete</p>
+		<select id="time">
+			<option value="1">1 Week</option>
+			<option value="2">2 Weeks</option>
+			<option value="3">3 Weeks</option>
+			<option value="4">4 Weeks</option>
+			<option value="5">5 Weeks</option>
+			<option value="6">6 Weeks</option>
+			<option value="7">7 Weeks</option>
+			<option value="8">8 Weeks</option>
+			<option value="9">9 Weeks</option>
+			<option value="10" selected>10 Weeks</option>
+			<option value="11">11 Weeks</option>
+			<option value="12">12 Weeks</option>
+			<option value="13">13 Weeks</option>
+			<option value="14">14 Weeks</option>
+			<option value="15">15 Weeks</option>
+		</select>
+	</p>
+	<p>
+		<p>Location - X|Y</p>
+		<input id="x">|<input id="y">
+	</p>
+	<p>
+		<p>Complete Tooltip</p>
+		<textarea id="tooltip"></textarea>
+	</p>
+	<p>
+		<p>Reward</p>
+		<textarea id="reward"></textarea>
+	</p>
+	<p>
 		<button id="submit-focus">Submit</button>
 	</p>
 </div>
@@ -252,7 +256,7 @@
 	<div id="selector">
 	<p id="close-selector">x</p>
 	<p>Want to select multiple? Choose whether you want all to be required, or any to be required</p>
-	<p>ALL - <input type="checkbox" id="select-and" style="width:1rem;"> | ANY - <input type="checkbox" id="select-or" style="width:1rem;"></p>
+	<p>ALL - <input type="checkbox" id="select-and" style="width:1rem;"> | ANY - <input type="checkbox" id="select-or" style="width:1rem;"> | RESET - <input type="checkbox" id="select-reset" style="width:1rem;"> </p>
 	</div>
 	<div id="selectfocus">
 	</div>
@@ -275,7 +279,13 @@
 		<h4>Save</h4>
 		<p>Saving to local storage will allow you to leave this page, and return with your focus tree exactly how you left it.</p>
 		<p>Saving to server will allow you to save your current focus tree to the server, and access it from any location using the password you will be given once the focus tree has saved.</p>
-		<button id="savetostorage">Save To Local Storage</button>
+		<h5>Save to Local Storage</h5>
+		<p><button id="savetostorage">Save To Local Storage</button></p>
+		<h5>Save to Server</h5>
+		<p>If you would like your focuses to be public, e.g. anyone can use them, check the box below</p>
+		<p><input id="public_focuses" type="checkbox"></p>
+		<p>Please input which country/countries your focus(es) relate to seperated by comma for multiple countries, e.g ENG,SOV,GER<br>If it is for a generic focus tree leave it blank.</p>
+		<p><input id="country_tags"></p>
 		<button id="savetoserver">Save To Server</button>
 		<h4>Export</h4>
 		<p>Export your focus tree to use in game.</p>

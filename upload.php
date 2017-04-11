@@ -28,6 +28,9 @@ $ys = $_POST['ys'];
 $bypasses = $_POST['bypasses'];
 $ttcs = $_POST['ttcs'];
 $ai = $_POST['ai'];
+$tooltip = $_POST['tooltips'];
+$private = $_POST['private'];
+$tags = $_POST['tags'];
 
 $successfulpassword = 0;
 do{
@@ -54,7 +57,7 @@ if ($result->num_rows > 0) {
 foreach ($ids as $key => $value) {
 	
 		
-	$sql = "INSERT INTO focuses (focus_id, focus_name, focus_description, focus_x, focus_y, focus_bypass, focus_mutual, focus_available, focus_ai, focus_gfx, focus_prefocus, focus_reward, focus_ttc,country_affected, public_private, password, tags, notes) VALUES ('$ids[$key]','$names[$key]','$descs[$key]',$xs[$key],$ys[$key],'$bypasses[$key]','$mutuals[$key]','$availables[$key]','$ai[$key]','$imgs[$key]','$prefocuses[$key]','$rewards[$key]','$ttcs[$key]','ENG','0','$createpass','test','')";
+	$sql = "INSERT INTO focuses (focus_id, focus_name, focus_description, focus_x, focus_y, focus_bypass, focus_mutual, focus_available, focus_ai, focus_gfx, focus_prefocus, focus_reward, focus_ttc, focus_tooltip,country_affected, public_private, password, tags, notes) VALUES ('$ids[$key]','$names[$key]','$descs[$key]',$xs[$key],$ys[$key],'$bypasses[$key]','$mutuals[$key]','$availables[$key]','$ai[$key]','$imgs[$key]','$prefocuses[$key]','$rewards[$key]','$ttcs[$key]','$tooltips[$key]','$tags','$private','$createpass','','')";
 	//$sql = "INSERT INTO focuses (focus_id) VALUES ($ids[$key])";
 	if ($conn->query($sql) === TRUE) {
 		echo "New record created successfully";

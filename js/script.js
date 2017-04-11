@@ -30,19 +30,20 @@ $(document).ready(function(){
 		var available = $("#available").val();
 		var reward = $("#reward").val();
 		var time = $("#time").val();
-		if($("#prefocus").val().substr($("#prefocus").val().length - 2 == "&&") || $("#prefocus").val().substr($("#prefocus").val().length - 2 == "||")){
+		if($("#prefocus").val().substr($("#prefocus").val().length - 2)  == "&&" || $("#prefocus").val().substr($("#prefocus").val().length - 2) == "||"){
 			var prefocus = $("#prefocus").val().slice(0,-2);
 			var prefocusandor = true;
 		}else{
 			var prefocus = $("#prefocus").val();
 		}
-		if($("#mutual").val().substr($("#mutual").val().length - 2 == "&&") || $("#mutual").val().substr($("#mutual").val().length - 2 == "||")){
+		if($("#mutual").val().substr($("#mutual").val().length - 2)  == "&&"  || $("#mutual").val().substr($("#mutual").val().length - 2) == "||"){
 			var mutual = $("#mutual").val().slice(0,-2);
 			var mutualandor = true;
 		}else{
 			var mutual = $("#mutual").val();
 		}
 		var bypass = $("#bypass").val();
+		var tooltip = $("#tooltip").val();
 		var ai = $("#ai").val();
 		var x = parseInt($("#x").val());
 		var y = parseInt($("#y").val());
@@ -50,8 +51,8 @@ $(document).ready(function(){
 		var getgfx = $("#"+gfx).attr("src");
 		var id = name.replace(/\s+/g, '').replace(/[^a-zA-Z_0-9]/g, '').toLowerCase();
 		var xpos = x*150;
-		var ypos = y*150;
-		var allinfo = '<div class="all-info" id="'+id+'-all-info"><div id="'+id+'_name">'+name+'</div><div id="'+id+'_description">'+desc+'</div><div id="'+id+'_available">'+available+'</div><div id="'+id+'_reward">'+reward+'</div><div id="'+id+'_time">'+time+'</div><div id="'+id+'_bypass">'+bypass+'</div><div id="'+id+'_prefocus">'+prefocus+'</div><div id="'+id+'_mutual">'+mutual+'</div><div id="'+id+'_ai">'+ai+'</div><div id="'+id+'_gfx">'+getgfx+'</div></div>		';
+		var ypos = y*180;
+		var allinfo = '<div class="all-info" id="'+id+'-all-info"><div id="'+id+'_name">'+name+'</div><div id="'+id+'_description">'+desc+'</div><div id="'+id+'_available">'+available+'</div><div id="'+id+'_reward">'+reward+'</div><div id="'+id+'_time">'+time+'</div><div id="'+id+'_bypass">'+bypass+'</div><div id="'+id+'_tooltip">'+tooltip+'</div><div id="'+id+'_prefocus">'+prefocus+'</div><div id="'+id+'_mutual">'+mutual+'</div><div id="'+id+'_ai">'+ai+'</div><div id="'+id+'_gfx">'+getgfx+'</div></div>		';
 		$("#display").append('<div id="'+id+'" class="focus" style="top:'+ypos+'px;left:'+xpos+'px;" x-pos="'+x+'" y-pos="'+y+'"><div style="position:relative"><div class="mover up">^&nbsp;&nbsp;</div><div class="mover down">&nbsp;&nbsp;v</div><img src="'+getgfx+'" id="'+id+'_gfx" class="gfx"><div class="name">'+'<p id="'+id+'-name">'+name+'</p></div><div class="mover left">&lt;&nbsp;&nbsp;</div><div class="mover right">&nbsp;&nbsp;&gt;</div><div class="tail"></div></div></div>'+allinfo);
 		
 		/*if(prefocusandor == true && prefocus.indexOf("&&") != -1){
@@ -94,7 +95,10 @@ $(document).ready(function(){
 		$("#desc").val("");
 		$("#available").val("");
 		$("#reward").val("");
-		$("#time").val("");
+		$("#prefocus").val("");
+		$("#mutual").val("");
+		$("#bypass").val("");
+		$("#tooltip").val("");
 		$("#x").val("");
 		$("#y").val("");
 		$("#chosen-gfx").val("");
@@ -113,6 +117,7 @@ $(document).ready(function(){
 			var img = "#"+nf+"_gfx";
 			var getttc = "#"+nf+"_time";
 			var getreward = "#"+nf+"_reward";
+			var gettooltip = "#"+nf+"_tooltip";
 			var getx = $(this).parent().parent().attr("x-pos");
 			var gety = $(this).parent().parent().attr("y-pos");
 			var getgfx = $(img).attr("src");
@@ -123,6 +128,7 @@ $(document).ready(function(){
 			$("#available").val($(getavailable).text());
 			$("#reward").val($(getreward).text());
 			$("#mutual").val($(getmutual).text());
+			$("#tooltip").val($(gettooltip).text());
 			$("#x").val(getx);
 			$("#y").val(gety);
 			$("#chosen-gfx").val(getgfx.replace("images/","").replace(".png",""));
@@ -178,6 +184,11 @@ $(document).ready(function(){
 	$("#select-or").click(function(){
 		$("#select-and").prop('checked',false);
 		$("#select-or").prop('checked',true);
+	});
+	$("#select-reset").click(function(){
+		$("#select-and").prop('checked',false);
+		$("#select-or").prop('checked',false);
+		$("#select-reset").prop('checked',false);
 	});
 	//Mutually Exclusive focuses
 	$("#mutual").click(function(){
@@ -268,6 +279,7 @@ $(document).ready(function(){
 			var exportprefocus = "#"+exportid+"_prefocus";
 			var exportavailable = "#"+exportid+"_available";
 			var exportmutual = "#"+exportid+"_mutual";
+			var exporttooltip = "#"+exportid+"_tooltip";
 			var exportimg = "#"+exportid+"_gfx";
 			var exportreward = "#"+exportid+"_reward";
 			var exportttc = "#"+exportid+"_time";
@@ -286,8 +298,8 @@ $(document).ready(function(){
 			$("#workplace-focus").val($("#workplace-focus").val()+'focus = {<br>');
 			$("#workplace-focus").val($("#workplace-focus").val() + 'id ='+ exportid + '<br>');
 			$("#workplace-focus").val($("#workplace-focus").val() + 'icon ='+ exportgfx.replace(".png","").replace("images/","GFX_") + '<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'bypass ='+ $(exportbypass).text() + '<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'bypass ='+ $(exportai).text() + '<br>');
+			$("#workplace-focus").val($("#workplace-focus").val() + 'bypass = {'+ $(exportbypass).text() + '}<br>');
+			$("#workplace-focus").val($("#workplace-focus").val() + 'ai_will_do = { factor = '+ $(exportai).text() + '}<br>');
 			$("#workplace-focus").val($("#workplace-focus").val() + 'x ='+ exportx + '<br>');
 			$("#workplace-focus").val($("#workplace-focus").val() + 'y ='+ exporty + '<br>');
 			if(fixmutual == ""){
@@ -311,13 +323,13 @@ $(document).ready(function(){
 		$("#workplace-focus").val($("#workplace-focus").val()+"#end<br>}");
 		
 		var a = document.body.appendChild(document.createElement("a"));
-		a.download = "national-focus-tree.yml";
-		a.href = "data:text/html," + $("#workplace-focus").val().replace(/\<br\>/g,"%0D%0A");
+		a.download = "national-focus-tree.txt";
+		a.href = "data:text/html," + $("#workplace-focus").val().replace(/\<br\>/g,"%0D%0A").replace(/\n/g,"%0D%0A");
 		a.click();
 		
 		var a = document.body.appendChild(document.createElement("a"));
 		a.download = "national-focus-tree-lang.yml";
-		a.href = "data:text/html," + $("#workplace-lang").val().replace(/\<br\>/g,"%0D%0A");
+		a.href = "data:text/html," + $("#workplace-lang").val().replace(/\<br\>/g,"%0D%0A").replace(/\n/g,"%0D%0A");
 		a.click();
 	});
 	
@@ -335,6 +347,7 @@ $(document).ready(function(){
 		var xs = [];
 		var ys = [];
 		var ai = [];
+		var tooltips = [];
 		ids = [];
 		names = [];
 		descs = [];
@@ -348,6 +361,7 @@ $(document).ready(function(){
 		xs = [];
 		ys = [];
 		ai = [];
+		tooltips = [];
 		$('.all-info').each(function () {
 			var exportid = $(this).attr("id").replace("-all-info","");
 			var exportname = "#"+exportid+"_name";
@@ -363,6 +377,7 @@ $(document).ready(function(){
 			var exporty = $("#"+exportid).attr("y-pos");
 			var exportgfx = $(exportimg).attr("src");
 			var exportai = "#"+exportid+"_ai";
+			var exporttooltip = "#"+exportid+"_tooltip";
 		
 			ids.push(exportid);
 			names.push($(exportname).text());
@@ -377,7 +392,14 @@ $(document).ready(function(){
 			ttcs.push($(exportttc).text());	
 			rewards.push($(exportreward).text());
 			ai.push($(exportai).text());
+			tooltips.push($(exporttooltip).text());
 		});
+		if($("#select-and").prop('checked') == false){
+			var private = "1";
+		}else{
+			var private = "0";
+		}
+		var tags = $("#country_tags").val();
 		$.post( "upload.php",{ 
 			ids: ids, 
 			names: names,
@@ -391,7 +413,10 @@ $(document).ready(function(){
 			bypasses: bypasses,
 			xs: xs,
 			ys: ys,
-			ai: ai
+			ai: ai,
+			tooltips: tooltips,
+			private: private,
+			tags: tags
 		},
 		function(data,status){
 			
