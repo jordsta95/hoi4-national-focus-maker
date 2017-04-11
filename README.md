@@ -8,7 +8,6 @@ This tool is not created by, or on behalf of, Paradox Interactive. The tool will
 
 ### Planned features
 * Build focus avialable, bypass, and reward using lists; not having to type the full "add_political_power = {...}" each time
-* Save focuses to database (will add after site is uploaded), and allow to be made public (no password needed to see the focuses available), and private (password needed to access focuses)
 * Connectors will make a return. They are technically there at the minute, but them not connecting properly annoyed me, so they are commented out until I can find the patience to fix them
 
 
