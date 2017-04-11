@@ -162,6 +162,19 @@ button{
 	padding:10px;
 	color:#fff;
 }
-#help-box,#export-box{
+#help-box,#export-box,#import-box{
 	display:none;
 }
+#display-password{
+	display:none;
+	width:300px;
+	background:#96281B;
+	color:#fff;
+	padding:0.5rem;
+	border:1px solid #fff;
+	margin:0 auto;
+	position:fixed;
+	z-index:5;
+	font-size:1.4rem;
+}
+small{font-size:0.75em;}

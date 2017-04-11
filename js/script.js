@@ -392,7 +392,42 @@ $(document).ready(function(){
 			xs: xs,
 			ys: ys,
 			ai: ai
-		});
+		},
+		function(data,status){
+			
+            if(status !== "success"){
+				alert("There was an issue uploading your focus(es), please try again later or report an issue on Github.");
+			}else{
+				var content = $( data ).find( "#pw" );
+				$( "#display-password" ).empty().append( content );
+				$( "#display-password" ).append('<br><span id="close-pw" style="font-size:0.75rem;">The above is your password, to access your focus(es) from anywhere, make sure to copy it. Click this text to close this box</span>')
+				$( "#display-password" ).show();
+			}
+        });
+	});
+	
+	$("#import, #close-import").click(function(){
+		$("#import-box").toggle();	
+	});
+	
+	$("#sub-pass").click(function(){
+		$.post( 'import.php', { import_password: $("#import_password").val() },
+		function(data,status){
+           // alert("Data: " + data + "\nStatus: " + status);
+			var content = $( data ).filter( "#table" );
+			$( "#show-output" ).empty().append( content );
+			
+        });
+	});
+	$(document).on('click', "#close-pw", function() {
+		$( "#display-password" ).hide();
+	});
+	
+	//$(".import-row").click(function(){
+	$(document).on('click', ".import-row", function() {
+		var addid = $(this).attr("id");
+		$("#display").append($("#"+addid+"-import-row").html());
+		$(this).remove();
 	});
 	
 });

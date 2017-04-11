@@ -3,7 +3,7 @@
 
 This repo is to serve as a way for backups, improvements, and for people to be able to make pull requests when Paradox create new functions for modding.
 
-This tool is not created by, or on behalf of, Paradox Interactive. The tool will be provided free of charge at [a website which currently WIP]. The tool does not modify game files, and any issues with the tool will not affect the main game.
+This tool is not created by, or on behalf of, Paradox Interactive. The tool will be provided free of charge at [hoi4modding.com](http://hoi4modding.com). The tool does not modify game files, and any issues with the tool will not affect the main game.
 
 
 ### Planned features

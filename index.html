@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>HOI4 National Focus Tool</title>
-<meta name="description" content="Tool for making national foci in Hearts of Iron IV">
+<meta name="description" content="Tool for making national focuses in Hearts of Iron IV">
 <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="js/script.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
@@ -21,6 +21,9 @@
 	<p style="text-align:center">This is awkward :/</p>
 	<p>It looks like you have Javascript disabled, unfortunately this site requires it to run. I do use Google Analytics on this page, to see how many people are using the site - however, if you wish for 100% anonymity you can find this same page without it (still requires Javascript to be enabled) <a href="/no-tracking.html">here</a></p>
 </div></noscript>
+<div id="display-password">
+
+</div>
 <div id="menu">
 	<input type="checkbox" id="delete" name="delete"><label for="delete" id="delete-label"></label>
 	<table style="display:inline-block;">
@@ -277,6 +280,21 @@
 		<h4>Export</h4>
 		<p>Export your focus tree to use in game.</p>
 		<button id="exportcontent">Export</button>
+	</div>
+</div>
+<div id="import-box">
+	<div style="max-width:1200px;margin:0 auto;">
+		<p id="close-import" style="text-align:right">Close - X</p>
+		<div style="display:inline-block; width:49%">
+		<h4>Import</h4>
+		<p>Input the password of the focus(es) you want to add into the textbox below, or leave it blank to see all public focuses.</p>
+		<input name="import_password" id="import_password">
+		<button id="sub-pass">Submit Password</button>
+		</div>
+		<div style="display:inline-block; width:49%">
+		<div id="show-output">
+		</div>
+		</div>
 	</div>
 </div>
 <!-- ////// -->
