@@ -178,6 +178,8 @@ button{
 	width:100vw;
 	z-index:9;
 	background:#22211d;
+	height:85vh;
+	overflow-y:scroll;
 }
 #display-password{
 	display:none;
@@ -192,3 +194,8 @@ button{
 	font-size:1.4rem;
 }
 small{font-size:0.75em;}
+.focus-reward{
+	max-height:2rem;
+	overflow-y:scroll;
+	display:block;
+}

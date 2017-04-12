@@ -36,7 +36,7 @@ $(document).ready(function(){
 		}else{
 			var prefocus = $("#prefocus").val();
 		}
-		if($("#mutual").val().substr($("#mutual").val().length - 2)  == "&&"  || $("#mutual").val().substr($("#mutual").val().length - 2) == "||"){
+		if($("#mutual").val().substr($("#mutual").val().length - 2 == "\&\&") || $("#mutual").val().substr($("#mutual").val().length - 2 == "\|\|")){
 			var mutual = $("#mutual").val().slice(0,-2);
 			var mutualandor = true;
 		}else{
@@ -165,13 +165,13 @@ $(document).ready(function(){
 	});
 	//Move focus down
 	$(document).on('click', ".down", function() {
-		$(this).parent().parent().animate({top: '+=150px'}, 0);
+		$(this).parent().parent().animate({top: '+=180px'}, 0);
 		$(this).parent().parent().attr("y-pos",parseInt($(this).parent().parent().attr("y-pos"))+1);
 	});
 	//Move focus up
 	$(document).on('click', ".up", function() {
 		if(parseInt($(this).parent().parent().css("top").replace("px","")) > 149){
-			$(this).parent().parent().animate({top: '+=-150px'}, 0);
+			$(this).parent().parent().animate({top: '+=-180px'}, 0);
 			$(this).parent().parent().attr("y-pos",parseInt($(this).parent().parent().attr("y-pos"))-1);
 		}
 	});
@@ -324,7 +324,7 @@ $(document).ready(function(){
 		
 		var a = document.body.appendChild(document.createElement("a"));
 		a.download = "national-focus-tree.txt";
-		a.href = "data:text/html," + $("#workplace-focus").val().replace(/\<br\>/g,"%0D%0A").replace(/\n/g,"%0D%0A");
+		a.href = "data:text/html," + $("#workplace-focus").val().replace(/\<br\>/g,"%0D%0A").replace(/\n/g,"%0D%0A").replace(/	/g,"%09");
 		a.click();
 		
 		var a = document.body.appendChild(document.createElement("a"));
@@ -362,6 +362,12 @@ $(document).ready(function(){
 		ys = [];
 		ai = [];
 		tooltips = [];
+		if($("#public_focuses").prop('checked') == false){
+			var private = "1";
+		}else{
+			var private = "0";
+		}
+		var tags = $("#country_tags").val();
 		$('.all-info').each(function () {
 			var exportid = $(this).attr("id").replace("-all-info","");
 			var exportname = "#"+exportid+"_name";
@@ -394,12 +400,6 @@ $(document).ready(function(){
 			ai.push($(exportai).text());
 			tooltips.push($(exporttooltip).text());
 		});
-		if($("#select-and").prop('checked') == false){
-			var private = "1";
-		}else{
-			var private = "0";
-		}
-		var tags = $("#country_tags").val();
 		$.post( "upload.php",{ 
 			ids: ids, 
 			names: names,
@@ -427,6 +427,7 @@ $(document).ready(function(){
 				$( "#display-password" ).empty().append( content );
 				$( "#display-password" ).append('<br><span id="close-pw" style="font-size:0.75rem;">The above is your password, to access your focus(es) from anywhere, make sure to copy it. Click this text to close this box</span>')
 				$( "#display-password" ).show();
+				$( "#export-box" ).hide();
 			}
         });
 	});
@@ -453,6 +454,12 @@ $(document).ready(function(){
 		var addid = $(this).attr("id");
 		$("#display").append($("#"+addid+"-import-row").html());
 		$(this).remove();
+		if($('.import-row').length == "0" || $('.import-row').length == "-1"){
+			$("#table").remove();	
+		}
+	});
+	$(document).on('click', "#clear-table", function() {
+		$("#table").remove();	
 	});
 	
 });
