@@ -199,3 +199,38 @@ small{font-size:0.75em;}
 	overflow-y:scroll;
 	display:block;
 }
+#builder{
+	display:none;
+	position:fixed;
+	top:calc(10vh + 0.5rem);
+	right:0;
+	width:55vw;
+	height:85vh;
+	overflow:scroll;
+	background:#34495E;
+	z-index:10;
+}
+.inline{
+	display:inline-block;
+	width:49%;
+	vertical-align:top;
+}
+.scope,.condition{
+	margin:0;
+}
+.scope:before,.condition:before{
+	content:'> ';
+}
+.scope:nth-child(odd),.condition:nth-child(odd){
+	background:rgba(204,204,204,0.1)
+}
+.condition-info,.scope-info,#build-scopes-area,#build-conditions-area,#submit-build{
+	display:none;
+}
+.condition-info,.scope-info{
+	font-size:1.5rem;
+}
+.eigthyvh{
+	height:80vh;
+	overflow-y:scroll;
+}

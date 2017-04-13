@@ -5,9 +5,9 @@
 <title>HOI4 National Focus Tool</title>
 <meta name="description" content="Tool for making national focuses in Hearts of Iron IV">
 <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="js/script.js?v=01"></script>
+<script src="js/script.js?v=001"></script>
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link href="css/style.css?v=01" rel="stylesheet">
+<link href="css/style.css?v=001" rel="stylesheet">
 </head>
 <body>
 <!--[if IE]>
@@ -259,6 +259,582 @@
 	<p>ALL - <input type="checkbox" id="select-and" style="width:1rem;"> | ANY - <input type="checkbox" id="select-or" style="width:1rem;"> | RESET - <input type="checkbox" id="select-reset" style="width:1rem;"> </p>
 	</div>
 	<div id="selectfocus">
+	</div>
+</div>
+<div id="builder">
+<p id="close-builder" style="text-align:right;margin:0;padding-right:1rem;margin-bottom:-1.5rem;">Close - X</p>
+	<div id="builder-definer">
+		<button id="build-scopes">Scopes</button>
+		<button id="build-conditions">Conditions</button>
+		<button id="build-commands">Commands</button>
+		<button id="build-show-all">Show All</button>
+	</div>
+	<div class="inline eigthyvh">
+		<div id="build-scopes-area">
+			<p class="scope" id="random_owned_controlled_state">Targets a random owned and controlled state</p>
+			<p class="scope" id="OVERLORD">Targets the overlord of a subject</p>
+			<p class="scope" id="state_id">Targets a specific state</p>
+			<p class="scope" id="any_neighbor_country">Targets any neighboring country</p>
+			<p class="scope" id="TAG">Targets a specific country</p>
+			<p class="scope" id="any_country">Targets any country</p>
+			<p class="scope" id="any_enemy_country">Targets any enemy country</p>
+			<p class="scope" id="all_neighbor_country">Targets all neighboring countries</p>
+			<p class="scope" id="all_country">Targets all countries</p>
+			<p class="scope" id="all_enemy_country">Targets all enemy countries</p>
+			<p class="scope" id="any_state">Targets any state</p>
+			<p class="scope" id="any_owned_state">Targets any owned state</p>
+			<p class="scope" id="any_neighbor_state">Targets any neighboring state</p>
+			<p class="scope" id="any_allied_country">Targets any allied country</p>
+			<p class="scope" id="all_state">Targets all state</p>
+			<p class="scope" id="every_owned_state">Targets all owned states</p>
+			<p class="scope" id="all_neighbor_state">Targets all neighboring states</p>
+			<p class="scope" id="all_allied_country">Targets all allied countries</p>
+			<p class="scope" id="every_country">Targets every country</p>
+			<p class="scope" id="random_country">Targets a random country</p>
+			<p class="scope" id="every_neighbor_country">Targets every neighboring country</p>
+			<p class="scope" id="random_neighbor_country">Targets a random neighboring country</p>
+			<p class="scope" id="every_enemy_country">Targets every enemy country</p>
+			<p class="scope" id="random_enemy_country">Targets a random enemy country</p>
+			<p class="scope" id="random_state">Targets a random state</p>
+			<p class="scope" id="random_owned_state">Targets a random owned state</p>
+			<p class="scope" id="random_neighbor_state">Targets a random neighboring state</p>
+			<p class="scope" id="every_state">Targets every state</p>
+			<p class="scope" id="every_owned_state">Targets every owned state</p>
+			<p class="scope" id="every_neighbor_state">Targets every neighboring state</p>
+			<p class="scope" id="capital_scope">Targets the capital</p>
+		</div>
+		<div id="build-conditions-area">
+			<p class="condition" id="num_divisions">Checks the number of divisions</p>
+			<p class="condition" id="has_focus_tree">Checks if a country has a specific focus tree</p>
+			<p class="condition" id="is_staging_coup">Checks if a country is staging a coup</p>
+			<p class="condition" id="has_full_control_of_state">Checks if country controls every province of a state</p>
+			<p class="condition" id="has_army_experience">Checks the amount of army xp</p>
+			<p class="condition" id="has_air_experience">Checks the amount of air xp</p>
+			<p class="condition" id="has_navy_experience">Checks the amount of navy xp</p>
+			<p class="condition" id="has_country_leader">Checks for a specific country leader</p>
+			<p class="condition" id="has_tech_bonus">Checks for a bonus for a single tech or a tech category</p>
+			<p class="condition" id="has_resources_amount">Checks the amount of resources in a state</p>
+			<p class="condition" id="num_of_subjects">Checks the number of subjects</p>
+			<p class="condition" id="num_tech_sharing_groups">Checks the amount of tech sharing a groups a country is in</p>
+			<p class="condition" id="compare_autonomy_progress_ratio">Checks the autonomy progress</p>
+			<p class="condition" id="ai_irrationality">Checks AI irrationality value</p>
+			<p class="condition" id="ai_liberate_desire">Checks how willing the AI is to liberate another country</p>
+			<p class="condition" id="always">Always returns specified value</p>
+			<p class="condition" id="any_claim">Checks for claims between two countries</p>
+			<p class="condition" id="any_war_score">Checks for war score in any ongoing war involving the country</p>
+			<p class="condition" id="armor">Checks for the average armor level of a combatant</p>
+			<p class="condition" id="can_research">Checks if a country can research a technology</p>
+			<p class="condition" id="controls_state">Checks if a country controls a state</p>
+			<p class="condition" id="country_exists">Checks if a specified country exists</p>
+			<p class="condition" id="date >, date <">Check for the current in-game date</p>
+			<p class="condition" id="dig_in">Checks for lowest dig-in level</p>
+			<p class="condition" id="distance_to">Checks distance between two states</p>
+			<p class="condition" id="divisions_in_state">Checks for the amount of division in state</p>
+			<p class="condition" id="exists">Checks if a country exists</p>
+			<p class="condition" id="fastest_unit">Checks if the fastest unit in combat has a certain speed value</p>
+			<p class="condition" id="focus_progress">Checks for the progress on a national focus</p>
+			<p class="condition" id="free_building_slots">Checks for the amount of free building slots</p>
+			<p class="condition" id="frontage_full">Checks for full frontage in combat</p>
+			<p class="condition" id="gives_military_access_to">Checks if a country is giving military access to another country</p>
+			<p class="condition" id="hardness">Checks lowest/highest hardness level in combat</p>
+			<p class="condition" id="has_added_tension_amount">Variable for how much world tension a country has caused ( 1.0 = 100% )</p>
+			<p class="condition" id="has_annex_war_goal">Checks if a country has the annex wargoal towards another country</p>
+			<p class="condition" id="has_army_manpower">Variable for the amount of manpower a country has deployed in divisions</p>
+			<p class="condition" id="has_army_size">Checks the amount of all or certain division</p>
+			<p class="condition" id="has_available_idea_with_traits">Checks if a country has ideas with specified traits available</p>
+			<p class="condition" id="has_built">Checks if a country has built a certain number of specified buildings after taking a goal</p>
+			<p class="condition" id="has_capitulated">Checks if a country has capitulated</p>
+			<p class="condition" id="has_carrier_airwings_on_mission">Checks if carrier airwings are on a mission</p>
+			<p class="condition" id="has_civil_war">Checks if a country is a participant in a civil war</p>
+			<p class="condition" id="has_combat_modifier">Checks for a combat modifier in combat</p>
+			<p class="condition" id="has_completed_focus">Checks if a national focus has been completed</p>
+			<p class="condition" id="has_country_flag">Checks for a country flag</p>
+			<p class="condition" id="has_defensive_war">Checks if in a defensive war</p>
+			<p class="condition" id="has_defensive_war_with">Checks for a defensive war against a country</p>
+			<p class="condition" id="has_deployed_air_force_size">Variable for a country's amount of deployed planes</p>
+			<p class="condition" id="has_equipment">Checks for the amount of equipment</p>
+			<p class="condition" id="has_flanked_opponent">Check if flanking an enemy</p>
+			<p class="condition" id="has_global_flag">Checks if a global flag is active</p>
+			<p class="condition" id="has_government">Checks a country's current ideology</p>
+			<p class="condition" id="has_guaranteed">Checks if a country has guaranteed another country</p>
+			<p class="condition" id="has_idea">Checks for a specified idea</p>
+			<p class="condition" id="has_idea_with_trait">Checks for an idea with a specified trait</p>
+			<p class="condition" id="has_manpower">Checks the amount of manpower</p>
+			<p class="condition" id="has_manpower_for_recruit_change_to">Checks if country has enough manpower to change recruitment laws</p>
+			<p class="condition" id="has_max_planning">Checks for maximum planning bonus in combat</p>
+			<p class="condition" id="has_military_access_to">Checks if a country has military access to another country</p>
+			<p class="condition" id="has_national_unity">Variable for the national unity of a nation</p>
+			<p class="condition" id="has_navy_size">Variable for the amount of ships a nation has</p>
+			<p class="condition" id="has_offensive_war">Checks if in an offensive war</p>
+			<p class="condition" id="has_offensive_war_with">Checks for a offensive war against a country</p>
+			<p class="condition" id="has_opinion">Checks for the current opinion towards another country</p>
+			<p class="condition" id="has_opinion_modifier">Checks for a specific opinion modifier</p>
+			<p class="condition" id="has_political_power">Checks the amount of political power</p>
+			<p class="condition" id="has_reserves">Checks for reserves in combat</p>
+			<p class="condition" id="has_start_date">Checks the initial start date of the current game</p>
+			<p class="condition" id="has_state_flag">Checks for a state flag</p>
+			<p class="condition" id="has_tech">Checks if a country has a specified tech</p>
+			<p class="condition" id="has_template_containing_unit">Checks if country has a template with specified units</p>
+			<p class="condition" id="has_trait">Checks if a leader in combat has a trait</p>
+			<p class="condition" id="has_volunteers_from">Checks if a country has volunteer from another country</p>
+			<p class="condition" id="has_war">Checks for war</p>
+			<p class="condition" id="has_war_together_with">Checks if two countries are on the same side in a war</p>
+			<p class="condition" id="has_war_with">Checks if at war with specified country</p>
+			<p class="condition" id="has_war_with_amount">Checks the amount of wars and current world tension</p>
+			<p class="condition" id="ic_ratio">Compares the total industrial capacity of two countries</p>
+			<p class="condition" id="is_ai">Checks if a country is run by AI</p>
+			<p class="condition" id="is_amphibious_invasion">Checks if combat is an amphibious invasion</p>
+			<p class="condition" id="is_attacker">Checks if attacker in combat</p>
+			<p class="condition" id="is_border_conflict">Checks if a state is in border conflict</p>
+			<p class="condition" id="is_claimed_by">Checks if state is claimed by a country</p>
+			<p class="condition" id="is_coastal">Checks if a state is coastal</p>
+			<p class="condition" id="is_controlled_by">Checks if a state is controlled by a country</p>
+			<p class="condition" id="is_core_of">Checks if state is a core of a country</p>
+			<p class="condition" id="is_defender">Checks if a defender in combat</p>
+			<p class="condition" id="is_demilitarized_zone">Checks if a state is demilitarized</p>
+			<p class="condition" id="is_faction_leader">Checks if a country is a leader of any faction</p>
+			<p class="condition" id="is_fighting_air_units">Checks if fighting air units</p>
+			<p class="condition" id="is_fighting_in_terrain">Checks the terrain of combat</p>
+			<p class="condition" id="is_guaranteed_by">Checks if guaranteed by a specified country</p>
+			<p class="condition" id="is_in_faction">Checks if member of any faction</p>
+			<p class="condition" id="is_in_faction_with">Checks if in the same faction with a country</p>
+			<p class="condition" id="is_in_home_area">Checks if a state is connected to the capital</p>
+			<p class="condition" id="is_ironman">Checks if current game is in Ironman mode</p>
+			<p class="condition" id="is_lend_leasing">Checks if giving lend lease to a country</p>
+			<p class="condition" id="is_major">Checks if a country is a major</p>
+			<p class="condition" id="is_neighbor_of">Checks if neighbors with a specified country</p>
+			<p class="condition" id="is_on_continent">Checks the continent of a state</p>
+			<p class="condition" id="is_owned_by">Checks if a state is owned by a country</p>
+			<p class="condition" id="is_puppet">Checks if a country is a puppet (puppet specified in autonomy levels)</p>
+			<p class="condition" id="is_puppet_of">Checks if a county is a puppet of a specified country (puppet specified in autonomy levels)</p>
+			<p class="condition" id="is_subject">Checks if a country is a subject</p>
+			<p class="condition" id="is_subject_of">Checks if a country is a subject of a specified country</p>
+			<p class="condition" id="is_winning">Checks if winning in combat</p>
+			<p class="condition" id="land_doctrine_level">Checks researched land doctrine level</p>
+			<p class="condition" id="less_combat_width_than_opponent">Checks for combat width in combat</p>
+			<p class="condition" id="night">Checks if combat is at night</p>
+			<p class="condition" id="num_of_available_civilian_factories">Checks the amount of unused civilian factories</p>
+			<p class="condition" id="num_of_available_military_factories">Check the amount of unused military factories</p>
+			<p class="condition" id="num_of_available_naval_factories">Checks the amount of unused naval dockyards</p>
+			<p class="condition" id="num_of_civilian_factories">Checks the amount of civilian factories in a country</p>
+			<p class="condition" id="num_of_controlled_states">Checks the number of controlled states</p>
+			<p class="condition" id="num_of_factories">Checks the total amount of factories</p>
+			<p class="condition" id="num_of_military_factories">Checks the amount of military factories in a country</p>
+			<p class="condition" id="num_of_naval_factories">Checks the amount of naval dockyards in a country</p>
+			<p class="condition" id="num_of_nukes">Checks the amount of nukes</p>
+			<p class="condition" id="original_tag">Checks the original tag of a country (for civil wars)</p>
+			<p class="condition" id="owns_state">Checks if a country owns a state</p>
+			<p class="condition" id="phase">Checks for a combat phase</p>
+			<p class="condition" id="recon_advantage">Checks for recon advantage in combat</p>
+			<p class="condition" id="region">Checks if a state is part of a specified strategic region</p>
+			<p class="condition" id="reserves">Checks the amount of reserves</p>
+			<p class="condition" id="ships_in_area">Checks the amount of ships in an area</p>
+			<p class="condition" id="ships_in_state_ports">Checks the number of ships in a state's provinces</p>
+			<p class="condition" id="skill">Checks leaders skill level</p>
+			<p class="condition" id="skill_advantage">Compares skill levels of commanders</p>
+			<p class="condition" id="state_population">Checks the states population</p>
+			<p class="condition" id="strength_ratio">Checks the relation of army strengths with a country</p>
+			<p class="condition" id="surrender_progress">Checks the surrender progress</p>
+			<p class="condition" id="tag">Checks the tag of the country</p>
+			<p class="condition" id="temperature">Checks for the temperature of a combat province</p>
+			<p class="condition" id="threat">Checks global threat value</p>
+		</div>
+		<div id="build-commands-area">
+			
+		</div>
+	</div>
+	<div class="inline">
+		<div id="build-hover">
+			<!-- Scopes -->
+			<div class="scope-info" id="random_owned_controlled_state_info" braces="yes"><pre>random_owned_controlled_state = { }</pre></div>
+			<div class="scope-info" id="OVERLORD_info">
+<pre>RAJ = { 
+	OVERLORD = { ... } 
+}</pre></div>
+			<div class="scope-info" id="state_id_info" braces="yes"><pre>145 = { ... }</pre></div>
+			<div class="scope-info" id="any_neighbor_country_info" braces="yes"><pre>any_neighbor_country = { ... }</pre></div>
+			<div class="scope-info" id="TAG_info" braces="yes"><pre>FRA = { ... }</pre></div>
+			<div class="scope-info" id="any_country_info" braces="yes"><pre>any_country = { ... }</pre></div>
+			<div class="scope-info" id="any_enemy_country_info" braces="yes"><pre>any_enemy_country = { ... }</pre></div>
+			<div class="scope-info" id="all_neighbor_country_info" braces="yes"><pre>all_neighbor_country = { ... }</pre></div>
+			<div class="scope-info" id="all_country_info" braces="yes"><pre>all_country = { ... }</pre></div>
+			<div class="scope-info" id="all_enemy_country_info" braces="yes"><pre>all_enemy_country = { ... }</pre></div>
+			<div class="scope-info" id="any_state_info" braces="yes"><pre>any_state = { ... }</pre></div>
+			<div class="scope-info" id="any_owned_state_info" braces="yes"><pre>any_owned_state = { ... }</pre></div>
+			<div class="scope-info" id="any_neighbor_state_info" braces="yes"><pre>any_neighbor_state = { ... }</pre></div>
+			<div class="scope-info" id="any_allied_country_info" braces="yes"><pre>any_allied_country = { ... }</pre></div>
+			<div class="scope-info" id="all_state_info" braces="yes"><pre>all_state = { ... }</pre></div>
+			<div class="scope-info" id="every_owned_state_info" braces="yes"><pre>every_owned_state = { ... }</pre></div>
+			<div class="scope-info" id="all_neighbor_state_info" braces="yes"><pre>all_neighbor_state = { ... }</pre></div>
+			<div class="scope-info" id="all_allied_country_info" braces="yes"><pre>all_allied_country = { ... }</pre></div>
+			<div class="scope-info" id="every_country_info" braces="yes"><pre>every_country = { ... }</pre></div>
+			<div class="scope-info" id="random_country_info" braces="yes"><pre>random_country = { ... }</pre></div>
+			<div class="scope-info" id="every_neighbor_country_info" braces="yes"><pre>every_neighbor_country = { ... }</pre></div>
+			<div class="scope-info" id="random_neighbor_country_info" braces="yes"><pre>random_neighbor_country = { ... }</pre></div>
+			<div class="scope-info" id="every_enemy_country_info" braces="yes"><pre>every_enemy_country = { ... }</pre></div>
+			<div class="scope-info" id="random_enemy_country_info" braces="yes"><pre>random_enemy_country = { ... }</pre></div>
+			<div class="scope-info" id="random_state_info" braces="yes"><pre>random_state = { ... }</pre></div>
+			<div class="scope-info" id="random_owned_state_info" braces="yes"><pre>random_owned_state = { ... }</pre></div>
+			<div class="scope-info" id="random_neighbor_state_info" braces="yes"><pre>random_neighbor_state = { ... }</pre></div>
+			<div class="scope-info" id="every_state_info" braces="yes"><pre>every_state = { ... }</pre></div>
+			<div class="scope-info" id="every_owned_state_info" braces="yes"><pre>every_owned_state = { ... }</pre></div>
+			<div class="scope-info" id="every_neighbor_state_info" braces="yes"><pre>every_neighbor_state = { ... }</pre></div>
+			<div class="scope-info" id="capital_scope_info" braces="yes"><pre>capital_scope = { ... }</pre></div>
+			
+			<!-- Conditions -->
+			<div class="condition-info" id="num_divisions_info"><pre>num_divisions > 10</pre></div>
+			<div class="condition-info" id="has_focus_tree_info"><pre>has_focus_tree = ID</pre></div>
+			<div class="condition-info" id="is_staging_coup_info"><pre>is_staging_coup = yes</pre></div>
+			<div class="condition-info" id="has_full_control_of_state_info">
+<pre>
+GER = { 
+	has_full_control_of_state = 55
+}
+</pre></div>
+			<div class="condition-info" id="has_army_experience_info"><pre>has_army_experience > 5</pre></div>
+			<div class="condition-info" id="has_air_experience_info"><pre>has_air_experience > 5</pre></div>
+			<div class="condition-info" id="has_navy_experience_info"><pre>has_navy_experience > 5</pre></div>
+			<div class="condition-info" id="has_country_leader_info" braces="yes">
+<pre>
+has_country_leader = { 
+	id = 17 
+	ruling_only = yes 
+	name = "Boaty McBoatface" 
+}
+</pre></div>
+			<div class="condition-info" id="has_tech_bonus_info" braces="yes">
+<pre>
+has_tech_bonus = { 
+	technology = early_fighter 
+	category = industry 
+}
+</pre></div>
+			<div class="condition-info" id="has_resources_amount_info" braces="yes">
+<pre>
+has_resources_amount = { 
+	resource = chromium 
+	amount > 5 
+	state = 31 
+}
+</pre></div>
+			<div class="condition-info" id="num_of_subjects_info"><pre>num_of_subjects > 0</pre></div>
+			<div class="condition-info" id="num_tech_sharing_groups_info"><pre>num_of_tech_sharing_groups > 1</pre></div>
+			<div class="condition-info" id="compare_autonomy_progress_ratio_info"><pre>compare_autonomy_progress_ratio > 0.6</pre></div>
+			<div class="condition-info" id="ai_irrationality_info"><pre>ai_irrationality < 20</pre></div>
+			<div class="condition-info" id="ai_liberate_desire_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="always_info"><pre>always = no</pre></div>
+			<div class="condition-info" id="any_claim_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="any_war_score_info"><pre>any_war_score > 0.5</pre></div>
+			<div class="condition-info" id="armor_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="can_research_info"><pre>can_research = basic_medium_tank</pre></div>
+			<div class="condition-info" id="controls_state_info">
+<pre>
+GER = { 
+	controls_state = 332 
+}
+</pre></div>
+			<div class="condition-info" id="country_exists_info"><pre>country_exists = YUG</pre></div>
+			<div class="condition-info" id="date >, date <_info"><pre>date > 1937.1.1</pre></div>
+			<div class="condition-info" id="dig_in_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="distance_to_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="divisions_in_state_info" braces="yes">
+<pre>
+divisions_in_state = { 
+	state = 605 
+	value > 0 
+}
+</pre></div>
+			<div class="condition-info" id="exists_info">
+<pre>
+GER = { 
+	exists = yes
+}
+</pre></div>
+			<div class="condition-info" id="fastest_unit_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="focus_progress_info" braces="yes">
+<pre>
+focus_progress = { 
+	focus = focus_id 
+	progress > 0.5 
+}
+</pre></div>
+			<div class="condition-info" id="free_building_slots_info" braces="yes">
+<pre>
+any_owned_state = { 
+	free_building_slots = { 
+		building = industrial_complex 
+		size > 0 
+		include_locked = yes 
+	} 
+}
+</pre></div>
+			<div class="condition-info" id="frontage_full_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="gives_military_access_to_info"><pre>giver_military_access_to = GER</pre></div>
+			<div class="condition-info" id="hardness_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="has_added_tension_amount_info"><pre>has_added_tension_amount > 0.1</pre></div>
+			<div class="condition-info" id="has_annex_war_goal_info"><pre>has_annex_war_goal = POL</pre></div>
+			<div class="condition-info" id="has_army_manpower_info" braces="yes">
+<pre>
+has_army_manpower = { 
+	size > 549999 
+}
+</pre></div>
+<div class="condition-info" id="has_army_size_info" braces="yes">
+<pre>
+has_army_size = { 
+	type = infantry size > 75 
+}
+</pre></div>
+			<div class="condition-info" id="has_available_idea_with_traits_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="has_built_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="has_capitulated_info">
+<pre>
+NOR = { 
+	has_capitulated = yes 
+}
+</pre></div>
+			<div class="condition-info" id="has_carrier_airwings_on_mission_info"><pre>has_carrier_airwings_on_mission = yes</pre></div>
+			<div class="condition-info" id="has_civil_war_info">
+<pre>
+SPR = { 
+	has_civil_war = yes 
+}
+</pre></div>
+			<div class="condition-info" id="has_combat_modifier_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="has_completed_focus_info">
+<pre>
+GER = { 
+	has_completed_focus = GER_anschluss 
+}
+</pre></div>
+			<div class="condition-info" id="has_country_flag_info">
+<pre>
+ENG = { 
+	has_country_flag = chamberlain_resigned 
+}
+</pre></div>
+			<div class="condition-info" id="has_defensive_war_info">
+<pre>
+CHI = { 
+	has_defensive_war = yes 
+}
+</pre></div>
+			<div class="condition-info" id="has_defensive_war_with_info">
+<pre>
+CHI = { 
+	has_defensive_war_with = JAP 
+}
+</pre></div>
+			<div class="condition-info" id="has_deployed_air_force_size_info">
+<pre>
+ENG = { 
+	has_deployed_air_force_size > 100 
+}
+</pre></div>
+			<div class="condition-info" id="has_equipment_info" braces="yes">
+<pre>
+has_equipment = { 
+	infantry_equipment > 500 
+}
+</pre></div>
+			<div class="condition-info" id="has_flanked_opponent_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="has_global_flag_info"><pre>has_global_flag = fall_of_france</pre></div>
+			<div class="condition-info" id="has_government_info"><pre>has_government = communism</pre></div>
+			<div class="condition-info" id="has_guaranteed_info">
+<pre>
+FRA = { 
+	has_guaranteed = POL
+}
+</pre></div>
+			<div class="condition-info" id="has_idea_info"><pre>has_idea = idea_id</pre></div>
+			<div class="condition-info" id="has_idea_with_trait_info"><pre>has_idea_with_trait = communist_revolutionary</pre></div>
+			<div class="condition-info" id="has_manpower_info"><pre>has_manpower > 10000</pre></div>
+			<div class="condition-info" id="has_manpower_for_recruit_change_to_info" braces="yes">
+<pre>
+has_manpower_for_recruit_change_to = { 
+	value = 0.01 
+	group = mobilization_laws
+}
+</pre></div>
+			<div class="condition-info" id="has_max_planning_info"><pre>has_max_planning = yes</pre></div>
+			<div class="condition-info" id="has_military_access_to_info"><pre>has_military_access_to = ITA</pre></div>
+			<div class="condition-info" id="has_national_unity_info"><pre>has_national_unity > 70</pre></div>
+			<div class="condition-info" id="has_navy_size_info" braces="yes">
+<pre>
+has_navy_size = { 
+	size > 10 
+}
+</pre></div>
+			<div class="condition-info" id="has_offensive_war_info"><pre>has_offensive_war = yes</pre></div>
+			<div class="condition-info" id="has_offensive_war_with_info"><pre>has_offensive_war_with = SOV</pre></div>
+			<div class="condition-info" id="has_opinion_info" braces="yes">
+<pre>
+has_opinion = { 
+	target = SOV 
+	value < -50 
+}
+</pre></div>
+			<div class="condition-info" id="has_opinion_modifier_info"><pre>has_opinion_modifier = unprovoked_aggression</pre></div>
+			<div class="condition-info" id="has_political_power_info"><pre>has_political_power > 100</pre></div>
+			<div class="condition-info" id="has_reserves_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="has_start_date_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="has_state_flag_info">
+<pre>
+713 = {
+	has_state_flag = GER_second_ljubljana_award_GER_demand
+}
+</pre></div>
+			<div class="condition-info" id="has_tech_info"><pre>has_tech = basic_medium_tank</pre></div>
+			<div class="condition-info" id="has_template_containing_unit_info"><pre>has_template_containing_unit = light_armor</pre></div>
+			<div class="condition-info" id="has_trait_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="has_volunteers_from_info"><pre>has_volunteers_from = GER</pre></div>
+			<div class="condition-info" id="has_war_info"><pre>has_war = yes</pre></div>
+			<div class="condition-info" id="has_war_together_with_info"><pre>has_war_together_with = ITA</pre></div>
+			<div class="condition-info" id="has_war_with_info"><pre>has_war_with = FRA</pre></div>
+			<div class="condition-info" id="has_war_with_amount_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="ic_ratio_info" braces="yes">
+<pre>
+ic_ratio = { 
+	tag = ITA 
+	ratio > 0.4
+}
+</pre></div>
+			<div class="condition-info" id="is_ai_info"><pre>is_ai = yes</pre></div>
+			<div class="condition-info" id="is_amphibious_invasion_info"><pre>is_amphibious_invasion = yes</pre></div>
+			<div class="condition-info" id="is_attacker_info"><pre>is_attacker = yes</pre></div>
+			<div class="condition-info" id="is_border_conflict_info">
+<pre>
+any_owned_state = { 
+	is_border_conflict = yes
+}
+</pre></div>
+			<div class="condition-info" id="is_claimed_by_info">
+<pre>
+any_owned_state = { 
+	is_claimed_by = GER
+}
+</pre></div>
+			<div class="condition-info" id="is_coastal_info">
+<pre>
+any_owned_state = { 
+	is_coastal = yes
+}
+</pre></div>
+			<div class="condition-info" id="is_controlled_by_info">
+<pre>
+332 = { 
+	is_controlled_by = GER
+}
+</pre></div>
+			<div class="condition-info" id="is_core_of_info">
+<pre>
+any_owned_state = { 
+	is_core_of = CHI 
+}
+</pre></div>
+			<div class="condition-info" id="is_defender_info"><pre>is_defender = yes</pre></div>
+			<div class="condition-info" id="is_demilitarized_zone_info">
+<pre>
+any_owned_state = { 
+	is_demilitarized_zone = yes
+}
+</pre></div>
+			<div class="condition-info" id="is_faction_leader_info"><pre>is_faction_leader = yes</pre></div>
+			<div class="condition-info" id="is_fighting_air_units_info"><pre>is_fighting_air_units = yes</pre></div>
+			<div class="condition-info" id="is_fighting_in_terrain_info"><pre>is_fighting_in_terrain = marsh</pre></div>
+			<div class="condition-info" id="is_guaranteed_by_info"><pre>is_guaranteed_by = USA</pre></div>
+			<div class="condition-info" id="is_in_faction_info"><pre>is_in_faction = yes</pre></div>
+			<div class="condition-info" id="is_in_faction_with_info"><pre>is_in_faction_with = GER</pre></div>
+			<div class="condition-info" id="is_in_home_area_info">
+<pre>
+any_owned_state = { 
+	is_in_home_area = yes 
+}
+</pre></div>
+			<div class="condition-info" id="is_ironman_info"><pre>is_ironman = yes</pre></div>
+			<div class="condition-info" id="is_lend_leasing_info"><pre>is_lend_leasing = SPR</pre></div>
+			<div class="condition-info" id="is_major_info"><pre>is_major = yes</pre></div>
+			<div class="condition-info" id="is_neighbor_of_info"><pre>is_neighbor_of = GER</pre></div>
+			<div class="condition-info" id="is_on_continent_info"><pre>any_owned_state = { is_on_continent = africa }</pre></div>
+			<div class="condition-info" id="is_owned_by_info">
+<pre>
+332 = { 
+	is_owned_by = GER	
+}</pre></div>
+			<div class="condition-info" id="is_puppet_info"><pre>is_puppet = yes</pre></div>
+			<div class="condition-info" id="is_puppet_of_info"><pre>is_puppet_of = ENG</pre></div>
+			<div class="condition-info" id="is_subject_info">
+<pre>
+RAJ = { 
+	is_subject = yes
+}
+</pre></div>
+			<div class="condition-info" id="is_subject_of_info">
+<pre>
+RAJ = { 
+	is_subject_of = ENG 
+}
+</pre></div>
+			<div class="condition-info" id="is_winning_info"><pre>is_winning = yes</pre></div>
+			<div class="condition-info" id="land_doctrine_level_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="less_combat_width_than_opponent_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="night_info"><pre>night = yes</pre></div>
+			<div class="condition-info" id="num_of_available_civilian_factories_info"><pre>num_of_available_civilian_factories > 1</pre></div>
+			<div class="condition-info" id="num_of_available_military_factories_info"><pre>num_of_available_military_factories > 1</pre></div>
+			<div class="condition-info" id="num_of_available_naval_factories_info"><pre>num_of_available_naval_factories > 1</pre></div>
+			<div class="condition-info" id="num_of_civilian_factories_info"><pre>num_of_civilian_factories > 10</pre></div>
+			<div class="condition-info" id="num_of_controlled_states_info"><pre>num_of_controlled_states > 10</pre></div>
+			<div class="condition-info" id="num_of_factories_info"><pre>num_of_factories > 50</pre></div>
+			<div class="condition-info" id="num_of_military_factories_info"><pre>num_of_military_factories > 10</pre></div>
+			<div class="condition-info" id="num_of_naval_factories_info"><pre>num_of_naval_factories > 10</pre></div>
+			<div class="condition-info" id="num_of_nukes_info"><pre>num_of_nukes > 1</pre></div>
+			<div class="condition-info" id="original_tag_info"><pre>original_tag = SPR</pre></div>
+			<div class="condition-info" id="owns_state_info">
+<pre>
+GER = { 
+	owns_state = 332 
+}
+</pre></div>
+			<div class="condition-info" id="phase_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="recon_advantage_info"><pre>recon_advantage = yes</pre></div>
+			<div class="condition-info" id="region_info">
+<pre>
+any_state = { 
+	region = 34
+}
+</pre></div>
+			<div class="condition-info" id="reserves_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="ships_in_area_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="ships_in_state_ports_info">
+<pre>
+any_owned_state = {
+	ships_in_state_ports > 10
+}</pre></div>
+			<div class="condition-info" id="skill_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="skill_advantage_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="state_population_info">
+<pre>
+any_owned_state = { 
+	state_population = 40000
+}
+</pre></div>
+			<div class="condition-info" id="strength_ratio_info" braces="yes">
+<pre>
+strength_ratio = { 
+	tag = SOV 
+	ratio > 0.8
+}
+</pre></div>
+			<div class="condition-info" id="surrender_progress_info"><pre>surrender_progress > 0.7</pre></div>
+			<div class="condition-info" id="tag_info"><pre>tag = FRA</pre></div>
+			<div class="condition-info" id="temperature_info"><pre>Needs to be tested</pre></div>
+			<div class="condition-info" id="threat_info"><pre>threat < 0.5</pre></div>
+		</div>
+		<div id="build-output" style="margin-top:2rem;">
+			<div id="build-preview" class="current-build-add-location">
+			</div>
+			<button id="submit-build" build="null">Submit</button>
+		</div>
 	</div>
 </div>
 <div id="help-box">

@@ -52,7 +52,7 @@ $(document).ready(function(){
 		var id = name.replace(/\s+/g, '').replace(/[^a-zA-Z_0-9]/g, '').toLowerCase();
 		var xpos = x*150;
 		var ypos = y*180;
-		var allinfo = '<div class="all-info" id="'+id+'-all-info"><div id="'+id+'_name">'+name+'</div><div id="'+id+'_description">'+desc+'</div><div id="'+id+'_available">'+available+'</div><div id="'+id+'_reward">'+reward+'</div><div id="'+id+'_time">'+time+'</div><div id="'+id+'_bypass">'+bypass+'</div><div id="'+id+'_tooltip">'+tooltip+'</div><div id="'+id+'_prefocus">'+prefocus+'</div><div id="'+id+'_mutual">'+mutual+'</div><div id="'+id+'_ai">'+ai+'</div><div id="'+id+'_gfx">'+getgfx+'</div></div>		';
+		var allinfo = '<div class="all-info" id="'+id+'-all-info"><div id="'+id+'_name">'+name+'</div><div id="'+id+'_desc">'+desc+'</div><div id="'+id+'_available">'+available+'</div><div id="'+id+'_reward">'+reward+'</div><div id="'+id+'_time">'+time+'</div><div id="'+id+'_bypass">'+bypass+'</div><div id="'+id+'_tooltip">'+tooltip+'</div><div id="'+id+'_prefocus">'+prefocus+'</div><div id="'+id+'_mutual">'+mutual+'</div><div id="'+id+'_ai">'+ai+'</div><div id="'+id+'_gfx">'+getgfx+'</div></div>		';
 		$("#display").append('<div id="'+id+'" class="focus" style="top:'+ypos+'px;left:'+xpos+'px;" x-pos="'+x+'" y-pos="'+y+'"><div style="position:relative"><div class="mover up">^&nbsp;&nbsp;</div><div class="mover down">&nbsp;&nbsp;v</div><img src="'+getgfx+'" id="'+id+'_gfx" class="gfx"><div class="name">'+'<p id="'+id+'-name">'+name+'</p></div><div class="mover left">&lt;&nbsp;&nbsp;</div><div class="mover right">&nbsp;&nbsp;&gt;</div><div class="tail"></div></div></div>'+allinfo);
 		
 		/*if(prefocusandor == true && prefocus.indexOf("&&") != -1){
@@ -449,7 +449,6 @@ $(document).ready(function(){
 		$( "#display-password" ).hide();
 	});
 	
-	//$(".import-row").click(function(){
 	$(document).on('click', ".import-row", function() {
 		var addid = $(this).attr("id");
 		$("#display").append($("#"+addid+"-import-row").html());
@@ -462,4 +461,79 @@ $(document).ready(function(){
 		$("#table").remove();	
 	});
 	
+	
+	
+	//Available/Bypass/Reward builder
+	$("#close-builder").click(function(){
+			$("#builder").hide();
+	});
+	$("#available").click(function(){
+		$("#builder").show();
+		$("#submit-build").attr("build","available");
+	});
+	$("#bypass").click(function(){
+		$("#builder").show();
+		$("#submit-build").attr("build","bypass");
+	});
+	
+	
+	//Show All
+	$("#build-show-all").click(function(){
+		$("#build-conditions-area").show();
+		$("#build-scopes-area").show();	
+	});
+	
+	//Scopes
+	$("#build-scopes").click(function(){
+		$("#build-scopes-area").toggle();
+		$("#build-conditions-area").hide();	
+	});
+	$(".scope").hover(function() {
+		var id = $(this).attr("id");
+		$("#"+id+"_info").toggle();
+	});
+	$(".scope").click(function() {
+		var id = $(this).attr("id");
+		if($("#"+id+"_info").attr("braces") == "yes"){
+			$(".current-build-add-location").removeClass("current-build-add-location").append(id+' = {<br><div class="current-build-add-location"></div><br>}');
+		}else{
+			$(".current-build-add-location").append(id+'<textarea id="add-build">=</textarea>');
+		}
+		$("#build-scopes-area").hide();
+		$("#submit-build").show();
+	});
+	
+	//Conditions
+	$("#build-conditions").click(function(){
+		$("#build-conditions-area").toggle();
+		$("#build-scopes-area").hide();	
+	});
+	$(".condition").hover(function() {
+		var id = $(this).attr("id");
+		$("#"+id+"_info").toggle();
+	});
+	$(".condition").click(function() {
+		var id = $(this).attr("id");
+		if($("#"+id+"_info").attr("braces") == "yes"){
+			$(".current-build-add-location").removeClass("current-build-add-location").append(id+' = {<br><div class="current-build-add-location"></div><br>}');
+		}else{
+			$(".current-build-add-location").append(id+'<textarea id="add-build">=</textarea>');
+		}
+		$("#build-conditions-area").hide();
+		$("#submit-build").show();
+	});
+	
+	
+	//Submit
+	$("#submit-build").click(function(){
+		//#build-preview
+		var buildvalue = $("#add-build").val();
+		$("#add-build").after(buildvalue);
+		$("#add-build").remove();
+		$("#"+$(this).attr("build")).val($("#"+$(this).attr("build")).val()+$("#build-preview").text());
+		$("#build-preview").empty();
+		$(this).attr("build","null");
+		$("#builder").hide();
+		$(this).hide();
+	});
 });
