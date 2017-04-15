@@ -5,9 +5,9 @@
 <title>HOI4 National Focus Tool</title>
 <meta name="description" content="Tool for making national focuses in Hearts of Iron IV">
 <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="js/script.js?v=001"></script>
+<script src="js/script.js?v=010"></script>
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link href="css/style.css?v=001" rel="stylesheet">
+<link href="css/style.css?v=010" rel="stylesheet">
 </head>
 <body>
 <!--[if IE]>
@@ -440,7 +440,125 @@
 			<p class="condition" id="threat">Checks global threat value</p>
 		</div>
 		<div id="build-commands-area">
-			
+			<p class="command" id="set_province_name">Changes the name of a province</p>
+			<p class="command" id="reset_province_name">Resets province name to original</p>
+			<p class="command" id="add_autonomy_ratio">Adds autonomy (with custom name)</p>
+			<p class="command" id="swap_ideas">Swaps two ideas, showing the difference</p>
+			<p class="command" id="set_cosmetic_tag">Sets a cosmetic TAG for a country</p>
+			<p class="command" id="damage_building">Damages a building in state</p>
+			<p class="command" id="create_unit">Creates a new unit</p>
+			<p class="command" id="set_autonomy">Sets the autonomy level of a target</p>
+			<p class="command" id="add_to_tech_sharing_group">Adds a country to a tech sharing group</p>
+			<p class="command" id="remove_from_tech_sharing_group">Removes a country from a tech sharing group</p>
+			<p class="command" id="add_manpower">Adds manpower to a state or country</p>
+			<p class="command" id="add_political_power">Adds political power to a country</p>
+			<p class="command" id="set_capital">Moves capital to specified state</p>
+			<p class="command" id="add_state_core">Adds cores on a specified state</p>
+			<p class="command" id="remove_state_core">Removes cores from a state</p>
+			<p class="command" id="change_tag_from">Changes player to other country</p>
+			<p class="command" id="set_country_flag">Sets a country flag</p>
+			<p class="command" id="clr_country_flag">Removes a country flag</p>
+			<p class="command" id="set_global_flag">Sets a global flag</p>
+			<p class="command" id="clr_global_flag">Removes a global flag</p>
+			<p class="command" id="remove_building">Removes a specified building from a specified state or province</p>
+			<p class="command" id="release">Releases a specified country</p>
+			<p class="command" id="country_event">Fires an event</p>
+			<p class="command" id="state_event">Fires a state event</p>
+			<p class="command" id="random">Random effect with a probability</p>
+			<p class="command" id="random_list">Chooses an effect randomly from a list based on their probabilities</p>
+			<p class="command" id="white_peace">Creates a white peace between countries</p>
+			<p class="command" id="add_state_claim">Add claims on a state</p>
+			<p class="command" id="remove_state_claim">Removes claims on a state</p>
+			<p class="command" id="add_opinion_modifier">Adds an opinion modifier to a country</p>
+			<p class="command" id="remove_opinion_modifier">Removes an opinion modifer from a country</p>
+			<p class="command" id="create_country_leader">Creates a country leader (head of state)</p>
+			<p class="command" id="sound_effect">Plays a sound effect</p>
+			<p class="command" id="randomize_weather">Randomizes weather</p>
+			<p class="command" id="division_template">Adds a division template to a country</p>
+			<p class="command" id="set_country_leader_ideology">Changes the ideology of the current country leader</p>
+			<p class="command" id="add_country_leader_trait">Add a trait to the current country leader</p>
+			<p class="command" id="remove_country_leader_trait">Removes a trait from the current country leader</p>
+			<p class="command" id="set_political_party">Sets the properties of a political party</p>
+			<p class="command" id="set_politics">Changes the politics of a country</p>
+			<p class="command" id="add_ideas">Adds idea(s) to a country</p>
+			<p class="command" id="remove_ideas">Removes idea(s) from a country</p>
+			<p class="command" id="set_political_power">Sets political power to a certain value</p>
+			<p class="command" id="set_technology">Set technology level of a country</p>
+			<p class="command" id="create_navy_leader">Creates a naval leader for a country</p>
+			<p class="command" id="remove_unit_leader_trait">Removes a trait from a unit leader</p>
+			<p class="command" id="add_unit_leader_trait">Add a trait to a unit leader</p>
+			<p class="command" id="set_state_owner">Sets the owner of a state</p>
+			<p class="command" id="puppet">Puppets the specified country</p>
+			<p class="command" id="set_state_controller">Sets the controller of a state</p>
+			<p class="command" id="transfer_state">Sets the owner and controller of a state</p>
+			<p class="command" id="set_state_flag">Sets a state flag</p>
+			<p class="command" id="clr_state_flag">Removes a state flag</p>
+			<p class="command" id="create_faction">Creates a faction with a specified name</p>
+			<p class="command" id="annex_country">Annexes a specified country</p>
+			<p class="command" id="add_building_construction">Starts a building construction within a state or a province</p>
+			<p class="command" id="dismantle_faction">Dismantles the faction led by the current country</p>
+			<p class="command" id="add_to_faction">Adds a country to a faction</p>
+			<p class="command" id="remove_from_faction">Removes a country from a faction</p>
+			<p class="command" id="give_guarantee">Guarantees specified country</p>
+			<p class="command" id="give_military_access">Specified country gives military access (bugged tooltip)</p>
+			<p class="command" id="news_event">Triggers a news event</p>
+			<p class="command" id="declare_war_on">Declares war on a specified country</p>
+			<p class="command" id="add_national_unity">Adds national unity</p>
+			<p class="command" id="add_scaled_political_power">Adds political power scaled by the difference between ICs of receiver and another country</p>
+			<p class="command" id="hold_election">Holds elections</p>
+			<p class="command" id="add_popularity">Adds popularity to an ideology</p>
+			<p class="command" id="remove_ideas_with_trait">Removes ideas with specific traits</p>
+			<p class="command" id="start_civil_war">Starts a civil war with the given ideology</p>
+			<p class="command" id="retire_country_leader">Removes a country leader and replaces him with another candidate from the same party</p>
+			<p class="command" id="kill_country_leader">Removes a country leader completely</p>
+			<p class="command" id="release_puppet">Releases a specified country</p>
+			<p class="command" id="create_wargoal">Creates a wargoal</p>
+			<p class="command" id="add_claim_by">Add state claim by a country</p>
+			<p class="command" id="remove_claim_by">Removes state claim from a country</p>
+			<p class="command" id="add_core_of">Adds cores of a country to a state</p>
+			<p class="command" id="remove_core_of">Removes cores of a country from a state</p>
+			<p class="command" id="army_experience">Adds army experience</p>
+			<p class="command" id="navy_experience">Adds navy experience</p>
+			<p class="command" id="air_experience">Adds air experience</p>
+			<p class="command" id="save_event_target_as">Save an event target as something</p>
+			<p class="command" id="save_global_event_target_as">Save a global event target as something</p>
+			<p class="command" id="clear_global_event_target">Removes a global event target</p>
+			<p class="command" id="clear_global_event_targets">Removes all global event targets</p>
+			<p class="command" id="break">Break execution of effects</p>
+			<p class="command" id="unlock_national_focus">Unlocks a national focus for a country</p>
+			<p class="command" id="add_tech_bonus">Adds a limited tech bonus</p>
+			<p class="command" id="set_demilitarized_zone">Sets a state as a demilitarized zone</p>
+			<p class="command" id="add_research_slot">Adds set number of research slots</p>
+			<p class="command" id="set_research_slots">Sets the number of research slots</p>
+			<p class="command" id="set_border_war">Starts a border war</p>
+			<p class="command" id="set_national_unity">Sets the national unity of a country</p>
+			<p class="command" id="set_equipment_fraction">Gives a fraction of your equipment to another country</p>
+			<p class="command" id="add_threat">Adds country threat</p>
+			<p class="command" id="send_equipment">Sends equipment to a country</p>
+			<p class="command" id="set_rule">Sets a rule to a country</p>
+			<p class="command" id="diplomatic_relation">Set up diplomatic relations between two countries</p>
+			<p class="command" id="add_resource">Adds resource production to a state</p>
+			<p class="command" id="remove_unit_leader">Removes a unit leader</p>
+			<p class="command" id="add_timed_idea">Adds a time limited idea to a country</p>
+			<p class="command" id="end_puppet">Ends puppetry over the specified country</p>
+			<p class="command" id="load_oob">Loads an OOB file</p>
+			<p class="command" id="create_import">Creates trade between countries</p>
+			<p class="command" id="add_named_threat">Adds country threat</p>
+			<p class="command" id="set_province_controller">Set controller of a province</p>
+			<p class="command" id="set_major">Makes a country a major</p>
+			<p class="command" id="create_field_marshal">Creates a field marshal</p>
+			<p class="command" id="create_corps_commander">Creates a corps commander</p>
+			<p class="command" id="goto_province">Goes to specified province</p>
+			<p class="command" id="goto_state">Goes to specified state</p>
+			<p class="command" id="complete_national_focus">Completes a national focus</p>
+			<p class="command" id="set_party_name">Changes a party name of a country</p>
+			<p class="command" id="add_extra_state_shared_building_slots">Add extra building slots to a state</p>
+			<p class="command" id="reverse_add_opinion_modifier">Add opinion modifiers to target</p>
+			<p class="command" id="add_to_war">Adds country to a war</p>
+			<p class="command" id="create_equipment_variant">Creates a new equipment variant</p>
+			<p class="command" id="add_equipment_production">Add equipment production</p>
+			<p class="command" id="add_ace">Adds an air ace</p>
+			<p class="command" id="add_equipment_to_stockpile">Adds equipment to stockpile of the country in question</p>
 		</div>
 	</div>
 	<div class="inline">
@@ -829,6 +947,473 @@ strength_ratio = {
 			<div class="condition-info" id="tag_info"><pre>tag = FRA</pre></div>
 			<div class="condition-info" id="temperature_info"><pre>Needs to be tested</pre></div>
 			<div class="condition-info" id="threat_info"><pre>threat < 0.5</pre></div>
+			<!-- Command info -->
+			<div class="command-info" id="set_province_name_info">
+<pre>
+set_province_name = { 
+	id = 325
+	name = "Funville"
+}
+</pre></div>
+			<div class="command-info" id="reset_province_name_info"><pre>reset_province_name = 325</pre></div>
+			<div class="command-info" id="add_autonomy_ratio_info">
+<pre>
+add_autonomy_ratio = { 
+	value = 0.1
+	localization = LOC_STRING_HERE
+}
+</pre></div>
+			<div class="command-info" id="swap_ideas_info">
+<pre>
+swap_ideas = { 
+	remove_idea = REM_IDEA_ID 
+	add_idea = ADD_IDEA_ID 
+}
+</pre></div>
+			<div class="command-info" id="set_cosmetic_tag_info"><pre>set_cosmetic_tag = SAF_SOV_communism</pre></div>
+			<div class="command-info" id="damage_building_info">
+<pre>
+damage_building = { 
+	type = industrial_complex 
+	damage = 0.6 
+}
+</pre></div>
+			<div class="command-info" id="create_unit_info">
+<pre>create_unit = { 
+	division = "name = COOL_NAME 
+	division_template = COOL_TEMPLATE 
+	starting_experience_factor = 1.0" 
+}</pre></div>
+			<div class="command-info" id="set_autonomy_info">
+<pre>
+set_autonomy = { 
+	target = RAJ 
+	autonomy_state = autonomy_free 
+}
+</pre></div>
+			<div class="command-info" id="add_to_tech_sharing_group_info"><pre>add_to_tech_sharing_group = tizard_mission</pre></div>
+			<div class="command-info" id="remove_from_tech_sharing_group_info"><pre>remove_from_tech_sharing_group = tizard_mission</pre></div>
+			<div class="command-info" id="add_manpower_info"><pre>add_manpower = 8000</pre></div>
+			<div class="command-info" id="add_political_power_info"><pre>add_political_power = 50</pre></div>
+			<div class="command-info" id="set_capital_info"><pre>set_capital = 345</pre></div>
+			<div class="command-info" id="add_state_core_info"><pre>add_state_core = 345</pre></div>
+			<div class="command-info" id="remove_state_core_info"><pre>remove_state_core = 345</pre></div>
+			<div class="command-info" id="change_tag_from_info"><pre>change_tag_from = GER</pre></div>
+			<div class="command-info" id="set_country_flag_info"><pre>set_country_flag = anschluss</pre></div>
+			<div class="command-info" id="clr_country_flag_info"><pre>clr_country_flag = anschluss</pre></div>
+			<div class="command-info" id="set_global_flag_info"><pre>set_global_flag = spanish_civil_war</pre></div>
+			<div class="command-info" id="clr_global_flag_info"><pre>clr_global_flag = spanish_civil_war</pre></div>
+			<div class="command-info" id="remove_building_info">
+<pre>
+219 = { 
+	remove_building = { 
+		type = arms_factory level = 5 
+	}
+}
+</pre></div>
+			<div class="command-info" id="release_info"><pre>release = CRO</pre></div>
+			<div class="command-info" id="country_event_info">
+<pre>
+country_event = { 
+	days = 1 
+	id = finland.1 
+}
+</pre></div>
+			<div class="command-info" id="state_event_info"><pre>state_event = stateevent.1</pre></div>
+			<div class="command-info" id="random_info">
+<pre>random = { 
+	50 = { 
+		add_political_power = 50 
+	}
+}</pre></div>
+			<div class="command-info" id="random_list_info">
+<pre>
+random_list = { 
+	70 = { 
+		add_political_power = 200
+	} 
+	30 = { 
+		add_political_power = -100 
+	} 
+}
+</pre></div>
+			<div class="command-info" id="white_peace_info"><pre>white_peace = ETH</pre></div>
+			<div class="command-info" id="add_state_claim_info"><pre>add_state_claim = 363</pre></div>
+			<div class="command-info" id="remove_state_claim_info"><pre>remove_state_claim = 363</pre></div>
+			<div class="command-info" id="add_opinion_modifier_info">
+<pre>
+add_opinion_modifier = { 
+	target = ENG 
+	modifier = tizard_refused 
+}
+</pre></div>
+			<div class="command-info" id="remove_opinion_modifier_info">
+<pre>
+remove_opinion_modifier = { 
+	target = ENG 
+	modifier = tizard_refused 
+}
+</pre></div>
+			<div class="command-info" id="create_country_leader_info">
+<pre>
+create_country_leader = { 
+	name = "Peter II" 
+	desc = "POLITICS_PETER_II_DESC" 
+	picture = "Portrait_Yugoslavia_Peter_II.dds" 
+	expire = "1965.1.1" 
+	ideology = despotism 
+	traits = { 
+	} 
+}
+</pre></div>
+			<div class="command-info" id="sound_effect_info"><pre>sound_effect = sound_effect_name</pre></div>
+			<div class="command-info" id="randomize_weather_info"><pre>Needs to be tested</pre></div>
+			<div class="command-info" id="division_template_info">
+<pre>
+division_template = { 
+	name = "Cool Name" 
+	regiments = { 
+		infantry = { 
+			x = 0 
+			y = 0 
+		}
+		infantry = { 
+			x = 1 
+			y = 0 
+		} 
+	} 
+}
+</pre></div>
+			<div class="command-info" id="set_country_leader_ideology_info"><pre>Needs to be tested</pre></div>
+			<div class="command-info" id="add_country_leader_trait_info"><pre>add_country_leader_trait = warmonger</pre></div>
+			<div class="command-info" id="remove_country_leader_trait_info"><pre>remove_country_leader_trait = stout_defender</pre></div>
+			<div class="command-info" id="set_political_party_info">
+<pre>
+set_political_party = { 
+	ideology = democratic 
+	popularity = 0.5 
+}
+</pre></div>
+			<div class="command-info" id="set_politics_info">
+<pre>
+set_politics = { 
+	ruling_party = fascism 
+	elections_allowed = no 
+}
+</pre></div>
+			<div class="command-info" id="add_ideas_info"><pre>add_ideas = ENG_king_edward</pre></div>
+			<div class="command-info" id="remove_ideas_info"><pre>remove_ideas = ENG_king_edward</pre></div>
+			<div class="command-info" id="set_political_power_info"><pre>set_political_power = 100</pre></div>
+			<div class="command-info" id="set_technology_info">
+<pre>
+set_technology = { 
+	suicide_craft = 1 
+}
+</pre></div>
+			<div class="command-info" id="create_navy_leader_info">
+<pre>
+create_navy_leader = { 
+	name = "Boaty McBoatface" 
+	gfx = "GFX_BoatfacesFace" 
+	traits = {
+	} 
+	skill = 3 
+}
+</pre></div>
+			<div class="command-info" id="remove_unit_leader_trait_info"><pre>Needs to be tested</pre></div>
+			<div class="command-info" id="add_unit_leader_trait_info"><pre>Needs to be tested</pre></div>
+			<div class="command-info" id="set_state_owner_info">
+<pre>
+USA = { 
+	set_state_owner = 353
+}
+</pre></div>
+			<div class="command-info" id="puppet_info"><pre>puppet = LIB</pre></div>
+			<div class="command-info" id="set_state_controller_info">
+<pre>
+USA = { 
+	set_state_controller = 353 
+}
+</pre></div>
+			<div class="command-info" id="transfer_state_info">
+<pre>
+USA = { 
+	transfer_state = 353
+}
+</pre></div>
+			<div class="command-info" id="set_state_flag_info">
+<pre>
+353 = { 
+	set_state_flag = test_flag
+}
+</pre></div>
+			<div class="command-info" id="clr_state_flag_info">
+<pre>
+353 = { 
+	clr_state_flag = test_flag 
+}
+</pre></div>
+			<div class="command-info" id="create_faction_info"><pre>create_faction = "french_entente_alliance"</pre></div>
+			<div class="command-info" id="annex_country_info">
+<pre>
+annex_country = { 
+	target = EST 
+}
+</pre></div>
+			<div class="command-info" id="add_building_construction_info">
+<pre>
+18 = { 
+	add_building_construction = { 
+		type = bunker 
+		province = 5291 
+		level = 2 
+		instant_build = yes 
+	} 
+}
+</pre></div>
+			<div class="command-info" id="dismantle_faction_info"><pre>dismantle_faction = yes</pre></div>
+			<div class="command-info" id="add_to_faction_info"><pre>add_to_faction = ITA</pre></div>
+			<div class="command-info" id="remove_from_faction_info"><pre>remove_from_faction = ITA</pre></div>
+			<div class="command-info" id="give_guarantee_info"><pre>give_guarantee = POL</pre></div>
+			<div class="command-info" id="give_military_access_info"><pre>give_military_access = GER</pre></div>
+			<div class="command-info" id="news_event_info"><pre>news_event = news_event.251</pre></div>
+			<div class="command-info" id="declare_war_on_info">
+<pre>
+declare_war_on = { 
+	target = POL 
+	type = annex_everything 
+}
+</pre></div>
+			<div class="command-info" id="add_national_unity_info"><pre>add_national_unity = 0.02</pre></div>
+			<div class="command-info" id="add_scaled_political_power_info"><pre>Needs to be tested</pre></div>
+			<div class="command-info" id="hold_election_info"><pre>hold_election = yes</pre></div>
+			<div class="command-info" id="add_popularity_info">
+<pre>
+add_popularity = { 
+	ideology = fascism 
+	popularity = 0.1 
+}
+</pre></div>
+			<div class="command-info" id="remove_ideas_with_trait_info"><pre>remove_ideas_with_trait = motorized_equipment_manufacturer</pre></div>
+			<div class="command-info" id="start_civil_war_info">
+<pre>
+start_civil_war = { 
+	ideology = fascism
+	size = 0.5
+}
+</pre></div>
+			<div class="command-info" id="retire_country_leader_info"><pre>retire_country_leader = yes</pre></div>
+			<div class="command-info" id="kill_country_leader_info"><pre>kill_country_leader = yes</pre></div>
+			<div class="command-info" id="release_puppet_info"><pre>release_puppet = LIB</pre></div>
+			<div class="command-info" id="create_wargoal_info">
+<pre>
+create_wargoal = { 
+	type = annex_everything 
+	target = EST 
+}
+</pre></div>
+			<div class="command-info" id="add_claim_by_info">
+<pre>
+any_owned_state = { 
+	add_claim_by = SOV 
+}
+</pre></div>
+			<div class="command-info" id="remove_claim_by_info">
+<pre>
+any_owned_state = { 
+	remove_claim_by = SOV 
+}
+</pre></div>
+			<div class="command-info" id="add_core_of_info">
+<pre>
+any_owned_state = { 
+	add_core_of = SOV 
+}
+</pre></div>
+			<div class="command-info" id="remove_core_of_info">
+<pre>
+any_owned_state = { 
+	remove_core_of = SOV 
+}
+</pre></div>
+			<div class="command-info" id="army_experience_info"><pre>army_experience = 10</pre></div>
+			<div class="command-info" id="navy_experience_info"><pre>navy_experience = 10</pre></div>
+			<div class="command-info" id="air_experience_info"><pre>air_experience = 10</pre></div>
+			<div class="command-info" id="save_event_target_as_info"><pre>save_event_target_as = war_target</pre></div>
+			<div class="command-info" id="save_global_event_target_as_info"><pre>save_global_event_target_as = war_target</pre></div>
+			<div class="command-info" id="clear_global_event_target_info"><pre>clear_global_event_target = war_target</pre></div>
+			<div class="command-info" id="clear_global_event_targets_info"><pre>clear_global_event_targets = war_target</pre></div>
+			<div class="command-info" id="break_info"><pre>Needs to be tested</pre></div>
+			<div class="command-info" id="unlock_national_focus_info"><pre>unlock_national_focus = focus_id</pre></div>
+			<div class="command-info" id="add_tech_bonus_info">
+<pre>
+add_tech_bonus = { 
+	bonus = 0.5 
+	uses = 2 
+	category = radar_tech 
+}
+</pre></div>
+			<div class="command-info" id="set_demilitarized_zone_info">
+<pre>
+any_owned_state = { 
+	set_demilitarized_zone = yes 
+}
+</pre></div>
+			<div class="command-info" id="add_research_slot_info"><pre>add_research_slot = 2</pre></div>
+			<div class="command-info" id="set_research_slots_info"><pre>set_research_slots = 4</pre></div>
+			<div class="command-info" id="set_border_war_info">
+<pre>
+605 = { 
+	set_border_war = yes 
+}
+</pre></div>
+			<div class="command-info" id="set_national_unity_info"><pre>set_national_unity = 0.80</pre></div>
+			<div class="command-info" id="set_equipment_fraction_info"><pre>set_equipment_fraction = 0.35</pre></div>
+			<div class="command-info" id="add_threat_info"><pre>Needs to be tested</pre></div>
+			<div class="command-info" id="send_equipment_info"><pre>send_equipment = { target = FIN type = infantry_equipment amount = 500 }</pre></div>
+			<div class="command-info" id="set_rule_info">
+<pre>
+set_rule = { 
+	can_create_factions = yes 
+}
+</pre></div>
+			<div class="command-info" id="diplomatic_relation_info">
+<pre>
+diplomatic_relation = { 
+	country = SOV 
+	relation = non_aggression_pact
+}
+</pre></div>
+			<div class="command-info" id="add_resource_info">
+<pre>
+add_resource = { 
+	type = oil 
+	amount = 8 
+	state = 662 
+}
+</pre></div>
+			<div class="command-info" id="remove_unit_leader_info"><pre>remove_unit_leader = leader_id</pre></div>
+			<div class="command-info" id="add_timed_idea_info">
+<pre>
+add_timed_idea = { 
+	idea = idea_id 
+	days = 50 
+}
+</pre></div>
+			<div class="command-info" id="end_puppet_info"><pre>end_puppet = CRO</pre></div>
+			<div class="command-info" id="load_oob_info"><pre>load_oob = SOV_reinforcements</pre></div>
+			<div class="command-info" id="create_import_info">
+<pre>
+create_import = { 
+	resource = steel 
+	amount = 20 
+	exporter = SWE 
+}
+</pre></div>
+			<div class="command-info" id="add_named_threat_info">
+<pre>
+add_named_threat = { 
+	threat = 2 
+	name = germany.4.t 
+}
+</pre></div>
+			<div class="command-info" id="set_province_controller_info"><pre>Needs to be tested</pre></div>
+			<div class="command-info" id="set_major_info"><pre>set_major = yes</pre></div>
+			<div class="command-info" id="create_field_marshal_info">
+<pre>
+create_field_marshal = { 
+	name = "Dude McCoolDude" 
+	gfx = "GFX_CoolDudesFace" 
+	traits = {
+	} 
+	skill = 3 
+}
+</pre></div>
+			<div class="command-info" id="create_corps_commander_info">
+<pre>
+create_corps_commander = { 
+	name = "Dude McCoolDude" 
+	gfx = "GFX_CoolDudesFace" 
+	traits = { 
+	} 
+	skill = 3 
+}
+</pre></div>
+			<div class="command-info" id="goto_province_info"><pre>goto_province = 11302</pre></div>
+			<div class="command-info" id="goto_state_info"><pre>goto_state = 150</pre></div>
+			<div class="command-info" id="complete_national_focus_info"><pre>complete_national_focus = focus_id</pre></div>
+			<div class="command-info" id="set_party_name_info">
+<pre>
+set_party_name = { 
+	ideology = democratic 
+	long_name = USA_republican_party 
+	name = USA_republican_party 
+}
+</pre></div>
+			<div class="command-info" id="add_extra_state_shared_building_slots_info">
+<pre>
+random_owned_state = { 
+	add_extra_state_shared_building_slots = 2 
+}
+</pre></div>
+			<div class="command-info" id="reverse_add_opinion_modifier_info">
+<pre>
+reverse_add_opinion_modifier = { 
+	target = BUL 
+	modifier = GER_treaty_of_craiova_other 
+}
+</pre></div>
+			<div class="command-info" id="add_to_war_info">
+<pre>
+add_to_war = { 
+	targeted_alliance = CHI 
+	enemy = JAP
+}
+</pre></div>
+			<div class="command-info" id="create_equipment_variant_info">
+<pre>
+create_equipment_variant = { 
+	name = "Montecuccoli Class" 
+	type = light_cruiser_1 
+	upgrades = { 
+		ship_reliability_upgrade = 3 
+		ship_engine_upgrade = 3 
+		ship_gun_upgrade = 3 
+		ship_anti_air_upgrade = 3 
+	}
+}
+</pre></div>
+			<div class="command-info" id="add_equipment_production_info">
+<pre>
+add_equipment_production = { 
+	equipment = { 
+		type = light_cruiser_1 
+		creator = "ITA" 
+		version_name = "Montecuccoli Class" 
+	} 
+	requested_factories = 1 
+	progress = 0.95 
+	amount = 1 
+}
+</pre></div>
+			<div class="command-info" id="add_ace_info">
+<pre>
+add_ace = { 
+	name = "Amelia" 
+	surname = "Earhart" 
+	callsign = "Revenant" 
+	type = fighter_genius 
+	is_female = yes 
+}
+</pre></div>
+			<div class="command-info" id="add_equipment_to_stockpile_info">
+<pre>
+add_equipment_to_stockpile = { 
+	type = convoy_1 
+	amount = 50 
+	producer = <TAG> 
+}
+</pre></div>
 		</div>
 		<div id="build-output" style="margin-top:2rem;">
 			<div id="build-preview" class="current-build-add-location">

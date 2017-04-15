@@ -134,9 +134,19 @@ button{
 	border-bottom:1px solid white;
 	position:absolute;
 }
+.connector-norm-vert{
+	border-left:1px solid white;
+	border-right:1px solid white;
+	position:absolute;
+}
 .connector-or{
 	border-top:1px dashed white;
 	border-bottom:1px dashed white;
+	position:absolute;
+}
+.connector-or-vert{
+	border-left:1px dashed white;
+	border-right:1px dashed white;
 	position:absolute;
 }
 .connector-mutual{
@@ -215,19 +225,23 @@ small{font-size:0.75em;}
 	width:49%;
 	vertical-align:top;
 }
-.scope,.condition{
+.scope,.condition,.command{
 	margin:0;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
 }
-.scope:before,.condition:before{
+.scope:before,.condition:before,.command:before{
 	content:'> ';
 }
-.scope:nth-child(odd),.condition:nth-child(odd){
+.scope:nth-child(odd),.condition:nth-child(odd).,.command:nth-child(odd){
 	background:rgba(204,204,204,0.1)
 }
-.condition-info,.scope-info,#build-scopes-area,#build-conditions-area,#submit-build{
+.condition-info,.scope-info,.command-info,#build-scopes-area,#build-conditions-area,#submit-build,#build-commands-area{
 	display:none;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
 }
-.condition-info,.scope-info{
+.condition-info,.scope-info,.command-info{
 	font-size:1.5rem;
 }
 .eigthyvh{

@@ -25,6 +25,7 @@ $(document).ready(function(){
 	//Add focus to view area, and clear form when done
 	$("#submit-focus").click(function(){
 		$("#edit").hide();
+		$("#builder").hide();
 		var	name = $("#name").val();
 		var desc = $("#desc").val();
 		var available = $("#available").val();
@@ -32,14 +33,12 @@ $(document).ready(function(){
 		var time = $("#time").val();
 		if($("#prefocus").val().substr($("#prefocus").val().length - 2)  == "&&" || $("#prefocus").val().substr($("#prefocus").val().length - 2) == "||"){
 			var prefocus = $("#prefocus").val().slice(0,-2);
-			var prefocusandor = true;
 		}else{
 			var prefocus = $("#prefocus").val();
 		}
 		if($("#mutual").val().substr($("#mutual").val().length - 2 == "\&\&") || $("#mutual").val().substr($("#mutual").val().length - 2 == "\|\|")){
 			var mutual = $("#mutual").val().slice(0,-2);
-			var mutualandor = true;
-		}else{
+			}else{
 			var mutual = $("#mutual").val();
 		}
 		var bypass = $("#bypass").val();
@@ -55,7 +54,10 @@ $(document).ready(function(){
 		var allinfo = '<div class="all-info" id="'+id+'-all-info"><div id="'+id+'_name">'+name+'</div><div id="'+id+'_desc">'+desc+'</div><div id="'+id+'_available">'+available+'</div><div id="'+id+'_reward">'+reward+'</div><div id="'+id+'_time">'+time+'</div><div id="'+id+'_bypass">'+bypass+'</div><div id="'+id+'_tooltip">'+tooltip+'</div><div id="'+id+'_prefocus">'+prefocus+'</div><div id="'+id+'_mutual">'+mutual+'</div><div id="'+id+'_ai">'+ai+'</div><div id="'+id+'_gfx">'+getgfx+'</div></div>		';
 		$("#display").append('<div id="'+id+'" class="focus" style="top:'+ypos+'px;left:'+xpos+'px;" x-pos="'+x+'" y-pos="'+y+'"><div style="position:relative"><div class="mover up">^&nbsp;&nbsp;</div><div class="mover down">&nbsp;&nbsp;v</div><img src="'+getgfx+'" id="'+id+'_gfx" class="gfx"><div class="name">'+'<p id="'+id+'-name">'+name+'</p></div><div class="mover left">&lt;&nbsp;&nbsp;</div><div class="mover right">&nbsp;&nbsp;&gt;</div><div class="tail"></div></div></div>'+allinfo);
 		
-		/*if(prefocusandor == true && prefocus.indexOf("&&") != -1){
+		//Connector - &&
+			//Multiple
+		if(prefocus.length > 1){
+		if(prefocus.indexOf("&&") != -1){
 			var prefocusarray = prefocus.split("&&");
 			$.each(prefocusarray, function( index, value ) {
 			  var top = parseInt($("#"+value).css("top").replace("px",""))+parseInt($("#"+value).css("height").replace("px",""));
@@ -64,7 +66,7 @@ $(document).ready(function(){
 			  }else{
 			  	var topcalc = top;
 			  }
-			  var verttop = topcalc+(topcalc / 2);
+			  var verttop = topcalc;
 			  var vertical = topcalc-ypos;
 			  if(vertical.toString().charAt(0) == "-"){
 				  var verticalcalc = vertical.toString().replace("-","");
@@ -77,19 +79,85 @@ $(document).ready(function(){
 			  }else{
 			  	var widthcalc = width;
 			  }
-			  if(parseInt($("#"+value).css("left").replace("px","")) < ypos){
-			  	var left = parseInt($("#"+value).css("left").replace("px",""))+59;
+			  if(parseInt($("#"+value).css("left").replace("px","")) < xpos){
+			  	var left = parseInt($("#"+value).css("left").replace("px",""))+69;
+				var leftvert = parseInt(left)+parseInt(widthcalc);
 			  }else{
-				var left = ypos+59;  
+				var left = xpos+69;
+				var leftvert = left;  
 			  }
-			  alert(value+";top: "+topcalc+";vertical: "+verticalcalc+";width: "+widthcalc+";left: "+left);
-			  $("#display").append('<div class="connector-norm" id="'+id+'-'+value+'" style="top:'+topcalc+'px;width:'+widthcalc+'px;left:'+left+'px;"></div>');
-			  $("#display").append('<div class="connector-norm" id="'+id+'-'+value+'" style="top:'+verttop+'px;width:'+verticalcalc+'px;left:'+left+'px;-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);transform: rotate(90deg);"></div>');
+			  $("#display").append('<div class="connection connector-norm" id="'+id+'-'+value+'-h" style="top:'+topcalc+'px;width:'+widthcalc+'px;left:'+left+'px;"></div>');
+			  $("#display").append('<div class="connection connector-norm-vert" id="'+id+'-'+value+'-v" style="top:'+verttop+'px;height:'+verticalcalc+'px;left:'+leftvert+'px;"></div>');
 			});	
 		}
-		if(prefocusandor == true && prefocus.indexOf("||") != -1){
+			//Single
+		if(prefocus.indexOf("&&") == -1 && prefocus.indexOf("||") == -1){
+			  var top = parseInt($("#"+prefocus).css("top").replace("px",""))+parseInt($("#"+prefocus).css("height").replace("px",""));
+			  if(top.toString().charAt(0) == "-"){
+				  var topcalc = top.toString().replace("-","");
+			  }else{
+			  	var topcalc = top;
+			  }
+			  var verttop = topcalc;
+			  var vertical = topcalc-ypos;
+			  if(vertical.toString().charAt(0) == "-"){
+				  var verticalcalc = vertical.toString().replace("-","");
+			  }else{
+			  	var verticalcalc = vertical;
+			  }
+			  var width = parseInt($("#"+prefocus).css("left").replace("px",""))-xpos;
+			  if(width.toString().charAt(0) == "-"){
+				  var widthcalc = width.toString().replace("-","");
+			  }else{
+			  	var widthcalc = width;
+			  }
+			  if(parseInt($("#"+prefocus).css("left").replace("px","")) < xpos){
+			  	var left = parseInt($("#"+prefocus).css("left").replace("px",""))+69;
+				var leftvert = parseInt(left)+parseInt(widthcalc);
+			  }else{
+				var left = xpos+69;
+				var leftvert = left;  
+			  }
+			  $("#display").append('<div class="connection connector-norm" id="'+id+'-'+prefocus+'-h" style="top:'+topcalc+'px;width:'+widthcalc+'px;left:'+left+'px;"></div>');
+			  $("#display").append('<div class="connection connector-norm-vert" id="'+id+'-'+prefocus+'v" style="top:'+verttop+'px;height:'+verticalcalc+'px;left:'+leftvert+'px;"></div>');
+		}
+		//Connector - ||
+		if(prefocus.indexOf("||") != -1){
+			var prefocusarray = prefocus.split("||");
+			$.each(prefocusarray, function( index, value ) {
+			  var top = parseInt($("#"+value).css("top").replace("px",""))+parseInt($("#"+value).css("height").replace("px",""));
+			  if(top.toString().charAt(0) == "-"){
+				  var topcalc = top.toString().replace("-","");
+			  }else{
+			  	var topcalc = top;
+			  }
+			  var verttop = topcalc;
+			  var vertical = topcalc-ypos;
+			  if(vertical.toString().charAt(0) == "-"){
+				  var verticalcalc = vertical.toString().replace("-","");
+			  }else{
+			  	var verticalcalc = vertical;
+			  }
+			  var width = parseInt($("#"+value).css("left").replace("px",""))-xpos;
+			  if(width.toString().charAt(0) == "-"){
+				  var widthcalc = width.toString().replace("-","");
+			  }else{
+			  	var widthcalc = width;
+			  }
+			  if(parseInt($("#"+value).css("left").replace("px","")) < xpos){
+			  	var left = parseInt($("#"+value).css("left").replace("px",""))+69;
+				var leftvert = parseInt(left)+parseInt(widthcalc);
+			  }else{
+				var left = xpos+69;
+				var leftvert = left;  
+			  }
+			  $("#display").append('<div class="connection connector-or" id="'+id+'-'+value+'-h" style="top:'+topcalc+'px;width:'+widthcalc+'px;left:'+left+'px;"></div>');
+			  $("#display").append('<div class="connection connector-or-vert" id="'+id+'-'+value+'-v" style="top:'+verttop+'px;height:'+verticalcalc+'px;left:'+leftvert+'px;"></div>');
+			});	
+		}
+		}
+		moveConnections(id);	
 			
-		}*/
 		
 		$("#name").val("");
 		$("#desc").val("");
@@ -131,7 +199,7 @@ $(document).ready(function(){
 			$("#tooltip").val($(gettooltip).text());
 			$("#x").val(getx);
 			$("#y").val(gety);
-			$("#chosen-gfx").val(getgfx.replace("images/","").replace(".png",""));
+			$("#chosen-gfx").val(getgfx.replace("images\/","").replace(".png",""));
 			$("#display-gfx").attr("src", getgfx);
 			$("#edit").show();
 			$(this).parent().parent().remove();
@@ -155,26 +223,71 @@ $(document).ready(function(){
 	$(document).on('click', ".right", function() {
 		$(this).parent().parent().animate({left: '+=150px'}, 0);
 		$(this).parent().parent().attr("x-pos",parseInt($(this).parent().parent().attr("x-pos"))+1);
+		moveConnections($(this).parent().parent().attr("id"));
 	});
 	//Move focus left
 	$(document).on('click', ".left", function() {
 		if(parseInt($(this).parent().parent().css("left").replace("px","")) > 99){
 			$(this).parent().parent().animate({left: '+=-150px'}, 0);
 			$(this).parent().parent().attr("x-pos",parseInt($(this).parent().parent().attr("x-pos"))-1);
+			moveConnections($(this).parent().parent().attr("id"));
 		}
 	});
 	//Move focus down
 	$(document).on('click', ".down", function() {
 		$(this).parent().parent().animate({top: '+=180px'}, 0);
 		$(this).parent().parent().attr("y-pos",parseInt($(this).parent().parent().attr("y-pos"))+1);
+		moveConnections($(this).parent().parent().attr("id"));
 	});
 	//Move focus up
 	$(document).on('click', ".up", function() {
 		if(parseInt($(this).parent().parent().css("top").replace("px","")) > 149){
 			$(this).parent().parent().animate({top: '+=-180px'}, 0);
 			$(this).parent().parent().attr("y-pos",parseInt($(this).parent().parent().attr("y-pos"))-1);
+			moveConnections($(this).parent().parent().attr("id"));
 		}
 	});
+	
+	function moveConnections(focusid){
+		var xpos = parseInt($("#"+focusid).attr("x-pos"))*150;
+		var ypos = parseInt($("#"+focusid).attr("y-pos"))*180;
+		//Connector 
+		$.each($('.connection[id*="'+$("#"+focusid).attr("id")+'"]'),function(index, value){
+			var connectorid = $(value).attr("id");
+			var connectorclass = $("#"+connectorid).attr("class").replace("-vert","");
+			var focuses = connectorid.split("-");
+			var top = parseInt($("#"+focuses[1]).css("top").replace("px",""))+parseInt($("#"+focuses[1]).css("height").replace("px",""));
+			if(top.toString().charAt(0) == "-"){
+			  var topcalc = top.toString().replace("-","");
+			}else{
+				var topcalc = top;
+			}
+			var verttop = topcalc;
+			var vertical = topcalc-ypos;
+			if(vertical.toString().charAt(0) == "-"){
+			  var verticalcalc = vertical.toString().replace("-","");
+			}else{
+				var verticalcalc = vertical;
+			}
+			var width = parseInt($("#"+focuses[1]).css("left").replace("px",""))-parseInt($("#"+focuses[0]).css("left").replace("px",""));
+			if(width.toString().charAt(0) == "-"){
+			  var widthcalc = width.toString().replace("-","");
+			}else{
+				var widthcalc = width;
+			}
+			if(parseInt($("#"+focuses[1]).css("left").replace("px","")) < parseInt($("#"+focuses[0]).css("left").replace("px",""))){
+				var left = parseInt($("#"+focuses[1]).css("left").replace("px",""))+69;
+				var leftvert = parseInt(left)+parseInt(widthcalc);
+			}else{
+				var left = parseInt($("#"+focuses[0]).css("left").replace("px",""))+69;
+				var leftvert = left;  
+			}
+			$("#"+focuses[0]+'-'+focuses[1]+'-h').remove();
+			$("#"+focuses[0]+'-'+focuses[1]+'-v').remove();
+			$("#display").append('<div class="'+connectorclass+'" id="'+focuses[0]+'-'+focuses[1]+'-h" style="top:'+topcalc+'px;width:'+widthcalc+'px;left:'+left+'px;"></div>');
+			$("#display").append('<div class="'+connectorclass+'-vert" id="'+focuses[0]+'-'+focuses[1]+'-v" style="top:'+verttop+'px;height:'+verticalcalc+'px;left:'+leftvert+'px;"></div>');
+		});	
+	}
 	
 	//No AND OR issues
 	$("#select-and").click(function(){
@@ -475,18 +588,24 @@ $(document).ready(function(){
 		$("#builder").show();
 		$("#submit-build").attr("build","bypass");
 	});
+	$("#reward").click(function(){
+		$("#builder").show();
+		$("#submit-build").attr("build","reward");
+	});
 	
 	
 	//Show All
 	$("#build-show-all").click(function(){
 		$("#build-conditions-area").show();
 		$("#build-scopes-area").show();	
+		$("#build-commands-area").show();	
 	});
 	
 	//Scopes
 	$("#build-scopes").click(function(){
 		$("#build-scopes-area").toggle();
 		$("#build-conditions-area").hide();	
+		$("#build-commands-area").hide();
 	});
 	$(".scope").hover(function() {
 		var id = $(this).attr("id");
@@ -507,6 +626,7 @@ $(document).ready(function(){
 	$("#build-conditions").click(function(){
 		$("#build-conditions-area").toggle();
 		$("#build-scopes-area").hide();	
+		$("#build-commands-area").hide();
 	});
 	$(".condition").hover(function() {
 		var id = $(this).attr("id");
@@ -520,6 +640,27 @@ $(document).ready(function(){
 			$(".current-build-add-location").append(id+'<textarea id="add-build">=</textarea>');
 		}
 		$("#build-conditions-area").hide();
+		$("#submit-build").show();
+	});
+	
+	//Commands
+	$("#build-commands").click(function(){
+		$("#build-commands-area").toggle();
+		$("#build-scopes-area").hide();	
+		$("#build-conditions-area").hide();
+	});
+	$(".command").hover(function() {
+		var id = $(this).attr("id");
+		$("#"+id+"_info").toggle();
+	});
+	$(".command").click(function() {
+		var id = $(this).attr("id");
+		if($("#"+id+"_info").attr("braces") == "yes"){
+			$(".current-build-add-location").removeClass("current-build-add-location").append(id+' = {<br><div class="current-build-add-location"></div><br>}');
+		}else{
+			$(".current-build-add-location").append(id+'<textarea id="add-build">=</textarea>');
+		}
+		$("#build-commands-area").hide();
 		$("#submit-build").show();
 	});
 	
