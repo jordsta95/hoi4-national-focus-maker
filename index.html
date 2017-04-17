@@ -1,1479 +1,435 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta charset="utf-8">
 <title>HOI4 National Focus Tool</title>
 <meta name="description" content="Tool for making national focuses in Hearts of Iron IV">
-<script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="js/script.js?v=010"></script>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css?v=1" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="css/style.css?v=090" rel='stylesheet' type='text/css' />
+<!-- Graph CSS -->
+<link href="css/font-awesome.css?v=1" rel="stylesheet"> 
+<!-- jQuery -->
+<script src="js/jquery-2.1.4.min.js?v=1"></script>
+<!-- //jQuery -->
+<script src="js/script.js?v=090"></script>
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link href="css/style.css?v=010" rel="stylesheet">
-</head>
+<!-- lined-icons -->
+<link rel="stylesheet" href="css/icon-font.min.css?v=1" type='text/css' />
+<!-- //lined-icons -->
+</head> 
 <body>
-<!--[if IE]>
-<div class="alert">
-<p>You are using Internet Explorer! Although I do not believe this site will have any issues working on IE, I will not support it - and if you have any issues using this site my first response will be "Does this only happen in IE?".</p>
-<p>Web developers around the world hate IE, for many different reasons, please - if possible - change to a more modern browser today!</p>
-<p>You can click this box to make the message disappear... but don't forget the message.</p>
-</div>
-<![endif]-->
-<noscript><div class="alert">
-	<p style="text-align:center">This is awkward :/</p>
-	<p>It looks like you have Javascript disabled, unfortunately this site requires it to run. I do use Google Analytics on this page, to see how many people are using the site - however, if you wish for 100% anonymity you can find this same page without it (still requires Javascript to be enabled) <a href="/no-tracking.html">here</a></p>
-</div></noscript>
-<div id="display-password">
+	<div class="page-container">
+   	<div id="edit">	
+		<div class="panel" style="left:265px">
+			<div class="panel-head">
+			<p id="edit-close" class="close-button">X</p>
+				<h3>Add/Edit Focus</h3>
+			</div>
+			<div class="panel-body">
+				<p>
+					<p>Name</p>
+					<input id="name">
+				</p>
+				<p>
+					<p>Description</p>
+					<textarea id="desc"></textarea>
+				</p>
+					<p>
+					<button id="open-gfx">Choose GFX</button>
+					<input id="chosen-gfx" value="goal_unknown" hidden>
+					<img src="images/goal_unknown.png" id="display-gfx">
+				</p>
+				<div id="choosegfx">
+			<img id="goal_unknown" class="nficon" src="images/goal_unknown.png">
+			<img id="focus_AST_never_gallipoli" class="nficon" src="images/focus_AST_never_gallipoli.png">
+			<img id="focus_AST_rats_tobruk" class="nficon" src="images/focus_AST_rats_tobruk.png">
+			<img id="focus_AST_squander_bug" class="nficon" src="images/focus_AST_squander_bug.png">
+			<img id="focus_AST_war_japan" class="nficon" src="images/focus_AST_war_japan.png">
+			<img id="focus_generic_air_defense" class="nficon" src="images/focus_generic_air_defense.png">
+			<img id="focus_generic_anti_fascist_diplomacy" class="nficon" src="images/focus_generic_anti_fascist_diplomacy.png">
+			<img id="focus_generic_coastal_fort" class="nficon" src="images/focus_generic_coastal_fort.png">
+			<img id="focus_generic_commonwealth_build_infantry" class="nficon" src="images/focus_generic_commonwealth_build_infantry.png">
+			<img id="focus_generic_cryptologic_bomb" class="nficon" src="images/focus_generic_cryptologic_bomb.png">
+			<img id="focus_generic_diplomatic_treaty" class="nficon" src="images/focus_generic_diplomatic_treaty.png">
+			<img id="focus_generic_home_defense" class="nficon" src="images/focus_generic_home_defense.png">
+			<img id="focus_generic_italy_first" class="nficon" src="images/focus_generic_italy_first.png">
+			<img id="focus_generic_japanese_imperial_glory" class="nficon" src="images/focus_generic_japanese_imperial_glory.png">
+			<img id="focus_generic_join_comintern" class="nficon" src="images/focus_generic_join_comintern.png">
+			<img id="focus_generic_little_entente" class="nficon" src="images/focus_generic_little_entente.png">
+			<img id="focus_generic_paratrooper" class="nficon" src="images/focus_generic_paratrooper.png">
+			<img id="focus_generic_polish_deal" class="nficon" src="images/focus_generic_polish_deal.png">
+			<img id="focus_generic_socialist_science" class="nficon" src="images/focus_generic_socialist_science.png">
+			<img id="focus_generic_soviet_politics" class="nficon" src="images/focus_generic_soviet_politics.png">
+			<img id="focus_generic_strike_at_democracy1" class="nficon" src="images/focus_generic_strike_at_democracy1.png">
+			<img id="focus_generic_strike_at_democracy2" class="nficon" src="images/focus_generic_strike_at_democracy2.png">
+			<img id="focus_generic_strike_at_democracy3" class="nficon" src="images/focus_generic_strike_at_democracy3.png">
+			<img id="focus_generic_support_the_left_right" class="nficon" src="images/focus_generic_support_the_left_right.png">
+			<img id="focus_generic_the_giant_wakes" class="nficon" src="images/focus_generic_the_giant_wakes.png">
+			<img id="focus_NZL_bob_semple_tank" class="nficon" src="images/focus_NZL_bob_semple_tank.png">
+			<img id="focus_RAJ_all_india_forward_bloc" class="nficon" src="images/focus_RAJ_all_india_forward_bloc.png">
+			<img id="focus_RAJ_british investors" class="nficon" src="images/focus_RAJ_british investors.png">
+			<img id="focus_RAJ_clamp_down_on_corruption" class="nficon" src="images/focus_RAJ_clamp_down_on_corruption.png">
+			<img id="focus_RAJ_indianisation_of_army" class="nficon" src="images/focus_RAJ_indianisation_of_army.png">
+			<img id="focus_RAJ_indian_gentlemen_offcers" class="nficon" src="images/focus_RAJ_indian_gentlemen_offcers.png">
+			<img id="focus_RAJ_indian_gurkhas" class="nficon" src="images/focus_RAJ_indian_gurkhas.png">
+			<img id="focus_RAJ_lions_of_the_great_war" class="nficon" src="images/focus_RAJ_lions_of_the_great_war.png">
+			<img id="focus_RAJ_seek_help_from_germany" class="nficon" src="images/focus_RAJ_seek_help_from_germany.png">
+			<img id="focus_RAJ_seek_help_from_soviet" class="nficon" src="images/focus_RAJ_seek_help_from_soviet.png">
+			<img id="focus_RAJ_two_nation_theory" class="nficon" src="images/focus_RAJ_two_nation_theory.png">
+			<img id="focus_research" class="nficon" src="images/focus_research.png">
+			<img id="focus_rocketry" class="nficon" src="images/focus_rocketry.png">
+			<img id="focus_SAF_colonialist_crusade" class="nficon" src="images/focus_SAF_colonialist_crusade.png">
+			<img id="focus_SAF_german_coup" class="nficon" src="images/focus_SAF_german_coup.png">
+			<img id="focus_SAF_secure_africa" class="nficon" src="images/focus_SAF_secure_africa.png">
+			<img id="focus_SAF_support_ossewabrandwag" class="nficon" src="images/focus_SAF_support_ossewabrandwag.png">
+			<img id="focus_wonderweapons" class="nficon" src="images/focus_wonderweapons.png">
+			<img id="goal_anschluss" class="nficon" src="images/goal_anschluss.png">
+			<img id="goal_anti_comintern_pact" class="nficon" src="images/goal_anti_comintern_pact.png">
+			<img id="goal_continuous_air_production" class="nficon" src="images/goal_continuous_air_production.png">
+			<img id="goal_continuous_armor_production" class="nficon" src="images/goal_continuous_armor_production.png">
+			<img id="goal_continuous_boost_freedom" class="nficon" src="images/goal_continuous_boost_freedom.png">
+			<img id="goal_continuous_def_against_influence" class="nficon" src="images/goal_continuous_def_against_influence.png">
+			<img id="goal_continuous_increase_nu" class="nficon" src="images/goal_continuous_increase_nu.png">
+			<img id="goal_continuous_naval_production" class="nficon" src="images/goal_continuous_naval_production.png">
+			<img id="goal_continuous_non_factory_construct" class="nficon" src="images/goal_continuous_non_factory_construct.png">
+			<img id="goal_continuous_reduce_training_time" class="nficon" src="images/goal_continuous_reduce_training_time.png">
+			<img id="goal_continuous_repairments" class="nficon" src="images/goal_continuous_repairments.png">
+			<img id="goal_continuous_research" class="nficon" src="images/goal_continuous_research.png">
+			<img id="goal_continuous_restrict_freedom" class="nficon" src="images/goal_continuous_restrict_freedom.png">
+			<img id="goal_continuous_suppression" class="nficon" src="images/goal_continuous_suppression.png">
+			<img id="goal_demand_sudetenland" class="nficon" src="images/goal_demand_sudetenland.png">
+			<img id="goal_generic_air_bomber" class="nficon" src="images/goal_generic_air_bomber.png">
+			<img id="goal_generic_air_doctrine" class="nficon" src="images/goal_generic_air_doctrine.png">
+			<img id="goal_generic_air_fighter" class="nficon" src="images/goal_generic_air_fighter.png">
+			<img id="goal_generic_air_fighter2" class="nficon" src="images/goal_generic_air_fighter2.png">
+			<img id="goal_generic_air_naval_bomber" class="nficon" src="images/goal_generic_air_naval_bomber.png">
+			<img id="goal_generic_air_production" class="nficon" src="images/goal_generic_air_production.png">
+			<img id="goal_generic_alliance" class="nficon" src="images/goal_generic_alliance.png">
+			<img id="goal_generic_allies_build_infantry" class="nficon" src="images/goal_generic_allies_build_infantry.png">
+			<img id="goal_generic_amphibious_assault" class="nficon" src="images/goal_generic_amphibious_assault.png">
+			<img id="goal_generic_army_artillery" class="nficon" src="images/goal_generic_army_artillery.png">
+			<img id="goal_generic_army_artillery2" class="nficon" src="images/goal_generic_army_artillery2.png">
+			<img id="goal_generic_army_doctrines" class="nficon" src="images/goal_generic_army_doctrines.png">
+			<img id="goal_generic_army_motorized" class="nficon" src="images/goal_generic_army_motorized.png">
+			<img id="goal_generic_army_tanks" class="nficon" src="images/goal_generic_army_tanks.png">
+			<img id="goal_generic_attack_allies" class="nficon" src="images/goal_generic_attack_allies.png">
+			<img id="goal_generic_axis_build_infantry" class="nficon" src="images/goal_generic_axis_build_infantry.png">
+			<img id="goal_generic_build_airforce" class="nficon" src="images/goal_generic_build_airforce.png">
+			<img id="goal_generic_build_nay" class="nficon" src="images/goal_generic_build_nay.png">
+			<img id="goal_generic_build_tank" class="nficon" src="images/goal_generic_build_tank.png">
+			<img id="goal_generic_CAS" class="nficon" src="images/goal_generic_CAS.png">
+			<img id="goal_generic_cavalry" class="nficon" src="images/goal_generic_cavalry.png">
+			<img id="goal_generic_construction" class="nficon" src="images/goal_generic_construction.png">
+			<img id="goal_generic_construction2" class="nficon" src="images/goal_generic_construction2.png">
+			<img id="goal_generic_construct_civilian" class="nficon" src="images/goal_generic_construct_civilian.png">
+			<img id="goal_generic_construct_civ_factory" class="nficon" src="images/goal_generic_construct_civ_factory.png">
+			<img id="goal_generic_construct_infrastructure" class="nficon" src="images/goal_generic_construct_infrastructure.png">
+			<img id="goal_generic_construct_military" class="nficon" src="images/goal_generic_construct_military.png">
+			<img id="goal_generic_construct_mil_factory" class="nficon" src="images/goal_generic_construct_mil_factory.png">
+			<img id="goal_generic_construct_naval_dockyard" class="nficon" src="images/goal_generic_construct_naval_dockyard.png">
+			<img id="goal_generic_consumer_goods" class="nficon" src="images/goal_generic_consumer_goods.png">
+			<img id="goal_generic_dangerous_deal" class="nficon" src="images/goal_generic_dangerous_deal.png">
+			<img id="goal_generic_defence" class="nficon" src="images/goal_generic_defence.png">
+			<img id="goal_generic_demand_territory" class="nficon" src="images/goal_generic_demand_territory.png">
+			<img id="goal_generic_forceful_treaty" class="nficon" src="images/goal_generic_forceful_treaty.png">
+			<img id="goal_generic_fortify_city" class="nficon" src="images/goal_generic_fortify_city.png">
+			<img id="goal_generic_improve_relations" class="nficon" src="images/goal_generic_improve_relations.png">
+			<img id="goal_generic_intelligence_exchange" class="nficon" src="images/goal_generic_intelligence_exchange.png">
+			<img id="goal_generic_major_alliance" class="nficon" src="images/goal_generic_major_alliance.png">
+			<img id="goal_generic_major_war" class="nficon" src="images/goal_generic_major_war.png">
+			<img id="goal_generic_military_deal" class="nficon" src="images/goal_generic_military_deal.png">
+			<img id="goal_generic_military_sphere" class="nficon" src="images/goal_generic_military_sphere.png">
+			<img id="goal_generic_more_territorial_claims" class="nficon" src="images/goal_generic_more_territorial_claims.png">
+			<img id="goal_generic_national_unity" class="nficon" src="images/goal_generic_national_unity.png">
+			<img id="goal_generic_navy_anti_submarine" class="nficon" src="images/goal_generic_navy_anti_submarine.png">
+			<img id="goal_generic_navy_battleship" class="nficon" src="images/goal_generic_navy_battleship.png">
+			<img id="goal_generic_navy_carrier" class="nficon" src="images/goal_generic_navy_carrier.png">
+			<img id="goal_generic_navy_cruiser" class="nficon" src="images/goal_generic_navy_cruiser.png">
+			<img id="goal_generic_navy_doctrines_tactics" class="nficon" src="images/goal_generic_navy_doctrines_tactics.png">
+			<img id="goal_generic_navy_submarine" class="nficon" src="images/goal_generic_navy_submarine.png">
+			<img id="goal_generic_neutrality_focus" class="nficon" src="images/goal_generic_neutrality_focus.png">
+			<img id="goal_generic_occypy_start_war" class="nficon" src="images/goal_generic_occypy_start_war.png">
+			<img id="goal_generic_occypy_states_coastal" class="nficon" src="images/goal_generic_occypy_states_coastal.png">
+			<img id="goal_generic_occypy_states_ongoing_war" class="nficon" src="images/goal_generic_occypy_states_ongoing_war.png">
+			<img id="goal_generic_oil_refinery" class="nficon" src="images/goal_generic_oil_refinery.png">
+			<img id="goal_generic_political_pressure" class="nficon" src="images/goal_generic_political_pressure.png">
+			<img id="goal_generic_position_armies" class="nficon" src="images/goal_generic_position_armies.png">
+			<img id="goal_generic_positive_trade_relations" class="nficon" src="images/goal_generic_positive_trade_relations.png">
+			<img id="goal_generic_production" class="nficon" src="images/goal_generic_production.png">
+			<img id="goal_generic_production2" class="nficon" src="images/goal_generic_production2.png">
+			<img id="goal_generic_propaganda" class="nficon" src="images/goal_generic_propaganda.png">
+			<img id="goal_generic_radar" class="nficon" src="images/goal_generic_radar.png">
+			<img id="goal_generic_scientific_exchange" class="nficon" src="images/goal_generic_scientific_exchange.png">
+			<img id="goal_generic_secret_weapon" class="nficon" src="images/goal_generic_secret_weapon.png">
+			<img id="goal_generic_small_arms" class="nficon" src="images/goal_generic_small_arms.png">
+			<img id="goal_generic_soviet_construction" class="nficon" src="images/goal_generic_soviet_construction.png">
+			<img id="goal_generic_special_forces" class="nficon" src="images/goal_generic_special_forces.png">
+			<img id="goal_generic_support_communism" class="nficon" src="images/goal_generic_support_communism.png">
+			<img id="goal_generic_support_democracy" class="nficon" src="images/goal_generic_support_democracy.png">
+			<img id="goal_generic_support_fascism" class="nficon" src="images/goal_generic_support_fascism.png">
+			<img id="goal_generic_territory_or_war" class="nficon" src="images/goal_generic_territory_or_war.png">
+			<img id="goal_generic_trade" class="nficon" src="images/goal_generic_trade.png">
+			<img id="goal_generic_war_with_comintern" class="nficon" src="images/goal_generic_war_with_comintern.png">
+			<img id="goal_generic_wolf_pack" class="nficon" src="images/goal_generic_wolf_pack.png">
+			<img id="goal_molotov_ribbentrop_pact" class="nficon" src="images/goal_molotov_ribbentrop_pact.png">
+			<img id="goal_poland_goal" class="nficon" src="images/goal_poland_goal.png">
+			<img id="goal_rhineland" class="nficon" src="images/goal_rhineland.png">
+			<img id="goal_support_fourth_int" class="nficon" src="images/goal_support_fourth_int.png">
+			<img id="goal_tfv_burn_the_royal_portraits" class="nficon" src="images/goal_tfv_burn_the_royal_portraits.png">
+			<img id="goal_tfv_can_compromise_with_quebec" class="nficon" src="images/goal_tfv_can_compromise_with_quebec.png">
+			<img id="goal_tfv_can_forced_quebec_conscription" class="nficon" src="images/goal_tfv_can_forced_quebec_conscription.png">
+			<img id="goal_tfv_generic_tech_sharing" class="nficon" src="images/goal_tfv_generic_tech_sharing.png">
+			<img id="goal_tfv_sever_ties_with_uk" class="nficon" src="images/goal_tfv_sever_ties_with_uk.png">
+			<img id="goal_tfv_smiling_buddha" class="nficon" src="images/goal_tfv_smiling_buddha.png">
+			<img id="goal_tfv_strengthen_commonwealth_ties" class="nficon" src="images/goal_tfv_strengthen_commonwealth_ties.png">
+			<img id="goal_tripartite_pact" class="nficon" src="images/goal_tripartite_pact.png">
+			</div>
+				<p>
+					<p>Bypass</p>
+					<textarea id="bypass"></textarea>
+				</p>
+				<p>
+					<p>Available</p>
+					<textarea id="available"></textarea>
+				</p>
+				<p>
+					<p>Mutually Exclusive</p>
+					<input id="mutual">
+				</p>
+				<p>
+					<p>Prerequisite</p>
+					<input id="prefocus">
+				</p>
+				<p>
+					<p>AI Will Do Factor</p>
+					<input id="ai" type="number">
+				</p>
+				<p>
+					<p>Time to Complete</p>
+					<select id="time">
+						<option value="1">1 Week</option>
+						<option value="2">2 Weeks</option>
+						<option value="3">3 Weeks</option>
+						<option value="4">4 Weeks</option>
+						<option value="5">5 Weeks</option>
+						<option value="6">6 Weeks</option>
+						<option value="7">7 Weeks</option>
+						<option value="8">8 Weeks</option>
+						<option value="9">9 Weeks</option>
+						<option value="10" selected>10 Weeks</option>
+						<option value="11">11 Weeks</option>
+						<option value="12">12 Weeks</option>
+						<option value="13">13 Weeks</option>
+						<option value="14">14 Weeks</option>
+						<option value="15">15 Weeks</option>
+					</select>
+				</p>
+				<p>
+					<p>Location - X|Y</p>
+					<input id="x">|<input id="y">
+				</p>
+				<p>
+					<p>Complete Tooltip</p>
+					<textarea id="tooltip"></textarea>
+				</p>
+				<p>
+					<p>Reward</p>
+					<textarea id="reward"></textarea>
+				</p>
+				<p>
+					<button id="submit-focus">Submit</button>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div id="export-box">	
+		<div class="panel" style="left:265px">
+			<div class="panel-head">
+			<p id="close-export" class="close-button">X</p>
+				<h3>Export Help</h3>
+			</div>
+			<div class="panel-body">
+				<p>Saving to local storage will allow you to leave this page, and return with your focus tree exactly how you left it.</p>
+				<p>Saving to server will allow you to save your current focus tree to the server, and access it from any location using the password you will be given once the focus tree has saved.</p>
+				<p>Exporting will give you 2 files, if your browser asks if it is okay for this site to download multiple files you will need to accept, otherwise you won't get them both.<br>The files are your national focus tree, and the language file that goes with it. You will need to append the information to the correct language file, e.g. focus_l_english.yml</p>
+			</div>
+		</div>
+	</div>
+	<div id="help-box">
+		<div class="panel" style="left:265px">
+			<div class="panel-head">
+			<p id="close-help" class="close-button">X</p>
+				<h3>How to use this tool</h3>
+			</div>
+			<div class="panel-body">
+				<p>By pressing the "Add Focus" button at the top of the page you will be able to start creating your focus tree</p>
+			<p>Once you have created a focus you will be able to select it when creating a new focus as a prerequisite/mutually exclusive focus</p>
+			<p>If you have made a mistake in one of the focuses, simply click the one you want to edit, and the editor will open up with the focus information in it<br>If you select the checkbox for delete mode, you will delete focuses when you click them.</p>
+			<hr>
+			<h4>How does the available/rewards section work?</h4>
+			<p>You will be given a popup box when you click the boxes which will allow you to build these with relative ease. However, the default formatting may not work for all of the things you try.</p>
+			</div>
+		</div>
+	</div>
+	<!-- Save to server -->
+	<div id="server-box">
+		<div class="panel" style="left:265px">
+			<div class="panel-head">
+			<p id="close-server" class="close-button">X</p>
+				<h3>Save to Server</h3>
+			</div>
+			<div class="panel-body">
+				<p>If you would like your focuses to be public, e.g. anyone can use them, check the box below</p>
+				<p><input id="public_focuses" type="checkbox"></p>
+				<p>Please input which country/countries your focus(es) relate to seperated by comma for multiple countries, e.g ENG,SOV,GER<br>If it is for a generic focus tree leave it blank.</p>
+				<p><input id="country_tags"></p>
+				<button id="savetoserver">Save To Server</button>
+			</div>
+		</div>
+	</div>
+	<div id="import-box">
+		<div class="panel" style="left:265px">
+			<div class="panel-head">
+			<p id="close-import" class="close-button">X</p>
+				<h3>Import</h3>
+			</div>
+			<div class="panel-body">
+				<p>Input the password of the focus(es) you want to add into the textbox below, or leave it blank to see all public focuses.</p>
+				<input name="import_password" id="import_password">
+				<button id="sub-pass">Submit Password</button>
+			</div>
+		</div>
+	</div>
+	
+	<div id="selectfocusarea" class="secondbox">
+		<div class="panel2">
+			<div class="panel-head">
+			<p id="close-selector" class="close-button">X</p>
+				<h3>Select Focus</h3>
+			</div>
+			<div class="panel-body">
+				<p>Want to select multiple? Choose whether you want all to be required, or any to be required</p>
+				<p>ALL - <input type="checkbox" id="select-and" style="width:1rem;"> | ANY - <input type="checkbox" id="select-or" style="width:1rem;"> | RESET - <input type="checkbox" id="select-reset" style="width:1rem;"> </p>
+				<div id="selectfocus">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="builder" class="secondbox">
+		<div class="panel2">
+			<div class="panel-head">
+			<p id="close-builder" class="close-button">X</p>
+				<h3>Available/Bypass/Reward</h3>
+			</div>
+			<div class="panel-body">
+				<p>Search</p>
+				<p><input id="searchjson"></p>
+				<small>After searching, click the output to see the example, click the example to add it to the builder</small>
+				<div id="searchoutput">
+				</div>
+				<div id="build-output" style="margin-top:2rem;">
+					<div id="build-preview" class="current-build-add-location">
+					</div>
+					<button id="submit-build" build="null">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="jsondata">
+	
+	</div>
+   <!--/content-inner-->
+<div class="left-content">
+	   <div class="mother-grid-inner">
+             <!--header start here-->
+				<div class="header-main">
+					<div style="position:relative">
+						<div id="display">
+						</div>
+					</div>
+				</div>
+<!--heder end here-->
+			
+<!-- script-for sticky-nav -->
+		<script>
+		$(document).ready(function() {
+			 var navoffeset=$(".header-main").offset().top;
+			 $(window).scroll(function(){
+				var scrollpos=$(window).scrollTop(); 
+				if(scrollpos >=navoffeset){
+					$(".header-main").addClass("fixed");
+				}else{
+					$(".header-main").removeClass("fixed");
+				}
+			 });
+			 
+		});
+		</script>
+		<!-- /script-for sticky-nav -->
+<!--inner block start here-->
+<div class="inner-block">
 
 </div>
-<div id="menu">
-	<input type="checkbox" id="delete" name="delete"><label for="delete" id="delete-label"></label>
-	<table style="display:inline-block;">
-		<tr>
-			<td><button class="menu-button" id="add-focus">Add Focus</button></td>
-			<td><button class="menu-button" id="import">Import</button></td>
-			<td><button class="menu-button" id="export">Export/Save</button></td>
-			<td><button class="menu-button" id="help">Help</button></td>
-		</tr>
-	</table>
+<!--inner block end here-->
 </div>
-<!-- ////// -->
-<div id="edit">
-	<p id="edit-close">X</p>
-	<p>
-		<p>Name</p>
-		<input id="name">
-	</p>
-	<p>
-		<p>Description</p>
-		<textarea id="desc"></textarea>
-	</p>
-		<p>
-		<button id="open-gfx">Choose GFX</button>
-		<input id="chosen-gfx" value="goal_unknown" hidden>
-		<img src="images/goal_unknown.png" id="display-gfx">
-	</p>
-	<div id="choosegfx">
-<img id="goal_unknown" class="nficon" src="images/goal_unknown.png">
-<img id="focus_AST_never_gallipoli" class="nficon" src="images/focus_AST_never_gallipoli.png">
-<img id="focus_AST_rats_tobruk" class="nficon" src="images/focus_AST_rats_tobruk.png">
-<img id="focus_AST_squander_bug" class="nficon" src="images/focus_AST_squander_bug.png">
-<img id="focus_AST_war_japan" class="nficon" src="images/focus_AST_war_japan.png">
-<img id="focus_generic_air_defense" class="nficon" src="images/focus_generic_air_defense.png">
-<img id="focus_generic_anti_fascist_diplomacy" class="nficon" src="images/focus_generic_anti_fascist_diplomacy.png">
-<img id="focus_generic_coastal_fort" class="nficon" src="images/focus_generic_coastal_fort.png">
-<img id="focus_generic_commonwealth_build_infantry" class="nficon" src="images/focus_generic_commonwealth_build_infantry.png">
-<img id="focus_generic_cryptologic_bomb" class="nficon" src="images/focus_generic_cryptologic_bomb.png">
-<img id="focus_generic_diplomatic_treaty" class="nficon" src="images/focus_generic_diplomatic_treaty.png">
-<img id="focus_generic_home_defense" class="nficon" src="images/focus_generic_home_defense.png">
-<img id="focus_generic_italy_first" class="nficon" src="images/focus_generic_italy_first.png">
-<img id="focus_generic_japanese_imperial_glory" class="nficon" src="images/focus_generic_japanese_imperial_glory.png">
-<img id="focus_generic_join_comintern" class="nficon" src="images/focus_generic_join_comintern.png">
-<img id="focus_generic_little_entente" class="nficon" src="images/focus_generic_little_entente.png">
-<img id="focus_generic_paratrooper" class="nficon" src="images/focus_generic_paratrooper.png">
-<img id="focus_generic_polish_deal" class="nficon" src="images/focus_generic_polish_deal.png">
-<img id="focus_generic_socialist_science" class="nficon" src="images/focus_generic_socialist_science.png">
-<img id="focus_generic_soviet_politics" class="nficon" src="images/focus_generic_soviet_politics.png">
-<img id="focus_generic_strike_at_democracy1" class="nficon" src="images/focus_generic_strike_at_democracy1.png">
-<img id="focus_generic_strike_at_democracy2" class="nficon" src="images/focus_generic_strike_at_democracy2.png">
-<img id="focus_generic_strike_at_democracy3" class="nficon" src="images/focus_generic_strike_at_democracy3.png">
-<img id="focus_generic_support_the_left_right" class="nficon" src="images/focus_generic_support_the_left_right.png">
-<img id="focus_generic_the_giant_wakes" class="nficon" src="images/focus_generic_the_giant_wakes.png">
-<img id="focus_NZL_bob_semple_tank" class="nficon" src="images/focus_NZL_bob_semple_tank.png">
-<img id="focus_RAJ_all_india_forward_bloc" class="nficon" src="images/focus_RAJ_all_india_forward_bloc.png">
-<img id="focus_RAJ_british investors" class="nficon" src="images/focus_RAJ_british investors.png">
-<img id="focus_RAJ_clamp_down_on_corruption" class="nficon" src="images/focus_RAJ_clamp_down_on_corruption.png">
-<img id="focus_RAJ_indianisation_of_army" class="nficon" src="images/focus_RAJ_indianisation_of_army.png">
-<img id="focus_RAJ_indian_gentlemen_offcers" class="nficon" src="images/focus_RAJ_indian_gentlemen_offcers.png">
-<img id="focus_RAJ_indian_gurkhas" class="nficon" src="images/focus_RAJ_indian_gurkhas.png">
-<img id="focus_RAJ_lions_of_the_great_war" class="nficon" src="images/focus_RAJ_lions_of_the_great_war.png">
-<img id="focus_RAJ_seek_help_from_germany" class="nficon" src="images/focus_RAJ_seek_help_from_germany.png">
-<img id="focus_RAJ_seek_help_from_soviet" class="nficon" src="images/focus_RAJ_seek_help_from_soviet.png">
-<img id="focus_RAJ_two_nation_theory" class="nficon" src="images/focus_RAJ_two_nation_theory.png">
-<img id="focus_research" class="nficon" src="images/focus_research.png">
-<img id="focus_rocketry" class="nficon" src="images/focus_rocketry.png">
-<img id="focus_SAF_colonialist_crusade" class="nficon" src="images/focus_SAF_colonialist_crusade.png">
-<img id="focus_SAF_german_coup" class="nficon" src="images/focus_SAF_german_coup.png">
-<img id="focus_SAF_secure_africa" class="nficon" src="images/focus_SAF_secure_africa.png">
-<img id="focus_SAF_support_ossewabrandwag" class="nficon" src="images/focus_SAF_support_ossewabrandwag.png">
-<img id="focus_wonderweapons" class="nficon" src="images/focus_wonderweapons.png">
-<img id="goal_anschluss" class="nficon" src="images/goal_anschluss.png">
-<img id="goal_anti_comintern_pact" class="nficon" src="images/goal_anti_comintern_pact.png">
-<img id="goal_continuous_air_production" class="nficon" src="images/goal_continuous_air_production.png">
-<img id="goal_continuous_armor_production" class="nficon" src="images/goal_continuous_armor_production.png">
-<img id="goal_continuous_boost_freedom" class="nficon" src="images/goal_continuous_boost_freedom.png">
-<img id="goal_continuous_def_against_influence" class="nficon" src="images/goal_continuous_def_against_influence.png">
-<img id="goal_continuous_increase_nu" class="nficon" src="images/goal_continuous_increase_nu.png">
-<img id="goal_continuous_naval_production" class="nficon" src="images/goal_continuous_naval_production.png">
-<img id="goal_continuous_non_factory_construct" class="nficon" src="images/goal_continuous_non_factory_construct.png">
-<img id="goal_continuous_reduce_training_time" class="nficon" src="images/goal_continuous_reduce_training_time.png">
-<img id="goal_continuous_repairments" class="nficon" src="images/goal_continuous_repairments.png">
-<img id="goal_continuous_research" class="nficon" src="images/goal_continuous_research.png">
-<img id="goal_continuous_restrict_freedom" class="nficon" src="images/goal_continuous_restrict_freedom.png">
-<img id="goal_continuous_suppression" class="nficon" src="images/goal_continuous_suppression.png">
-<img id="goal_demand_sudetenland" class="nficon" src="images/goal_demand_sudetenland.png">
-<img id="goal_generic_air_bomber" class="nficon" src="images/goal_generic_air_bomber.png">
-<img id="goal_generic_air_doctrine" class="nficon" src="images/goal_generic_air_doctrine.png">
-<img id="goal_generic_air_fighter" class="nficon" src="images/goal_generic_air_fighter.png">
-<img id="goal_generic_air_fighter2" class="nficon" src="images/goal_generic_air_fighter2.png">
-<img id="goal_generic_air_naval_bomber" class="nficon" src="images/goal_generic_air_naval_bomber.png">
-<img id="goal_generic_air_production" class="nficon" src="images/goal_generic_air_production.png">
-<img id="goal_generic_alliance" class="nficon" src="images/goal_generic_alliance.png">
-<img id="goal_generic_allies_build_infantry" class="nficon" src="images/goal_generic_allies_build_infantry.png">
-<img id="goal_generic_amphibious_assault" class="nficon" src="images/goal_generic_amphibious_assault.png">
-<img id="goal_generic_army_artillery" class="nficon" src="images/goal_generic_army_artillery.png">
-<img id="goal_generic_army_artillery2" class="nficon" src="images/goal_generic_army_artillery2.png">
-<img id="goal_generic_army_doctrines" class="nficon" src="images/goal_generic_army_doctrines.png">
-<img id="goal_generic_army_motorized" class="nficon" src="images/goal_generic_army_motorized.png">
-<img id="goal_generic_army_tanks" class="nficon" src="images/goal_generic_army_tanks.png">
-<img id="goal_generic_attack_allies" class="nficon" src="images/goal_generic_attack_allies.png">
-<img id="goal_generic_axis_build_infantry" class="nficon" src="images/goal_generic_axis_build_infantry.png">
-<img id="goal_generic_build_airforce" class="nficon" src="images/goal_generic_build_airforce.png">
-<img id="goal_generic_build_nay" class="nficon" src="images/goal_generic_build_nay.png">
-<img id="goal_generic_build_tank" class="nficon" src="images/goal_generic_build_tank.png">
-<img id="goal_generic_CAS" class="nficon" src="images/goal_generic_CAS.png">
-<img id="goal_generic_cavalry" class="nficon" src="images/goal_generic_cavalry.png">
-<img id="goal_generic_construction" class="nficon" src="images/goal_generic_construction.png">
-<img id="goal_generic_construction2" class="nficon" src="images/goal_generic_construction2.png">
-<img id="goal_generic_construct_civilian" class="nficon" src="images/goal_generic_construct_civilian.png">
-<img id="goal_generic_construct_civ_factory" class="nficon" src="images/goal_generic_construct_civ_factory.png">
-<img id="goal_generic_construct_infrastructure" class="nficon" src="images/goal_generic_construct_infrastructure.png">
-<img id="goal_generic_construct_military" class="nficon" src="images/goal_generic_construct_military.png">
-<img id="goal_generic_construct_mil_factory" class="nficon" src="images/goal_generic_construct_mil_factory.png">
-<img id="goal_generic_construct_naval_dockyard" class="nficon" src="images/goal_generic_construct_naval_dockyard.png">
-<img id="goal_generic_consumer_goods" class="nficon" src="images/goal_generic_consumer_goods.png">
-<img id="goal_generic_dangerous_deal" class="nficon" src="images/goal_generic_dangerous_deal.png">
-<img id="goal_generic_defence" class="nficon" src="images/goal_generic_defence.png">
-<img id="goal_generic_demand_territory" class="nficon" src="images/goal_generic_demand_territory.png">
-<img id="goal_generic_forceful_treaty" class="nficon" src="images/goal_generic_forceful_treaty.png">
-<img id="goal_generic_fortify_city" class="nficon" src="images/goal_generic_fortify_city.png">
-<img id="goal_generic_improve_relations" class="nficon" src="images/goal_generic_improve_relations.png">
-<img id="goal_generic_intelligence_exchange" class="nficon" src="images/goal_generic_intelligence_exchange.png">
-<img id="goal_generic_major_alliance" class="nficon" src="images/goal_generic_major_alliance.png">
-<img id="goal_generic_major_war" class="nficon" src="images/goal_generic_major_war.png">
-<img id="goal_generic_military_deal" class="nficon" src="images/goal_generic_military_deal.png">
-<img id="goal_generic_military_sphere" class="nficon" src="images/goal_generic_military_sphere.png">
-<img id="goal_generic_more_territorial_claims" class="nficon" src="images/goal_generic_more_territorial_claims.png">
-<img id="goal_generic_national_unity" class="nficon" src="images/goal_generic_national_unity.png">
-<img id="goal_generic_navy_anti_submarine" class="nficon" src="images/goal_generic_navy_anti_submarine.png">
-<img id="goal_generic_navy_battleship" class="nficon" src="images/goal_generic_navy_battleship.png">
-<img id="goal_generic_navy_carrier" class="nficon" src="images/goal_generic_navy_carrier.png">
-<img id="goal_generic_navy_cruiser" class="nficon" src="images/goal_generic_navy_cruiser.png">
-<img id="goal_generic_navy_doctrines_tactics" class="nficon" src="images/goal_generic_navy_doctrines_tactics.png">
-<img id="goal_generic_navy_submarine" class="nficon" src="images/goal_generic_navy_submarine.png">
-<img id="goal_generic_neutrality_focus" class="nficon" src="images/goal_generic_neutrality_focus.png">
-<img id="goal_generic_occypy_start_war" class="nficon" src="images/goal_generic_occypy_start_war.png">
-<img id="goal_generic_occypy_states_coastal" class="nficon" src="images/goal_generic_occypy_states_coastal.png">
-<img id="goal_generic_occypy_states_ongoing_war" class="nficon" src="images/goal_generic_occypy_states_ongoing_war.png">
-<img id="goal_generic_oil_refinery" class="nficon" src="images/goal_generic_oil_refinery.png">
-<img id="goal_generic_political_pressure" class="nficon" src="images/goal_generic_political_pressure.png">
-<img id="goal_generic_position_armies" class="nficon" src="images/goal_generic_position_armies.png">
-<img id="goal_generic_positive_trade_relations" class="nficon" src="images/goal_generic_positive_trade_relations.png">
-<img id="goal_generic_production" class="nficon" src="images/goal_generic_production.png">
-<img id="goal_generic_production2" class="nficon" src="images/goal_generic_production2.png">
-<img id="goal_generic_propaganda" class="nficon" src="images/goal_generic_propaganda.png">
-<img id="goal_generic_radar" class="nficon" src="images/goal_generic_radar.png">
-<img id="goal_generic_scientific_exchange" class="nficon" src="images/goal_generic_scientific_exchange.png">
-<img id="goal_generic_secret_weapon" class="nficon" src="images/goal_generic_secret_weapon.png">
-<img id="goal_generic_small_arms" class="nficon" src="images/goal_generic_small_arms.png">
-<img id="goal_generic_soviet_construction" class="nficon" src="images/goal_generic_soviet_construction.png">
-<img id="goal_generic_special_forces" class="nficon" src="images/goal_generic_special_forces.png">
-<img id="goal_generic_support_communism" class="nficon" src="images/goal_generic_support_communism.png">
-<img id="goal_generic_support_democracy" class="nficon" src="images/goal_generic_support_democracy.png">
-<img id="goal_generic_support_fascism" class="nficon" src="images/goal_generic_support_fascism.png">
-<img id="goal_generic_territory_or_war" class="nficon" src="images/goal_generic_territory_or_war.png">
-<img id="goal_generic_trade" class="nficon" src="images/goal_generic_trade.png">
-<img id="goal_generic_war_with_comintern" class="nficon" src="images/goal_generic_war_with_comintern.png">
-<img id="goal_generic_wolf_pack" class="nficon" src="images/goal_generic_wolf_pack.png">
-<img id="goal_molotov_ribbentrop_pact" class="nficon" src="images/goal_molotov_ribbentrop_pact.png">
-<img id="goal_poland_goal" class="nficon" src="images/goal_poland_goal.png">
-<img id="goal_rhineland" class="nficon" src="images/goal_rhineland.png">
-<img id="goal_support_fourth_int" class="nficon" src="images/goal_support_fourth_int.png">
-<img id="goal_tfv_burn_the_royal_portraits" class="nficon" src="images/goal_tfv_burn_the_royal_portraits.png">
-<img id="goal_tfv_can_compromise_with_quebec" class="nficon" src="images/goal_tfv_can_compromise_with_quebec.png">
-<img id="goal_tfv_can_forced_quebec_conscription" class="nficon" src="images/goal_tfv_can_forced_quebec_conscription.png">
-<img id="goal_tfv_generic_tech_sharing" class="nficon" src="images/goal_tfv_generic_tech_sharing.png">
-<img id="goal_tfv_sever_ties_with_uk" class="nficon" src="images/goal_tfv_sever_ties_with_uk.png">
-<img id="goal_tfv_smiling_buddha" class="nficon" src="images/goal_tfv_smiling_buddha.png">
-<img id="goal_tfv_strengthen_commonwealth_ties" class="nficon" src="images/goal_tfv_strengthen_commonwealth_ties.png">
-<img id="goal_tripartite_pact" class="nficon" src="images/goal_tripartite_pact.png">
 </div>
-	<p>
-		<p>Bypass</p>
-		<textarea id="bypass"></textarea>
-	</p>
-	<p>
-		<p>Available</p>
-		<textarea id="available"></textarea>
-	</p>
-	<p>
-		<p>Mutually Exclusive</p>
-		<input id="mutual">
-	</p>
-	<p>
-		<p>Prerequisite</p>
-		<input id="prefocus">
-	</p>
-	<p>
-		<p>AI Will Do Factor</p>
-		<input id="ai" type="number">
-	</p>
-	<p>
-		<p>Time to Complete</p>
-		<select id="time">
-			<option value="1">1 Week</option>
-			<option value="2">2 Weeks</option>
-			<option value="3">3 Weeks</option>
-			<option value="4">4 Weeks</option>
-			<option value="5">5 Weeks</option>
-			<option value="6">6 Weeks</option>
-			<option value="7">7 Weeks</option>
-			<option value="8">8 Weeks</option>
-			<option value="9">9 Weeks</option>
-			<option value="10" selected>10 Weeks</option>
-			<option value="11">11 Weeks</option>
-			<option value="12">12 Weeks</option>
-			<option value="13">13 Weeks</option>
-			<option value="14">14 Weeks</option>
-			<option value="15">15 Weeks</option>
-		</select>
-	</p>
-	<p>
-		<p>Location - X|Y</p>
-		<input id="x">|<input id="y">
-	</p>
-	<p>
-		<p>Complete Tooltip</p>
-		<textarea id="tooltip"></textarea>
-	</p>
-	<p>
-		<p>Reward</p>
-		<textarea id="reward"></textarea>
-	</p>
-	<p>
-		<button id="submit-focus">Submit</button>
-	</p>
-</div>
-<div id="selectfocusarea">
-	<div id="selector">
-	<p id="close-selector">x</p>
-	<p>Want to select multiple? Choose whether you want all to be required, or any to be required</p>
-	<p>ALL - <input type="checkbox" id="select-and" style="width:1rem;"> | ANY - <input type="checkbox" id="select-or" style="width:1rem;"> | RESET - <input type="checkbox" id="select-reset" style="width:1rem;"> </p>
-	</div>
-	<div id="selectfocus">
-	</div>
-</div>
-<div id="builder">
-<p id="close-builder" style="text-align:right;margin:0;padding-right:1rem;margin-bottom:-1.5rem;">Close - X</p>
-	<div id="builder-definer">
-		<button id="build-scopes">Scopes</button>
-		<button id="build-conditions">Conditions</button>
-		<button id="build-commands">Commands</button>
-		<button id="build-show-all">Show All</button>
-	</div>
-	<div class="inline eigthyvh">
-		<div id="build-scopes-area">
-			<p class="scope" id="random_owned_controlled_state">Targets a random owned and controlled state</p>
-			<p class="scope" id="OVERLORD">Targets the overlord of a subject</p>
-			<p class="scope" id="state_id">Targets a specific state</p>
-			<p class="scope" id="any_neighbor_country">Targets any neighboring country</p>
-			<p class="scope" id="TAG">Targets a specific country</p>
-			<p class="scope" id="any_country">Targets any country</p>
-			<p class="scope" id="any_enemy_country">Targets any enemy country</p>
-			<p class="scope" id="all_neighbor_country">Targets all neighboring countries</p>
-			<p class="scope" id="all_country">Targets all countries</p>
-			<p class="scope" id="all_enemy_country">Targets all enemy countries</p>
-			<p class="scope" id="any_state">Targets any state</p>
-			<p class="scope" id="any_owned_state">Targets any owned state</p>
-			<p class="scope" id="any_neighbor_state">Targets any neighboring state</p>
-			<p class="scope" id="any_allied_country">Targets any allied country</p>
-			<p class="scope" id="all_state">Targets all state</p>
-			<p class="scope" id="every_owned_state">Targets all owned states</p>
-			<p class="scope" id="all_neighbor_state">Targets all neighboring states</p>
-			<p class="scope" id="all_allied_country">Targets all allied countries</p>
-			<p class="scope" id="every_country">Targets every country</p>
-			<p class="scope" id="random_country">Targets a random country</p>
-			<p class="scope" id="every_neighbor_country">Targets every neighboring country</p>
-			<p class="scope" id="random_neighbor_country">Targets a random neighboring country</p>
-			<p class="scope" id="every_enemy_country">Targets every enemy country</p>
-			<p class="scope" id="random_enemy_country">Targets a random enemy country</p>
-			<p class="scope" id="random_state">Targets a random state</p>
-			<p class="scope" id="random_owned_state">Targets a random owned state</p>
-			<p class="scope" id="random_neighbor_state">Targets a random neighboring state</p>
-			<p class="scope" id="every_state">Targets every state</p>
-			<p class="scope" id="every_owned_state">Targets every owned state</p>
-			<p class="scope" id="every_neighbor_state">Targets every neighboring state</p>
-			<p class="scope" id="capital_scope">Targets the capital</p>
-		</div>
-		<div id="build-conditions-area">
-			<p class="condition" id="num_divisions">Checks the number of divisions</p>
-			<p class="condition" id="has_focus_tree">Checks if a country has a specific focus tree</p>
-			<p class="condition" id="is_staging_coup">Checks if a country is staging a coup</p>
-			<p class="condition" id="has_full_control_of_state">Checks if country controls every province of a state</p>
-			<p class="condition" id="has_army_experience">Checks the amount of army xp</p>
-			<p class="condition" id="has_air_experience">Checks the amount of air xp</p>
-			<p class="condition" id="has_navy_experience">Checks the amount of navy xp</p>
-			<p class="condition" id="has_country_leader">Checks for a specific country leader</p>
-			<p class="condition" id="has_tech_bonus">Checks for a bonus for a single tech or a tech category</p>
-			<p class="condition" id="has_resources_amount">Checks the amount of resources in a state</p>
-			<p class="condition" id="num_of_subjects">Checks the number of subjects</p>
-			<p class="condition" id="num_tech_sharing_groups">Checks the amount of tech sharing a groups a country is in</p>
-			<p class="condition" id="compare_autonomy_progress_ratio">Checks the autonomy progress</p>
-			<p class="condition" id="ai_irrationality">Checks AI irrationality value</p>
-			<p class="condition" id="ai_liberate_desire">Checks how willing the AI is to liberate another country</p>
-			<p class="condition" id="always">Always returns specified value</p>
-			<p class="condition" id="any_claim">Checks for claims between two countries</p>
-			<p class="condition" id="any_war_score">Checks for war score in any ongoing war involving the country</p>
-			<p class="condition" id="armor">Checks for the average armor level of a combatant</p>
-			<p class="condition" id="can_research">Checks if a country can research a technology</p>
-			<p class="condition" id="controls_state">Checks if a country controls a state</p>
-			<p class="condition" id="country_exists">Checks if a specified country exists</p>
-			<p class="condition" id="date >, date <">Check for the current in-game date</p>
-			<p class="condition" id="dig_in">Checks for lowest dig-in level</p>
-			<p class="condition" id="distance_to">Checks distance between two states</p>
-			<p class="condition" id="divisions_in_state">Checks for the amount of division in state</p>
-			<p class="condition" id="exists">Checks if a country exists</p>
-			<p class="condition" id="fastest_unit">Checks if the fastest unit in combat has a certain speed value</p>
-			<p class="condition" id="focus_progress">Checks for the progress on a national focus</p>
-			<p class="condition" id="free_building_slots">Checks for the amount of free building slots</p>
-			<p class="condition" id="frontage_full">Checks for full frontage in combat</p>
-			<p class="condition" id="gives_military_access_to">Checks if a country is giving military access to another country</p>
-			<p class="condition" id="hardness">Checks lowest/highest hardness level in combat</p>
-			<p class="condition" id="has_added_tension_amount">Variable for how much world tension a country has caused ( 1.0 = 100% )</p>
-			<p class="condition" id="has_annex_war_goal">Checks if a country has the annex wargoal towards another country</p>
-			<p class="condition" id="has_army_manpower">Variable for the amount of manpower a country has deployed in divisions</p>
-			<p class="condition" id="has_army_size">Checks the amount of all or certain division</p>
-			<p class="condition" id="has_available_idea_with_traits">Checks if a country has ideas with specified traits available</p>
-			<p class="condition" id="has_built">Checks if a country has built a certain number of specified buildings after taking a goal</p>
-			<p class="condition" id="has_capitulated">Checks if a country has capitulated</p>
-			<p class="condition" id="has_carrier_airwings_on_mission">Checks if carrier airwings are on a mission</p>
-			<p class="condition" id="has_civil_war">Checks if a country is a participant in a civil war</p>
-			<p class="condition" id="has_combat_modifier">Checks for a combat modifier in combat</p>
-			<p class="condition" id="has_completed_focus">Checks if a national focus has been completed</p>
-			<p class="condition" id="has_country_flag">Checks for a country flag</p>
-			<p class="condition" id="has_defensive_war">Checks if in a defensive war</p>
-			<p class="condition" id="has_defensive_war_with">Checks for a defensive war against a country</p>
-			<p class="condition" id="has_deployed_air_force_size">Variable for a country's amount of deployed planes</p>
-			<p class="condition" id="has_equipment">Checks for the amount of equipment</p>
-			<p class="condition" id="has_flanked_opponent">Check if flanking an enemy</p>
-			<p class="condition" id="has_global_flag">Checks if a global flag is active</p>
-			<p class="condition" id="has_government">Checks a country's current ideology</p>
-			<p class="condition" id="has_guaranteed">Checks if a country has guaranteed another country</p>
-			<p class="condition" id="has_idea">Checks for a specified idea</p>
-			<p class="condition" id="has_idea_with_trait">Checks for an idea with a specified trait</p>
-			<p class="condition" id="has_manpower">Checks the amount of manpower</p>
-			<p class="condition" id="has_manpower_for_recruit_change_to">Checks if country has enough manpower to change recruitment laws</p>
-			<p class="condition" id="has_max_planning">Checks for maximum planning bonus in combat</p>
-			<p class="condition" id="has_military_access_to">Checks if a country has military access to another country</p>
-			<p class="condition" id="has_national_unity">Variable for the national unity of a nation</p>
-			<p class="condition" id="has_navy_size">Variable for the amount of ships a nation has</p>
-			<p class="condition" id="has_offensive_war">Checks if in an offensive war</p>
-			<p class="condition" id="has_offensive_war_with">Checks for a offensive war against a country</p>
-			<p class="condition" id="has_opinion">Checks for the current opinion towards another country</p>
-			<p class="condition" id="has_opinion_modifier">Checks for a specific opinion modifier</p>
-			<p class="condition" id="has_political_power">Checks the amount of political power</p>
-			<p class="condition" id="has_reserves">Checks for reserves in combat</p>
-			<p class="condition" id="has_start_date">Checks the initial start date of the current game</p>
-			<p class="condition" id="has_state_flag">Checks for a state flag</p>
-			<p class="condition" id="has_tech">Checks if a country has a specified tech</p>
-			<p class="condition" id="has_template_containing_unit">Checks if country has a template with specified units</p>
-			<p class="condition" id="has_trait">Checks if a leader in combat has a trait</p>
-			<p class="condition" id="has_volunteers_from">Checks if a country has volunteer from another country</p>
-			<p class="condition" id="has_war">Checks for war</p>
-			<p class="condition" id="has_war_together_with">Checks if two countries are on the same side in a war</p>
-			<p class="condition" id="has_war_with">Checks if at war with specified country</p>
-			<p class="condition" id="has_war_with_amount">Checks the amount of wars and current world tension</p>
-			<p class="condition" id="ic_ratio">Compares the total industrial capacity of two countries</p>
-			<p class="condition" id="is_ai">Checks if a country is run by AI</p>
-			<p class="condition" id="is_amphibious_invasion">Checks if combat is an amphibious invasion</p>
-			<p class="condition" id="is_attacker">Checks if attacker in combat</p>
-			<p class="condition" id="is_border_conflict">Checks if a state is in border conflict</p>
-			<p class="condition" id="is_claimed_by">Checks if state is claimed by a country</p>
-			<p class="condition" id="is_coastal">Checks if a state is coastal</p>
-			<p class="condition" id="is_controlled_by">Checks if a state is controlled by a country</p>
-			<p class="condition" id="is_core_of">Checks if state is a core of a country</p>
-			<p class="condition" id="is_defender">Checks if a defender in combat</p>
-			<p class="condition" id="is_demilitarized_zone">Checks if a state is demilitarized</p>
-			<p class="condition" id="is_faction_leader">Checks if a country is a leader of any faction</p>
-			<p class="condition" id="is_fighting_air_units">Checks if fighting air units</p>
-			<p class="condition" id="is_fighting_in_terrain">Checks the terrain of combat</p>
-			<p class="condition" id="is_guaranteed_by">Checks if guaranteed by a specified country</p>
-			<p class="condition" id="is_in_faction">Checks if member of any faction</p>
-			<p class="condition" id="is_in_faction_with">Checks if in the same faction with a country</p>
-			<p class="condition" id="is_in_home_area">Checks if a state is connected to the capital</p>
-			<p class="condition" id="is_ironman">Checks if current game is in Ironman mode</p>
-			<p class="condition" id="is_lend_leasing">Checks if giving lend lease to a country</p>
-			<p class="condition" id="is_major">Checks if a country is a major</p>
-			<p class="condition" id="is_neighbor_of">Checks if neighbors with a specified country</p>
-			<p class="condition" id="is_on_continent">Checks the continent of a state</p>
-			<p class="condition" id="is_owned_by">Checks if a state is owned by a country</p>
-			<p class="condition" id="is_puppet">Checks if a country is a puppet (puppet specified in autonomy levels)</p>
-			<p class="condition" id="is_puppet_of">Checks if a county is a puppet of a specified country (puppet specified in autonomy levels)</p>
-			<p class="condition" id="is_subject">Checks if a country is a subject</p>
-			<p class="condition" id="is_subject_of">Checks if a country is a subject of a specified country</p>
-			<p class="condition" id="is_winning">Checks if winning in combat</p>
-			<p class="condition" id="land_doctrine_level">Checks researched land doctrine level</p>
-			<p class="condition" id="less_combat_width_than_opponent">Checks for combat width in combat</p>
-			<p class="condition" id="night">Checks if combat is at night</p>
-			<p class="condition" id="num_of_available_civilian_factories">Checks the amount of unused civilian factories</p>
-			<p class="condition" id="num_of_available_military_factories">Check the amount of unused military factories</p>
-			<p class="condition" id="num_of_available_naval_factories">Checks the amount of unused naval dockyards</p>
-			<p class="condition" id="num_of_civilian_factories">Checks the amount of civilian factories in a country</p>
-			<p class="condition" id="num_of_controlled_states">Checks the number of controlled states</p>
-			<p class="condition" id="num_of_factories">Checks the total amount of factories</p>
-			<p class="condition" id="num_of_military_factories">Checks the amount of military factories in a country</p>
-			<p class="condition" id="num_of_naval_factories">Checks the amount of naval dockyards in a country</p>
-			<p class="condition" id="num_of_nukes">Checks the amount of nukes</p>
-			<p class="condition" id="original_tag">Checks the original tag of a country (for civil wars)</p>
-			<p class="condition" id="owns_state">Checks if a country owns a state</p>
-			<p class="condition" id="phase">Checks for a combat phase</p>
-			<p class="condition" id="recon_advantage">Checks for recon advantage in combat</p>
-			<p class="condition" id="region">Checks if a state is part of a specified strategic region</p>
-			<p class="condition" id="reserves">Checks the amount of reserves</p>
-			<p class="condition" id="ships_in_area">Checks the amount of ships in an area</p>
-			<p class="condition" id="ships_in_state_ports">Checks the number of ships in a state's provinces</p>
-			<p class="condition" id="skill">Checks leaders skill level</p>
-			<p class="condition" id="skill_advantage">Compares skill levels of commanders</p>
-			<p class="condition" id="state_population">Checks the states population</p>
-			<p class="condition" id="strength_ratio">Checks the relation of army strengths with a country</p>
-			<p class="condition" id="surrender_progress">Checks the surrender progress</p>
-			<p class="condition" id="tag">Checks the tag of the country</p>
-			<p class="condition" id="temperature">Checks for the temperature of a combat province</p>
-			<p class="condition" id="threat">Checks global threat value</p>
-		</div>
-		<div id="build-commands-area">
-			<p class="command" id="set_province_name">Changes the name of a province</p>
-			<p class="command" id="reset_province_name">Resets province name to original</p>
-			<p class="command" id="add_autonomy_ratio">Adds autonomy (with custom name)</p>
-			<p class="command" id="swap_ideas">Swaps two ideas, showing the difference</p>
-			<p class="command" id="set_cosmetic_tag">Sets a cosmetic TAG for a country</p>
-			<p class="command" id="damage_building">Damages a building in state</p>
-			<p class="command" id="create_unit">Creates a new unit</p>
-			<p class="command" id="set_autonomy">Sets the autonomy level of a target</p>
-			<p class="command" id="add_to_tech_sharing_group">Adds a country to a tech sharing group</p>
-			<p class="command" id="remove_from_tech_sharing_group">Removes a country from a tech sharing group</p>
-			<p class="command" id="add_manpower">Adds manpower to a state or country</p>
-			<p class="command" id="add_political_power">Adds political power to a country</p>
-			<p class="command" id="set_capital">Moves capital to specified state</p>
-			<p class="command" id="add_state_core">Adds cores on a specified state</p>
-			<p class="command" id="remove_state_core">Removes cores from a state</p>
-			<p class="command" id="change_tag_from">Changes player to other country</p>
-			<p class="command" id="set_country_flag">Sets a country flag</p>
-			<p class="command" id="clr_country_flag">Removes a country flag</p>
-			<p class="command" id="set_global_flag">Sets a global flag</p>
-			<p class="command" id="clr_global_flag">Removes a global flag</p>
-			<p class="command" id="remove_building">Removes a specified building from a specified state or province</p>
-			<p class="command" id="release">Releases a specified country</p>
-			<p class="command" id="country_event">Fires an event</p>
-			<p class="command" id="state_event">Fires a state event</p>
-			<p class="command" id="random">Random effect with a probability</p>
-			<p class="command" id="random_list">Chooses an effect randomly from a list based on their probabilities</p>
-			<p class="command" id="white_peace">Creates a white peace between countries</p>
-			<p class="command" id="add_state_claim">Add claims on a state</p>
-			<p class="command" id="remove_state_claim">Removes claims on a state</p>
-			<p class="command" id="add_opinion_modifier">Adds an opinion modifier to a country</p>
-			<p class="command" id="remove_opinion_modifier">Removes an opinion modifer from a country</p>
-			<p class="command" id="create_country_leader">Creates a country leader (head of state)</p>
-			<p class="command" id="sound_effect">Plays a sound effect</p>
-			<p class="command" id="randomize_weather">Randomizes weather</p>
-			<p class="command" id="division_template">Adds a division template to a country</p>
-			<p class="command" id="set_country_leader_ideology">Changes the ideology of the current country leader</p>
-			<p class="command" id="add_country_leader_trait">Add a trait to the current country leader</p>
-			<p class="command" id="remove_country_leader_trait">Removes a trait from the current country leader</p>
-			<p class="command" id="set_political_party">Sets the properties of a political party</p>
-			<p class="command" id="set_politics">Changes the politics of a country</p>
-			<p class="command" id="add_ideas">Adds idea(s) to a country</p>
-			<p class="command" id="remove_ideas">Removes idea(s) from a country</p>
-			<p class="command" id="set_political_power">Sets political power to a certain value</p>
-			<p class="command" id="set_technology">Set technology level of a country</p>
-			<p class="command" id="create_navy_leader">Creates a naval leader for a country</p>
-			<p class="command" id="remove_unit_leader_trait">Removes a trait from a unit leader</p>
-			<p class="command" id="add_unit_leader_trait">Add a trait to a unit leader</p>
-			<p class="command" id="set_state_owner">Sets the owner of a state</p>
-			<p class="command" id="puppet">Puppets the specified country</p>
-			<p class="command" id="set_state_controller">Sets the controller of a state</p>
-			<p class="command" id="transfer_state">Sets the owner and controller of a state</p>
-			<p class="command" id="set_state_flag">Sets a state flag</p>
-			<p class="command" id="clr_state_flag">Removes a state flag</p>
-			<p class="command" id="create_faction">Creates a faction with a specified name</p>
-			<p class="command" id="annex_country">Annexes a specified country</p>
-			<p class="command" id="add_building_construction">Starts a building construction within a state or a province</p>
-			<p class="command" id="dismantle_faction">Dismantles the faction led by the current country</p>
-			<p class="command" id="add_to_faction">Adds a country to a faction</p>
-			<p class="command" id="remove_from_faction">Removes a country from a faction</p>
-			<p class="command" id="give_guarantee">Guarantees specified country</p>
-			<p class="command" id="give_military_access">Specified country gives military access (bugged tooltip)</p>
-			<p class="command" id="news_event">Triggers a news event</p>
-			<p class="command" id="declare_war_on">Declares war on a specified country</p>
-			<p class="command" id="add_national_unity">Adds national unity</p>
-			<p class="command" id="add_scaled_political_power">Adds political power scaled by the difference between ICs of receiver and another country</p>
-			<p class="command" id="hold_election">Holds elections</p>
-			<p class="command" id="add_popularity">Adds popularity to an ideology</p>
-			<p class="command" id="remove_ideas_with_trait">Removes ideas with specific traits</p>
-			<p class="command" id="start_civil_war">Starts a civil war with the given ideology</p>
-			<p class="command" id="retire_country_leader">Removes a country leader and replaces him with another candidate from the same party</p>
-			<p class="command" id="kill_country_leader">Removes a country leader completely</p>
-			<p class="command" id="release_puppet">Releases a specified country</p>
-			<p class="command" id="create_wargoal">Creates a wargoal</p>
-			<p class="command" id="add_claim_by">Add state claim by a country</p>
-			<p class="command" id="remove_claim_by">Removes state claim from a country</p>
-			<p class="command" id="add_core_of">Adds cores of a country to a state</p>
-			<p class="command" id="remove_core_of">Removes cores of a country from a state</p>
-			<p class="command" id="army_experience">Adds army experience</p>
-			<p class="command" id="navy_experience">Adds navy experience</p>
-			<p class="command" id="air_experience">Adds air experience</p>
-			<p class="command" id="save_event_target_as">Save an event target as something</p>
-			<p class="command" id="save_global_event_target_as">Save a global event target as something</p>
-			<p class="command" id="clear_global_event_target">Removes a global event target</p>
-			<p class="command" id="clear_global_event_targets">Removes all global event targets</p>
-			<p class="command" id="break">Break execution of effects</p>
-			<p class="command" id="unlock_national_focus">Unlocks a national focus for a country</p>
-			<p class="command" id="add_tech_bonus">Adds a limited tech bonus</p>
-			<p class="command" id="set_demilitarized_zone">Sets a state as a demilitarized zone</p>
-			<p class="command" id="add_research_slot">Adds set number of research slots</p>
-			<p class="command" id="set_research_slots">Sets the number of research slots</p>
-			<p class="command" id="set_border_war">Starts a border war</p>
-			<p class="command" id="set_national_unity">Sets the national unity of a country</p>
-			<p class="command" id="set_equipment_fraction">Gives a fraction of your equipment to another country</p>
-			<p class="command" id="add_threat">Adds country threat</p>
-			<p class="command" id="send_equipment">Sends equipment to a country</p>
-			<p class="command" id="set_rule">Sets a rule to a country</p>
-			<p class="command" id="diplomatic_relation">Set up diplomatic relations between two countries</p>
-			<p class="command" id="add_resource">Adds resource production to a state</p>
-			<p class="command" id="remove_unit_leader">Removes a unit leader</p>
-			<p class="command" id="add_timed_idea">Adds a time limited idea to a country</p>
-			<p class="command" id="end_puppet">Ends puppetry over the specified country</p>
-			<p class="command" id="load_oob">Loads an OOB file</p>
-			<p class="command" id="create_import">Creates trade between countries</p>
-			<p class="command" id="add_named_threat">Adds country threat</p>
-			<p class="command" id="set_province_controller">Set controller of a province</p>
-			<p class="command" id="set_major">Makes a country a major</p>
-			<p class="command" id="create_field_marshal">Creates a field marshal</p>
-			<p class="command" id="create_corps_commander">Creates a corps commander</p>
-			<p class="command" id="goto_province">Goes to specified province</p>
-			<p class="command" id="goto_state">Goes to specified state</p>
-			<p class="command" id="complete_national_focus">Completes a national focus</p>
-			<p class="command" id="set_party_name">Changes a party name of a country</p>
-			<p class="command" id="add_extra_state_shared_building_slots">Add extra building slots to a state</p>
-			<p class="command" id="reverse_add_opinion_modifier">Add opinion modifiers to target</p>
-			<p class="command" id="add_to_war">Adds country to a war</p>
-			<p class="command" id="create_equipment_variant">Creates a new equipment variant</p>
-			<p class="command" id="add_equipment_production">Add equipment production</p>
-			<p class="command" id="add_ace">Adds an air ace</p>
-			<p class="command" id="add_equipment_to_stockpile">Adds equipment to stockpile of the country in question</p>
-		</div>
-	</div>
-	<div class="inline">
-		<div id="build-hover">
-			<!-- Scopes -->
-			<div class="scope-info" id="random_owned_controlled_state_info" braces="yes"><pre>random_owned_controlled_state = { }</pre></div>
-			<div class="scope-info" id="OVERLORD_info">
-<pre>RAJ = { 
-	OVERLORD = { ... } 
-}</pre></div>
-			<div class="scope-info" id="state_id_info" braces="yes"><pre>145 = { ... }</pre></div>
-			<div class="scope-info" id="any_neighbor_country_info" braces="yes"><pre>any_neighbor_country = { ... }</pre></div>
-			<div class="scope-info" id="TAG_info" braces="yes"><pre>FRA = { ... }</pre></div>
-			<div class="scope-info" id="any_country_info" braces="yes"><pre>any_country = { ... }</pre></div>
-			<div class="scope-info" id="any_enemy_country_info" braces="yes"><pre>any_enemy_country = { ... }</pre></div>
-			<div class="scope-info" id="all_neighbor_country_info" braces="yes"><pre>all_neighbor_country = { ... }</pre></div>
-			<div class="scope-info" id="all_country_info" braces="yes"><pre>all_country = { ... }</pre></div>
-			<div class="scope-info" id="all_enemy_country_info" braces="yes"><pre>all_enemy_country = { ... }</pre></div>
-			<div class="scope-info" id="any_state_info" braces="yes"><pre>any_state = { ... }</pre></div>
-			<div class="scope-info" id="any_owned_state_info" braces="yes"><pre>any_owned_state = { ... }</pre></div>
-			<div class="scope-info" id="any_neighbor_state_info" braces="yes"><pre>any_neighbor_state = { ... }</pre></div>
-			<div class="scope-info" id="any_allied_country_info" braces="yes"><pre>any_allied_country = { ... }</pre></div>
-			<div class="scope-info" id="all_state_info" braces="yes"><pre>all_state = { ... }</pre></div>
-			<div class="scope-info" id="every_owned_state_info" braces="yes"><pre>every_owned_state = { ... }</pre></div>
-			<div class="scope-info" id="all_neighbor_state_info" braces="yes"><pre>all_neighbor_state = { ... }</pre></div>
-			<div class="scope-info" id="all_allied_country_info" braces="yes"><pre>all_allied_country = { ... }</pre></div>
-			<div class="scope-info" id="every_country_info" braces="yes"><pre>every_country = { ... }</pre></div>
-			<div class="scope-info" id="random_country_info" braces="yes"><pre>random_country = { ... }</pre></div>
-			<div class="scope-info" id="every_neighbor_country_info" braces="yes"><pre>every_neighbor_country = { ... }</pre></div>
-			<div class="scope-info" id="random_neighbor_country_info" braces="yes"><pre>random_neighbor_country = { ... }</pre></div>
-			<div class="scope-info" id="every_enemy_country_info" braces="yes"><pre>every_enemy_country = { ... }</pre></div>
-			<div class="scope-info" id="random_enemy_country_info" braces="yes"><pre>random_enemy_country = { ... }</pre></div>
-			<div class="scope-info" id="random_state_info" braces="yes"><pre>random_state = { ... }</pre></div>
-			<div class="scope-info" id="random_owned_state_info" braces="yes"><pre>random_owned_state = { ... }</pre></div>
-			<div class="scope-info" id="random_neighbor_state_info" braces="yes"><pre>random_neighbor_state = { ... }</pre></div>
-			<div class="scope-info" id="every_state_info" braces="yes"><pre>every_state = { ... }</pre></div>
-			<div class="scope-info" id="every_owned_state_info" braces="yes"><pre>every_owned_state = { ... }</pre></div>
-			<div class="scope-info" id="every_neighbor_state_info" braces="yes"><pre>every_neighbor_state = { ... }</pre></div>
-			<div class="scope-info" id="capital_scope_info" braces="yes"><pre>capital_scope = { ... }</pre></div>
-			
-			<!-- Conditions -->
-			<div class="condition-info" id="num_divisions_info"><pre>num_divisions > 10</pre></div>
-			<div class="condition-info" id="has_focus_tree_info"><pre>has_focus_tree = ID</pre></div>
-			<div class="condition-info" id="is_staging_coup_info"><pre>is_staging_coup = yes</pre></div>
-			<div class="condition-info" id="has_full_control_of_state_info">
-<pre>
-GER = { 
-	has_full_control_of_state = 55
-}
-</pre></div>
-			<div class="condition-info" id="has_army_experience_info"><pre>has_army_experience > 5</pre></div>
-			<div class="condition-info" id="has_air_experience_info"><pre>has_air_experience > 5</pre></div>
-			<div class="condition-info" id="has_navy_experience_info"><pre>has_navy_experience > 5</pre></div>
-			<div class="condition-info" id="has_country_leader_info" braces="yes">
-<pre>
-has_country_leader = { 
-	id = 17 
-	ruling_only = yes 
-	name = "Boaty McBoatface" 
-}
-</pre></div>
-			<div class="condition-info" id="has_tech_bonus_info" braces="yes">
-<pre>
-has_tech_bonus = { 
-	technology = early_fighter 
-	category = industry 
-}
-</pre></div>
-			<div class="condition-info" id="has_resources_amount_info" braces="yes">
-<pre>
-has_resources_amount = { 
-	resource = chromium 
-	amount > 5 
-	state = 31 
-}
-</pre></div>
-			<div class="condition-info" id="num_of_subjects_info"><pre>num_of_subjects > 0</pre></div>
-			<div class="condition-info" id="num_tech_sharing_groups_info"><pre>num_of_tech_sharing_groups > 1</pre></div>
-			<div class="condition-info" id="compare_autonomy_progress_ratio_info"><pre>compare_autonomy_progress_ratio > 0.6</pre></div>
-			<div class="condition-info" id="ai_irrationality_info"><pre>ai_irrationality < 20</pre></div>
-			<div class="condition-info" id="ai_liberate_desire_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="always_info"><pre>always = no</pre></div>
-			<div class="condition-info" id="any_claim_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="any_war_score_info"><pre>any_war_score > 0.5</pre></div>
-			<div class="condition-info" id="armor_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="can_research_info"><pre>can_research = basic_medium_tank</pre></div>
-			<div class="condition-info" id="controls_state_info">
-<pre>
-GER = { 
-	controls_state = 332 
-}
-</pre></div>
-			<div class="condition-info" id="country_exists_info"><pre>country_exists = YUG</pre></div>
-			<div class="condition-info" id="date >, date <_info"><pre>date > 1937.1.1</pre></div>
-			<div class="condition-info" id="dig_in_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="distance_to_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="divisions_in_state_info" braces="yes">
-<pre>
-divisions_in_state = { 
-	state = 605 
-	value > 0 
-}
-</pre></div>
-			<div class="condition-info" id="exists_info">
-<pre>
-GER = { 
-	exists = yes
-}
-</pre></div>
-			<div class="condition-info" id="fastest_unit_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="focus_progress_info" braces="yes">
-<pre>
-focus_progress = { 
-	focus = focus_id 
-	progress > 0.5 
-}
-</pre></div>
-			<div class="condition-info" id="free_building_slots_info" braces="yes">
-<pre>
-any_owned_state = { 
-	free_building_slots = { 
-		building = industrial_complex 
-		size > 0 
-		include_locked = yes 
-	} 
-}
-</pre></div>
-			<div class="condition-info" id="frontage_full_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="gives_military_access_to_info"><pre>giver_military_access_to = GER</pre></div>
-			<div class="condition-info" id="hardness_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="has_added_tension_amount_info"><pre>has_added_tension_amount > 0.1</pre></div>
-			<div class="condition-info" id="has_annex_war_goal_info"><pre>has_annex_war_goal = POL</pre></div>
-			<div class="condition-info" id="has_army_manpower_info" braces="yes">
-<pre>
-has_army_manpower = { 
-	size > 549999 
-}
-</pre></div>
-<div class="condition-info" id="has_army_size_info" braces="yes">
-<pre>
-has_army_size = { 
-	type = infantry size > 75 
-}
-</pre></div>
-			<div class="condition-info" id="has_available_idea_with_traits_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="has_built_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="has_capitulated_info">
-<pre>
-NOR = { 
-	has_capitulated = yes 
-}
-</pre></div>
-			<div class="condition-info" id="has_carrier_airwings_on_mission_info"><pre>has_carrier_airwings_on_mission = yes</pre></div>
-			<div class="condition-info" id="has_civil_war_info">
-<pre>
-SPR = { 
-	has_civil_war = yes 
-}
-</pre></div>
-			<div class="condition-info" id="has_combat_modifier_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="has_completed_focus_info">
-<pre>
-GER = { 
-	has_completed_focus = GER_anschluss 
-}
-</pre></div>
-			<div class="condition-info" id="has_country_flag_info">
-<pre>
-ENG = { 
-	has_country_flag = chamberlain_resigned 
-}
-</pre></div>
-			<div class="condition-info" id="has_defensive_war_info">
-<pre>
-CHI = { 
-	has_defensive_war = yes 
-}
-</pre></div>
-			<div class="condition-info" id="has_defensive_war_with_info">
-<pre>
-CHI = { 
-	has_defensive_war_with = JAP 
-}
-</pre></div>
-			<div class="condition-info" id="has_deployed_air_force_size_info">
-<pre>
-ENG = { 
-	has_deployed_air_force_size > 100 
-}
-</pre></div>
-			<div class="condition-info" id="has_equipment_info" braces="yes">
-<pre>
-has_equipment = { 
-	infantry_equipment > 500 
-}
-</pre></div>
-			<div class="condition-info" id="has_flanked_opponent_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="has_global_flag_info"><pre>has_global_flag = fall_of_france</pre></div>
-			<div class="condition-info" id="has_government_info"><pre>has_government = communism</pre></div>
-			<div class="condition-info" id="has_guaranteed_info">
-<pre>
-FRA = { 
-	has_guaranteed = POL
-}
-</pre></div>
-			<div class="condition-info" id="has_idea_info"><pre>has_idea = idea_id</pre></div>
-			<div class="condition-info" id="has_idea_with_trait_info"><pre>has_idea_with_trait = communist_revolutionary</pre></div>
-			<div class="condition-info" id="has_manpower_info"><pre>has_manpower > 10000</pre></div>
-			<div class="condition-info" id="has_manpower_for_recruit_change_to_info" braces="yes">
-<pre>
-has_manpower_for_recruit_change_to = { 
-	value = 0.01 
-	group = mobilization_laws
-}
-</pre></div>
-			<div class="condition-info" id="has_max_planning_info"><pre>has_max_planning = yes</pre></div>
-			<div class="condition-info" id="has_military_access_to_info"><pre>has_military_access_to = ITA</pre></div>
-			<div class="condition-info" id="has_national_unity_info"><pre>has_national_unity > 70</pre></div>
-			<div class="condition-info" id="has_navy_size_info" braces="yes">
-<pre>
-has_navy_size = { 
-	size > 10 
-}
-</pre></div>
-			<div class="condition-info" id="has_offensive_war_info"><pre>has_offensive_war = yes</pre></div>
-			<div class="condition-info" id="has_offensive_war_with_info"><pre>has_offensive_war_with = SOV</pre></div>
-			<div class="condition-info" id="has_opinion_info" braces="yes">
-<pre>
-has_opinion = { 
-	target = SOV 
-	value < -50 
-}
-</pre></div>
-			<div class="condition-info" id="has_opinion_modifier_info"><pre>has_opinion_modifier = unprovoked_aggression</pre></div>
-			<div class="condition-info" id="has_political_power_info"><pre>has_political_power > 100</pre></div>
-			<div class="condition-info" id="has_reserves_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="has_start_date_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="has_state_flag_info">
-<pre>
-713 = {
-	has_state_flag = GER_second_ljubljana_award_GER_demand
-}
-</pre></div>
-			<div class="condition-info" id="has_tech_info"><pre>has_tech = basic_medium_tank</pre></div>
-			<div class="condition-info" id="has_template_containing_unit_info"><pre>has_template_containing_unit = light_armor</pre></div>
-			<div class="condition-info" id="has_trait_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="has_volunteers_from_info"><pre>has_volunteers_from = GER</pre></div>
-			<div class="condition-info" id="has_war_info"><pre>has_war = yes</pre></div>
-			<div class="condition-info" id="has_war_together_with_info"><pre>has_war_together_with = ITA</pre></div>
-			<div class="condition-info" id="has_war_with_info"><pre>has_war_with = FRA</pre></div>
-			<div class="condition-info" id="has_war_with_amount_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="ic_ratio_info" braces="yes">
-<pre>
-ic_ratio = { 
-	tag = ITA 
-	ratio > 0.4
-}
-</pre></div>
-			<div class="condition-info" id="is_ai_info"><pre>is_ai = yes</pre></div>
-			<div class="condition-info" id="is_amphibious_invasion_info"><pre>is_amphibious_invasion = yes</pre></div>
-			<div class="condition-info" id="is_attacker_info"><pre>is_attacker = yes</pre></div>
-			<div class="condition-info" id="is_border_conflict_info">
-<pre>
-any_owned_state = { 
-	is_border_conflict = yes
-}
-</pre></div>
-			<div class="condition-info" id="is_claimed_by_info">
-<pre>
-any_owned_state = { 
-	is_claimed_by = GER
-}
-</pre></div>
-			<div class="condition-info" id="is_coastal_info">
-<pre>
-any_owned_state = { 
-	is_coastal = yes
-}
-</pre></div>
-			<div class="condition-info" id="is_controlled_by_info">
-<pre>
-332 = { 
-	is_controlled_by = GER
-}
-</pre></div>
-			<div class="condition-info" id="is_core_of_info">
-<pre>
-any_owned_state = { 
-	is_core_of = CHI 
-}
-</pre></div>
-			<div class="condition-info" id="is_defender_info"><pre>is_defender = yes</pre></div>
-			<div class="condition-info" id="is_demilitarized_zone_info">
-<pre>
-any_owned_state = { 
-	is_demilitarized_zone = yes
-}
-</pre></div>
-			<div class="condition-info" id="is_faction_leader_info"><pre>is_faction_leader = yes</pre></div>
-			<div class="condition-info" id="is_fighting_air_units_info"><pre>is_fighting_air_units = yes</pre></div>
-			<div class="condition-info" id="is_fighting_in_terrain_info"><pre>is_fighting_in_terrain = marsh</pre></div>
-			<div class="condition-info" id="is_guaranteed_by_info"><pre>is_guaranteed_by = USA</pre></div>
-			<div class="condition-info" id="is_in_faction_info"><pre>is_in_faction = yes</pre></div>
-			<div class="condition-info" id="is_in_faction_with_info"><pre>is_in_faction_with = GER</pre></div>
-			<div class="condition-info" id="is_in_home_area_info">
-<pre>
-any_owned_state = { 
-	is_in_home_area = yes 
-}
-</pre></div>
-			<div class="condition-info" id="is_ironman_info"><pre>is_ironman = yes</pre></div>
-			<div class="condition-info" id="is_lend_leasing_info"><pre>is_lend_leasing = SPR</pre></div>
-			<div class="condition-info" id="is_major_info"><pre>is_major = yes</pre></div>
-			<div class="condition-info" id="is_neighbor_of_info"><pre>is_neighbor_of = GER</pre></div>
-			<div class="condition-info" id="is_on_continent_info"><pre>any_owned_state = { is_on_continent = africa }</pre></div>
-			<div class="condition-info" id="is_owned_by_info">
-<pre>
-332 = { 
-	is_owned_by = GER	
-}</pre></div>
-			<div class="condition-info" id="is_puppet_info"><pre>is_puppet = yes</pre></div>
-			<div class="condition-info" id="is_puppet_of_info"><pre>is_puppet_of = ENG</pre></div>
-			<div class="condition-info" id="is_subject_info">
-<pre>
-RAJ = { 
-	is_subject = yes
-}
-</pre></div>
-			<div class="condition-info" id="is_subject_of_info">
-<pre>
-RAJ = { 
-	is_subject_of = ENG 
-}
-</pre></div>
-			<div class="condition-info" id="is_winning_info"><pre>is_winning = yes</pre></div>
-			<div class="condition-info" id="land_doctrine_level_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="less_combat_width_than_opponent_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="night_info"><pre>night = yes</pre></div>
-			<div class="condition-info" id="num_of_available_civilian_factories_info"><pre>num_of_available_civilian_factories > 1</pre></div>
-			<div class="condition-info" id="num_of_available_military_factories_info"><pre>num_of_available_military_factories > 1</pre></div>
-			<div class="condition-info" id="num_of_available_naval_factories_info"><pre>num_of_available_naval_factories > 1</pre></div>
-			<div class="condition-info" id="num_of_civilian_factories_info"><pre>num_of_civilian_factories > 10</pre></div>
-			<div class="condition-info" id="num_of_controlled_states_info"><pre>num_of_controlled_states > 10</pre></div>
-			<div class="condition-info" id="num_of_factories_info"><pre>num_of_factories > 50</pre></div>
-			<div class="condition-info" id="num_of_military_factories_info"><pre>num_of_military_factories > 10</pre></div>
-			<div class="condition-info" id="num_of_naval_factories_info"><pre>num_of_naval_factories > 10</pre></div>
-			<div class="condition-info" id="num_of_nukes_info"><pre>num_of_nukes > 1</pre></div>
-			<div class="condition-info" id="original_tag_info"><pre>original_tag = SPR</pre></div>
-			<div class="condition-info" id="owns_state_info">
-<pre>
-GER = { 
-	owns_state = 332 
-}
-</pre></div>
-			<div class="condition-info" id="phase_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="recon_advantage_info"><pre>recon_advantage = yes</pre></div>
-			<div class="condition-info" id="region_info">
-<pre>
-any_state = { 
-	region = 34
-}
-</pre></div>
-			<div class="condition-info" id="reserves_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="ships_in_area_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="ships_in_state_ports_info">
-<pre>
-any_owned_state = {
-	ships_in_state_ports > 10
-}</pre></div>
-			<div class="condition-info" id="skill_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="skill_advantage_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="state_population_info">
-<pre>
-any_owned_state = { 
-	state_population = 40000
-}
-</pre></div>
-			<div class="condition-info" id="strength_ratio_info" braces="yes">
-<pre>
-strength_ratio = { 
-	tag = SOV 
-	ratio > 0.8
-}
-</pre></div>
-			<div class="condition-info" id="surrender_progress_info"><pre>surrender_progress > 0.7</pre></div>
-			<div class="condition-info" id="tag_info"><pre>tag = FRA</pre></div>
-			<div class="condition-info" id="temperature_info"><pre>Needs to be tested</pre></div>
-			<div class="condition-info" id="threat_info"><pre>threat < 0.5</pre></div>
-			<!-- Command info -->
-			<div class="command-info" id="set_province_name_info">
-<pre>
-set_province_name = { 
-	id = 325
-	name = "Funville"
-}
-</pre></div>
-			<div class="command-info" id="reset_province_name_info"><pre>reset_province_name = 325</pre></div>
-			<div class="command-info" id="add_autonomy_ratio_info">
-<pre>
-add_autonomy_ratio = { 
-	value = 0.1
-	localization = LOC_STRING_HERE
-}
-</pre></div>
-			<div class="command-info" id="swap_ideas_info">
-<pre>
-swap_ideas = { 
-	remove_idea = REM_IDEA_ID 
-	add_idea = ADD_IDEA_ID 
-}
-</pre></div>
-			<div class="command-info" id="set_cosmetic_tag_info"><pre>set_cosmetic_tag = SAF_SOV_communism</pre></div>
-			<div class="command-info" id="damage_building_info">
-<pre>
-damage_building = { 
-	type = industrial_complex 
-	damage = 0.6 
-}
-</pre></div>
-			<div class="command-info" id="create_unit_info">
-<pre>create_unit = { 
-	division = "name = COOL_NAME 
-	division_template = COOL_TEMPLATE 
-	starting_experience_factor = 1.0" 
-}</pre></div>
-			<div class="command-info" id="set_autonomy_info">
-<pre>
-set_autonomy = { 
-	target = RAJ 
-	autonomy_state = autonomy_free 
-}
-</pre></div>
-			<div class="command-info" id="add_to_tech_sharing_group_info"><pre>add_to_tech_sharing_group = tizard_mission</pre></div>
-			<div class="command-info" id="remove_from_tech_sharing_group_info"><pre>remove_from_tech_sharing_group = tizard_mission</pre></div>
-			<div class="command-info" id="add_manpower_info"><pre>add_manpower = 8000</pre></div>
-			<div class="command-info" id="add_political_power_info"><pre>add_political_power = 50</pre></div>
-			<div class="command-info" id="set_capital_info"><pre>set_capital = 345</pre></div>
-			<div class="command-info" id="add_state_core_info"><pre>add_state_core = 345</pre></div>
-			<div class="command-info" id="remove_state_core_info"><pre>remove_state_core = 345</pre></div>
-			<div class="command-info" id="change_tag_from_info"><pre>change_tag_from = GER</pre></div>
-			<div class="command-info" id="set_country_flag_info"><pre>set_country_flag = anschluss</pre></div>
-			<div class="command-info" id="clr_country_flag_info"><pre>clr_country_flag = anschluss</pre></div>
-			<div class="command-info" id="set_global_flag_info"><pre>set_global_flag = spanish_civil_war</pre></div>
-			<div class="command-info" id="clr_global_flag_info"><pre>clr_global_flag = spanish_civil_war</pre></div>
-			<div class="command-info" id="remove_building_info">
-<pre>
-219 = { 
-	remove_building = { 
-		type = arms_factory level = 5 
-	}
-}
-</pre></div>
-			<div class="command-info" id="release_info"><pre>release = CRO</pre></div>
-			<div class="command-info" id="country_event_info">
-<pre>
-country_event = { 
-	days = 1 
-	id = finland.1 
-}
-</pre></div>
-			<div class="command-info" id="state_event_info"><pre>state_event = stateevent.1</pre></div>
-			<div class="command-info" id="random_info">
-<pre>random = { 
-	50 = { 
-		add_political_power = 50 
-	}
-}</pre></div>
-			<div class="command-info" id="random_list_info">
-<pre>
-random_list = { 
-	70 = { 
-		add_political_power = 200
-	} 
-	30 = { 
-		add_political_power = -100 
-	} 
-}
-</pre></div>
-			<div class="command-info" id="white_peace_info"><pre>white_peace = ETH</pre></div>
-			<div class="command-info" id="add_state_claim_info"><pre>add_state_claim = 363</pre></div>
-			<div class="command-info" id="remove_state_claim_info"><pre>remove_state_claim = 363</pre></div>
-			<div class="command-info" id="add_opinion_modifier_info">
-<pre>
-add_opinion_modifier = { 
-	target = ENG 
-	modifier = tizard_refused 
-}
-</pre></div>
-			<div class="command-info" id="remove_opinion_modifier_info">
-<pre>
-remove_opinion_modifier = { 
-	target = ENG 
-	modifier = tizard_refused 
-}
-</pre></div>
-			<div class="command-info" id="create_country_leader_info">
-<pre>
-create_country_leader = { 
-	name = "Peter II" 
-	desc = "POLITICS_PETER_II_DESC" 
-	picture = "Portrait_Yugoslavia_Peter_II.dds" 
-	expire = "1965.1.1" 
-	ideology = despotism 
-	traits = { 
-	} 
-}
-</pre></div>
-			<div class="command-info" id="sound_effect_info"><pre>sound_effect = sound_effect_name</pre></div>
-			<div class="command-info" id="randomize_weather_info"><pre>Needs to be tested</pre></div>
-			<div class="command-info" id="division_template_info">
-<pre>
-division_template = { 
-	name = "Cool Name" 
-	regiments = { 
-		infantry = { 
-			x = 0 
-			y = 0 
-		}
-		infantry = { 
-			x = 1 
-			y = 0 
-		} 
-	} 
-}
-</pre></div>
-			<div class="command-info" id="set_country_leader_ideology_info"><pre>Needs to be tested</pre></div>
-			<div class="command-info" id="add_country_leader_trait_info"><pre>add_country_leader_trait = warmonger</pre></div>
-			<div class="command-info" id="remove_country_leader_trait_info"><pre>remove_country_leader_trait = stout_defender</pre></div>
-			<div class="command-info" id="set_political_party_info">
-<pre>
-set_political_party = { 
-	ideology = democratic 
-	popularity = 0.5 
-}
-</pre></div>
-			<div class="command-info" id="set_politics_info">
-<pre>
-set_politics = { 
-	ruling_party = fascism 
-	elections_allowed = no 
-}
-</pre></div>
-			<div class="command-info" id="add_ideas_info"><pre>add_ideas = ENG_king_edward</pre></div>
-			<div class="command-info" id="remove_ideas_info"><pre>remove_ideas = ENG_king_edward</pre></div>
-			<div class="command-info" id="set_political_power_info"><pre>set_political_power = 100</pre></div>
-			<div class="command-info" id="set_technology_info">
-<pre>
-set_technology = { 
-	suicide_craft = 1 
-}
-</pre></div>
-			<div class="command-info" id="create_navy_leader_info">
-<pre>
-create_navy_leader = { 
-	name = "Boaty McBoatface" 
-	gfx = "GFX_BoatfacesFace" 
-	traits = {
-	} 
-	skill = 3 
-}
-</pre></div>
-			<div class="command-info" id="remove_unit_leader_trait_info"><pre>Needs to be tested</pre></div>
-			<div class="command-info" id="add_unit_leader_trait_info"><pre>Needs to be tested</pre></div>
-			<div class="command-info" id="set_state_owner_info">
-<pre>
-USA = { 
-	set_state_owner = 353
-}
-</pre></div>
-			<div class="command-info" id="puppet_info"><pre>puppet = LIB</pre></div>
-			<div class="command-info" id="set_state_controller_info">
-<pre>
-USA = { 
-	set_state_controller = 353 
-}
-</pre></div>
-			<div class="command-info" id="transfer_state_info">
-<pre>
-USA = { 
-	transfer_state = 353
-}
-</pre></div>
-			<div class="command-info" id="set_state_flag_info">
-<pre>
-353 = { 
-	set_state_flag = test_flag
-}
-</pre></div>
-			<div class="command-info" id="clr_state_flag_info">
-<pre>
-353 = { 
-	clr_state_flag = test_flag 
-}
-</pre></div>
-			<div class="command-info" id="create_faction_info"><pre>create_faction = "french_entente_alliance"</pre></div>
-			<div class="command-info" id="annex_country_info">
-<pre>
-annex_country = { 
-	target = EST 
-}
-</pre></div>
-			<div class="command-info" id="add_building_construction_info">
-<pre>
-18 = { 
-	add_building_construction = { 
-		type = bunker 
-		province = 5291 
-		level = 2 
-		instant_build = yes 
-	} 
-}
-</pre></div>
-			<div class="command-info" id="dismantle_faction_info"><pre>dismantle_faction = yes</pre></div>
-			<div class="command-info" id="add_to_faction_info"><pre>add_to_faction = ITA</pre></div>
-			<div class="command-info" id="remove_from_faction_info"><pre>remove_from_faction = ITA</pre></div>
-			<div class="command-info" id="give_guarantee_info"><pre>give_guarantee = POL</pre></div>
-			<div class="command-info" id="give_military_access_info"><pre>give_military_access = GER</pre></div>
-			<div class="command-info" id="news_event_info"><pre>news_event = news_event.251</pre></div>
-			<div class="command-info" id="declare_war_on_info">
-<pre>
-declare_war_on = { 
-	target = POL 
-	type = annex_everything 
-}
-</pre></div>
-			<div class="command-info" id="add_national_unity_info"><pre>add_national_unity = 0.02</pre></div>
-			<div class="command-info" id="add_scaled_political_power_info"><pre>Needs to be tested</pre></div>
-			<div class="command-info" id="hold_election_info"><pre>hold_election = yes</pre></div>
-			<div class="command-info" id="add_popularity_info">
-<pre>
-add_popularity = { 
-	ideology = fascism 
-	popularity = 0.1 
-}
-</pre></div>
-			<div class="command-info" id="remove_ideas_with_trait_info"><pre>remove_ideas_with_trait = motorized_equipment_manufacturer</pre></div>
-			<div class="command-info" id="start_civil_war_info">
-<pre>
-start_civil_war = { 
-	ideology = fascism
-	size = 0.5
-}
-</pre></div>
-			<div class="command-info" id="retire_country_leader_info"><pre>retire_country_leader = yes</pre></div>
-			<div class="command-info" id="kill_country_leader_info"><pre>kill_country_leader = yes</pre></div>
-			<div class="command-info" id="release_puppet_info"><pre>release_puppet = LIB</pre></div>
-			<div class="command-info" id="create_wargoal_info">
-<pre>
-create_wargoal = { 
-	type = annex_everything 
-	target = EST 
-}
-</pre></div>
-			<div class="command-info" id="add_claim_by_info">
-<pre>
-any_owned_state = { 
-	add_claim_by = SOV 
-}
-</pre></div>
-			<div class="command-info" id="remove_claim_by_info">
-<pre>
-any_owned_state = { 
-	remove_claim_by = SOV 
-}
-</pre></div>
-			<div class="command-info" id="add_core_of_info">
-<pre>
-any_owned_state = { 
-	add_core_of = SOV 
-}
-</pre></div>
-			<div class="command-info" id="remove_core_of_info">
-<pre>
-any_owned_state = { 
-	remove_core_of = SOV 
-}
-</pre></div>
-			<div class="command-info" id="army_experience_info"><pre>army_experience = 10</pre></div>
-			<div class="command-info" id="navy_experience_info"><pre>navy_experience = 10</pre></div>
-			<div class="command-info" id="air_experience_info"><pre>air_experience = 10</pre></div>
-			<div class="command-info" id="save_event_target_as_info"><pre>save_event_target_as = war_target</pre></div>
-			<div class="command-info" id="save_global_event_target_as_info"><pre>save_global_event_target_as = war_target</pre></div>
-			<div class="command-info" id="clear_global_event_target_info"><pre>clear_global_event_target = war_target</pre></div>
-			<div class="command-info" id="clear_global_event_targets_info"><pre>clear_global_event_targets = war_target</pre></div>
-			<div class="command-info" id="break_info"><pre>Needs to be tested</pre></div>
-			<div class="command-info" id="unlock_national_focus_info"><pre>unlock_national_focus = focus_id</pre></div>
-			<div class="command-info" id="add_tech_bonus_info">
-<pre>
-add_tech_bonus = { 
-	bonus = 0.5 
-	uses = 2 
-	category = radar_tech 
-}
-</pre></div>
-			<div class="command-info" id="set_demilitarized_zone_info">
-<pre>
-any_owned_state = { 
-	set_demilitarized_zone = yes 
-}
-</pre></div>
-			<div class="command-info" id="add_research_slot_info"><pre>add_research_slot = 2</pre></div>
-			<div class="command-info" id="set_research_slots_info"><pre>set_research_slots = 4</pre></div>
-			<div class="command-info" id="set_border_war_info">
-<pre>
-605 = { 
-	set_border_war = yes 
-}
-</pre></div>
-			<div class="command-info" id="set_national_unity_info"><pre>set_national_unity = 0.80</pre></div>
-			<div class="command-info" id="set_equipment_fraction_info"><pre>set_equipment_fraction = 0.35</pre></div>
-			<div class="command-info" id="add_threat_info"><pre>Needs to be tested</pre></div>
-			<div class="command-info" id="send_equipment_info"><pre>send_equipment = { target = FIN type = infantry_equipment amount = 500 }</pre></div>
-			<div class="command-info" id="set_rule_info">
-<pre>
-set_rule = { 
-	can_create_factions = yes 
-}
-</pre></div>
-			<div class="command-info" id="diplomatic_relation_info">
-<pre>
-diplomatic_relation = { 
-	country = SOV 
-	relation = non_aggression_pact
-}
-</pre></div>
-			<div class="command-info" id="add_resource_info">
-<pre>
-add_resource = { 
-	type = oil 
-	amount = 8 
-	state = 662 
-}
-</pre></div>
-			<div class="command-info" id="remove_unit_leader_info"><pre>remove_unit_leader = leader_id</pre></div>
-			<div class="command-info" id="add_timed_idea_info">
-<pre>
-add_timed_idea = { 
-	idea = idea_id 
-	days = 50 
-}
-</pre></div>
-			<div class="command-info" id="end_puppet_info"><pre>end_puppet = CRO</pre></div>
-			<div class="command-info" id="load_oob_info"><pre>load_oob = SOV_reinforcements</pre></div>
-			<div class="command-info" id="create_import_info">
-<pre>
-create_import = { 
-	resource = steel 
-	amount = 20 
-	exporter = SWE 
-}
-</pre></div>
-			<div class="command-info" id="add_named_threat_info">
-<pre>
-add_named_threat = { 
-	threat = 2 
-	name = germany.4.t 
-}
-</pre></div>
-			<div class="command-info" id="set_province_controller_info"><pre>Needs to be tested</pre></div>
-			<div class="command-info" id="set_major_info"><pre>set_major = yes</pre></div>
-			<div class="command-info" id="create_field_marshal_info">
-<pre>
-create_field_marshal = { 
-	name = "Dude McCoolDude" 
-	gfx = "GFX_CoolDudesFace" 
-	traits = {
-	} 
-	skill = 3 
-}
-</pre></div>
-			<div class="command-info" id="create_corps_commander_info">
-<pre>
-create_corps_commander = { 
-	name = "Dude McCoolDude" 
-	gfx = "GFX_CoolDudesFace" 
-	traits = { 
-	} 
-	skill = 3 
-}
-</pre></div>
-			<div class="command-info" id="goto_province_info"><pre>goto_province = 11302</pre></div>
-			<div class="command-info" id="goto_state_info"><pre>goto_state = 150</pre></div>
-			<div class="command-info" id="complete_national_focus_info"><pre>complete_national_focus = focus_id</pre></div>
-			<div class="command-info" id="set_party_name_info">
-<pre>
-set_party_name = { 
-	ideology = democratic 
-	long_name = USA_republican_party 
-	name = USA_republican_party 
-}
-</pre></div>
-			<div class="command-info" id="add_extra_state_shared_building_slots_info">
-<pre>
-random_owned_state = { 
-	add_extra_state_shared_building_slots = 2 
-}
-</pre></div>
-			<div class="command-info" id="reverse_add_opinion_modifier_info">
-<pre>
-reverse_add_opinion_modifier = { 
-	target = BUL 
-	modifier = GER_treaty_of_craiova_other 
-}
-</pre></div>
-			<div class="command-info" id="add_to_war_info">
-<pre>
-add_to_war = { 
-	targeted_alliance = CHI 
-	enemy = JAP
-}
-</pre></div>
-			<div class="command-info" id="create_equipment_variant_info">
-<pre>
-create_equipment_variant = { 
-	name = "Montecuccoli Class" 
-	type = light_cruiser_1 
-	upgrades = { 
-		ship_reliability_upgrade = 3 
-		ship_engine_upgrade = 3 
-		ship_gun_upgrade = 3 
-		ship_anti_air_upgrade = 3 
-	}
-}
-</pre></div>
-			<div class="command-info" id="add_equipment_production_info">
-<pre>
-add_equipment_production = { 
-	equipment = { 
-		type = light_cruiser_1 
-		creator = "ITA" 
-		version_name = "Montecuccoli Class" 
-	} 
-	requested_factories = 1 
-	progress = 0.95 
-	amount = 1 
-}
-</pre></div>
-			<div class="command-info" id="add_ace_info">
-<pre>
-add_ace = { 
-	name = "Amelia" 
-	surname = "Earhart" 
-	callsign = "Revenant" 
-	type = fighter_genius 
-	is_female = yes 
-}
-</pre></div>
-			<div class="command-info" id="add_equipment_to_stockpile_info">
-<pre>
-add_equipment_to_stockpile = { 
-	type = convoy_1 
-	amount = 50 
-	producer = <TAG> 
-}
-</pre></div>
-		</div>
-		<div id="build-output" style="margin-top:2rem;">
-			<div id="build-preview" class="current-build-add-location">
-			</div>
-			<button id="submit-build" build="null">Submit</button>
-		</div>
-	</div>
-</div>
-<div id="help-box">
-	<div style="max-width:1200px;margin:0 auto;">
-		<p id="close-help" style="text-align:right;cursor:pointer;">Close - X</p>
-		<h4>How to use this tool</h4>
-		<p>By pressing the "Add Focus" button at the top of the page you will be able to start creating your focus tree</p>
-		<p>Once you have created a focus you will be able to select it when creating a new focus as a prerequisite/mutually exclusive focus</p>
-		<p>If you have made a mistake in one of the focuses, simply click the one you want to edit, and the editor will open up with the focus information in it<br>You can also select the trash can at the top of the page, and delete the focus if you no longer want it</p>
-		<hr>
-		<h4>How does the available/rewards section work?</h4>
-		<p>At the minute, you will have to use the same sort of code you would use to create the NF tree in your text editor - In the future there will most likely be an option to do everything without code, if you so please</p>
-	</div>
-</div>
-<div id="export-box">
-	<div style="max-width:1200px;margin:0 auto;">
-		<p id="close-export" style="text-align:right">Close - X</p>
-		<h4>Save</h4>
-		<p>Saving to local storage will allow you to leave this page, and return with your focus tree exactly how you left it.</p>
-		<p>Saving to server will allow you to save your current focus tree to the server, and access it from any location using the password you will be given once the focus tree has saved.</p>
-		<h5>Save to Local Storage</h5>
-		<p><button id="savetostorage">Save To Local Storage</button></p>
-		<h5>Save to Server</h5>
-		<p>If you would like your focuses to be public, e.g. anyone can use them, check the box below</p>
-		<p><input id="public_focuses" type="checkbox"></p>
-		<p>Please input which country/countries your focus(es) relate to seperated by comma for multiple countries, e.g ENG,SOV,GER<br>If it is for a generic focus tree leave it blank.</p>
-		<p><input id="country_tags"></p>
-		<button id="savetoserver">Save To Server</button>
-		<h4>Export</h4>
-		<p>Export your focus tree to use in game.</p>
-		<button id="exportcontent">Export</button>
-	</div>
-</div>
-<div id="import-box">
-	<div style="max-width:1200px;margin:0 auto;">
-		<p id="close-import" style="text-align:right">Close - X</p>
-		<div style="display:inline-block; width:49%">
-		<h4>Import</h4>
-		<p>Input the password of the focus(es) you want to add into the textbox below, or leave it blank to see all public focuses.</p>
-		<input name="import_password" id="import_password">
-		<button id="sub-pass">Submit Password</button>
-		</div>
-		<div style="display:inline-block; width:49%">
-		<div id="show-output">
-		</div>
-		</div>
-	</div>
-</div>
-<!-- ////// -->
-<div id="display">
-</div>
-<div style="display:none;">
+  <!--//content-inner-->
+			<!--/sidebar-menu-->
+				<div class="sidebar-menu">
+					<header class="logo1">
+						<span class="sidebar-icon"> <span class="fa fa-bars"></span> </span> 
+					</header>
+						<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
+                           <div class="menu">
+									<ul id="menu" >
+										<li id="add-focus"><p><i class="fa fa-plus"></i> <span>Add Focus</span></p></li>
+									 	<li class="sub-menu" ><p><i class="fa fa-download" aria-hidden="true"></i><span> Save/Export</span> <span class="fa fa-angle-right" style="float: right"></span></p>
+											<ul class="sub-menu" >
+										  		<li id="savetostorage" ><p>Save To Storage</p></li>
+												<li id="serverpanel" ><p>Save To Server</p></li>
+												<li id="exportcontent" ><p>Export Files</p></li>
+												<li id="export"><p>Save/Export Help</p></li>
+										  	</ul>
+										</li>
+										<li id="menu-academico" ><p><i class="fa fa-file" aria-hidden="true"></i><span>Import</span></p></li>
+										<li id="help"><p><i class="fa fa-question"></i>  <span>Help</span></p></li>
+										<li><p><i class="fa fa-trash"></i>  <span>Delete Mode</span></p>
+											<ul class="sub-menu" >
+										  		<li><p>Enable Delete Mode? <input type="checkbox" id="delete" name="delete" style="width:1rem;"></p></li>
+										  	</ul>
+										</li>
+									</p>
+								</div>
+							  </div>	
+							</div>
+						
+							<script>
+							var toggle = true;
+										
+							$(".sidebar-icon").click(function() {                
+							  if (toggle)
+							  {
+								$(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+								$(".panel").css({"left":"70px"});
+							  }
+							  else
+							  {
+								$(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+								setTimeout(function() {
+								  $(".panel").css({"left":"234px"});
+								}, 400);
+							  }
+											
+											toggle = !toggle;
+										});
+								
+							</script>
+							<div style="display:none;">
 	<textarea id="workplace-lang"></textarea>
 	<textarea id="workplace-focus"></textarea>
 </div>
+
 </body>
 </html>

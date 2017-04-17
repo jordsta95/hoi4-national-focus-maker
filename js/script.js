@@ -36,7 +36,7 @@ $(document).ready(function(){
 		}else{
 			var prefocus = $("#prefocus").val();
 		}
-		if($("#mutual").val().substr($("#mutual").val().length - 2 == "\&\&") || $("#mutual").val().substr($("#mutual").val().length - 2 == "\|\|")){
+		if($("#mutual").val().substr($("#mutual").val().length - 2) == "&&" || $("#mutual").val().substr($("#mutual").val().length - 2) == "||"){
 			var mutual = $("#mutual").val().slice(0,-2);
 			}else{
 			var mutual = $("#mutual").val();
@@ -80,10 +80,10 @@ $(document).ready(function(){
 			  	var widthcalc = width;
 			  }
 			  if(parseInt($("#"+value).css("left").replace("px","")) < xpos){
-			  	var left = parseInt($("#"+value).css("left").replace("px",""))+69;
+			  	var left = parseInt($("#"+value).css("left").replace("px",""))+59;
 				var leftvert = parseInt(left)+parseInt(widthcalc);
 			  }else{
-				var left = xpos+69;
+				var left = xpos+59;
 				var leftvert = left;  
 			  }
 			  $("#display").append('<div class="connection connector-norm" id="'+id+'-'+value+'-h" style="top:'+topcalc+'px;width:'+widthcalc+'px;left:'+left+'px;"></div>');
@@ -112,14 +112,14 @@ $(document).ready(function(){
 			  	var widthcalc = width;
 			  }
 			  if(parseInt($("#"+prefocus).css("left").replace("px","")) < xpos){
-			  	var left = parseInt($("#"+prefocus).css("left").replace("px",""))+69;
+			  	var left = parseInt($("#"+prefocus).css("left").replace("px",""))+59;
 				var leftvert = parseInt(left)+parseInt(widthcalc);
 			  }else{
-				var left = xpos+69;
+				var left = xpos+59;
 				var leftvert = left;  
 			  }
 			  $("#display").append('<div class="connection connector-norm" id="'+id+'-'+prefocus+'-h" style="top:'+topcalc+'px;width:'+widthcalc+'px;left:'+left+'px;"></div>');
-			  $("#display").append('<div class="connection connector-norm-vert" id="'+id+'-'+prefocus+'v" style="top:'+verttop+'px;height:'+verticalcalc+'px;left:'+leftvert+'px;"></div>');
+			  $("#display").append('<div class="connection connector-norm-vert" id="'+id+'-'+prefocus+'-v" style="top:'+verttop+'px;height:'+verticalcalc+'px;left:'+leftvert+'px;"></div>');
 		}
 		//Connector - ||
 		if(prefocus.indexOf("||") != -1){
@@ -145,10 +145,10 @@ $(document).ready(function(){
 			  	var widthcalc = width;
 			  }
 			  if(parseInt($("#"+value).css("left").replace("px","")) < xpos){
-			  	var left = parseInt($("#"+value).css("left").replace("px",""))+69;
+			  	var left = parseInt($("#"+value).css("left").replace("px",""))+59;
 				var leftvert = parseInt(left)+parseInt(widthcalc);
 			  }else{
-				var left = xpos+69;
+				var left = xpos+59;
 				var leftvert = left;  
 			  }
 			  $("#display").append('<div class="connection connector-or" id="'+id+'-'+value+'-h" style="top:'+topcalc+'px;width:'+widthcalc+'px;left:'+left+'px;"></div>');
@@ -276,10 +276,10 @@ $(document).ready(function(){
 				var widthcalc = width;
 			}
 			if(parseInt($("#"+focuses[1]).css("left").replace("px","")) < parseInt($("#"+focuses[0]).css("left").replace("px",""))){
-				var left = parseInt($("#"+focuses[1]).css("left").replace("px",""))+69;
+				var left = parseInt($("#"+focuses[1]).css("left").replace("px",""))+59;
 				var leftvert = parseInt(left)+parseInt(widthcalc);
 			}else{
-				var left = parseInt($("#"+focuses[0]).css("left").replace("px",""))+69;
+				var left = parseInt($("#"+focuses[0]).css("left").replace("px",""))+59;
 				var leftvert = left;  
 			}
 			$("#"+focuses[0]+'-'+focuses[1]+'-h').remove();
@@ -367,6 +367,9 @@ $(document).ready(function(){
 		$("#selectfocusarea").hide();
 	});
 	
+	$("#serverpanel,#close-server").click(function(){
+		$("#server-box").toggle();	
+	});
 	
 	
 	/* local storage */
@@ -540,7 +543,7 @@ $(document).ready(function(){
 				$( "#display-password" ).empty().append( content );
 				$( "#display-password" ).append('<br><span id="close-pw" style="font-size:0.75rem;">The above is your password, to access your focus(es) from anywhere, make sure to copy it. Click this text to close this box</span>')
 				$( "#display-password" ).show();
-				$( "#export-box" ).hide();
+				$( "#server-box" ).hide();
 			}
         });
 	});
@@ -593,77 +596,38 @@ $(document).ready(function(){
 		$("#submit-build").attr("build","reward");
 	});
 	
-	
-	//Show All
-	$("#build-show-all").click(function(){
-		$("#build-conditions-area").show();
-		$("#build-scopes-area").show();	
-		$("#build-commands-area").show();	
+	//JSON
+	$("#jsondata").load("output.json");
+	$('#searchjson').keyup(function(){
+		var searchField = $('#searchjson').val();
+		var regex = new RegExp(searchField, "i");
+		var count = 1;
+		var output = "";
+		$.getJSON("output.json", function(data) {
+			$.each(data, function(key, val){
+				if ((val.description.search(regex) != -1)) {
+			 		output += '<p class="build-description" id="'+val.id+'" tag="'+val.uses_tag+'" state="'+val.uses_state+'" >'+val.description+'</p>';
+					output += '<div class="default-outcome" id="'+val.id+'_defaultoutcome">'+val.default_outcome+'</div>';
+					output += '<div class="build-hover" id="'+val.id+'_hover">'+val.example+'</div>';
+				}
+			});
+			$('#searchoutput').html(output);
+		}); 
 	});
 	
-	//Scopes
-	$("#build-scopes").click(function(){
-		$("#build-scopes-area").toggle();
-		$("#build-conditions-area").hide();	
-		$("#build-commands-area").hide();
+	$(document).on('click', ".build-description", function() {
+		var buildid = $(this).attr("id");
+		$("#"+buildid+"_hover").toggle();
 	});
-	$(".scope").hover(function() {
-		var id = $(this).attr("id");
-		$("#"+id+"_info").toggle();
-	});
-	$(".scope").click(function() {
-		var id = $(this).attr("id");
-		if($("#"+id+"_info").attr("braces") == "yes"){
+	$(document).on('click', ".build-hover", function() {
+		var id = $(this).attr("id").replace("_hover","");
+		if($("#"+id+"_defaultoutcome").text() == "new-level"){
 			$(".current-build-add-location").removeClass("current-build-add-location").append(id+' = {<br><div class="current-build-add-location"></div><br>}');
 		}else{
-			$(".current-build-add-location").append(id+'<textarea id="add-build">=</textarea>');
+			$(".current-build-add-location").append(id+'<textarea id="add-build">'+$("#"+id+"_defaultoutcome").text()+'</textarea>');
 		}
-		$("#build-scopes-area").hide();
 		$("#submit-build").show();
 	});
-	
-	//Conditions
-	$("#build-conditions").click(function(){
-		$("#build-conditions-area").toggle();
-		$("#build-scopes-area").hide();	
-		$("#build-commands-area").hide();
-	});
-	$(".condition").hover(function() {
-		var id = $(this).attr("id");
-		$("#"+id+"_info").toggle();
-	});
-	$(".condition").click(function() {
-		var id = $(this).attr("id");
-		if($("#"+id+"_info").attr("braces") == "yes"){
-			$(".current-build-add-location").removeClass("current-build-add-location").append(id+' = {<br><div class="current-build-add-location"></div><br>}');
-		}else{
-			$(".current-build-add-location").append(id+'<textarea id="add-build">=</textarea>');
-		}
-		$("#build-conditions-area").hide();
-		$("#submit-build").show();
-	});
-	
-	//Commands
-	$("#build-commands").click(function(){
-		$("#build-commands-area").toggle();
-		$("#build-scopes-area").hide();	
-		$("#build-conditions-area").hide();
-	});
-	$(".command").hover(function() {
-		var id = $(this).attr("id");
-		$("#"+id+"_info").toggle();
-	});
-	$(".command").click(function() {
-		var id = $(this).attr("id");
-		if($("#"+id+"_info").attr("braces") == "yes"){
-			$(".current-build-add-location").removeClass("current-build-add-location").append(id+' = {<br><div class="current-build-add-location"></div><br>}');
-		}else{
-			$(".current-build-add-location").append(id+'<textarea id="add-build">=</textarea>');
-		}
-		$("#build-commands-area").hide();
-		$("#submit-build").show();
-	});
-	
 	
 	//Submit
 	$("#submit-build").click(function(){
@@ -673,6 +637,7 @@ $(document).ready(function(){
 		$("#add-build").remove();
 		$("#"+$(this).attr("build")).val($("#"+$(this).attr("build")).val()+$("#build-preview").text());
 		$("#build-preview").empty();
+		$("#build-preview").addClass("current-build-add-location");
 		$(this).attr("build","null");
 		$("#builder").hide();
 		$(this).hide();
