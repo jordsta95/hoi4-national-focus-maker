@@ -381,13 +381,39 @@ $(document).ready(function(){
 		localStorage.setItem('nationalfocus', $('#display').html());
 	});
 	
+	$("#export-help, #close-export-help").click(function(){
+		$("#export-help-box").toggle();	
+	});
+	
 	$("#export, #close-export").click(function(){
 		$("#export-box").toggle();	
 	});
 	
+	//TAG search
+	$("#export-country").keyup(function(){
+		var searchField = $("#export-country").val();
+		var regex = new RegExp(searchField, "i");
+		var count = 1;
+		var output = "";
+		$.getJSON("tags.json", function(data) {
+			$.each(data, function(key, val){
+				if ((val.country.search(regex) != -1) || (val.tag.search(regex) != -1)) {
+			 		output += '<p id="'+val.tag+'" class="focus_tree_tags">'+val.country+'</p>';
+				}
+			});
+			$("#export-country-result").html(output);
+		}); 
+	});
+	$(document).on('click', ".focus_tree_tags", function() {
+		var tagid = $(this).attr("id");
+		$("#export-country").val($("#export-country").val()+tagid);
+	});
+	
 	/* Export text files*/
 	$("#exportcontent").click(function(){
-		$("#workplace-focus").val("focus_tree = {<br>id = my_focus_tree<br>country = {<br>factor=0<br>modifier = {<br>add = 10\n#place country tag(s) here<br>}<br>}\ndefault = no<br>#Custom focuses start here<br>");
+		var focustreeid =$("#focus-tree-id").val().replace(/\s+/g, '').replace(/[^a-zA-Z]/g, '').toLowerCase();
+		$("#workplace-focus").val("focus_tree = {<br>id = "+focustreeid+"<br>country = {<br>factor=0<br>modifier = {<br>add = 10\ntag = "+$("#export-country").val()+"<br>}<br>}\ndefault = no<br>#Custom focuses start here<br>");
+		$("#workplace-lang").val("l_"+$("#tree-language").val()+":\n");
 		$('.all-info').each(function () {
 			var exportid = $(this).attr("id").replace("-all-info","");
 			var exportname = "#"+exportid+"_name";
@@ -439,13 +465,13 @@ $(document).ready(function(){
 		$("#workplace-focus").val($("#workplace-focus").val()+"#end<br>}");
 		
 		var a = document.body.appendChild(document.createElement("a"));
-		a.download = "national-focus-tree.txt";
-		a.href = "data:text/html," + $("#workplace-focus").val().replace(/\<br\>/g,"%0D%0A").replace(/\n/g,"%0D%0A").replace(/	/g,"%09");
+		a.download = focustreeid+".txt";
+		a.href = "data:text/plain;charset=utf-8," + $("#workplace-focus").val().replace(/\<br\>/g,"%0D%0A").replace(/\n/g,"%0D%0A").replace(/	/g,"%09");
 		a.click();
 		
 		var a = document.body.appendChild(document.createElement("a"));
-		a.download = "national-focus-tree-lang.yml";
-		a.href = "data:text/html," + $("#workplace-lang").val().replace(/\<br\>/g,"%0D%0A").replace(/\n/g,"%0D%0A");
+		a.download = focustreeid+"_l_"+$("#tree-language").val()+".yml";
+		a.href = "data:text/plain;charset=utf-8," + $("#workplace-lang").val().replace(/\<br\>/g,"%0D%0A").replace(/\n/g,"%0D%0A");
 		a.click();
 	});
 	
@@ -597,7 +623,6 @@ $(document).ready(function(){
 	});
 	
 	//JSON
-	$("#jsondata").load("output.json");
 	$('#searchjson').keyup(function(){
 		var searchField = $('#searchjson').val();
 		var regex = new RegExp(searchField, "i");
@@ -619,8 +644,15 @@ $(document).ready(function(){
 		var buildid = $(this).attr("id");
 		$("#"+buildid+"_hover").toggle();
 	});
+	
 	$(document).on('click', ".build-hover", function() {
 		var id = $(this).attr("id").replace("_hover","");
+		if($("#"+id).attr("tag") == "yes"){
+				$("#tag-box").show();
+		}
+		if($("#"+id).attr("state") == "yes"){
+				$("#state-box").show();
+		}
 		if($("#"+id+"_defaultoutcome").text() == "new-level"){
 			$(".current-build-add-location").removeClass("current-build-add-location").append(id+' = {<br><div class="current-build-add-location"></div><br>}');
 		}else{
@@ -628,6 +660,59 @@ $(document).ready(function(){
 		}
 		$("#submit-build").show();
 	});
+	
+	//TAG search
+	$('#searchtags').keyup(function(){
+		var searchField = $('#searchtags').val();
+		var regex = new RegExp(searchField, "i");
+		var count = 1;
+		var output = "";
+		$.getJSON("tags.json", function(data) {
+			$.each(data, function(key, val){
+				if ((val.country.search(regex) != -1) || (val.tag.search(regex) != -1)) {
+			 		output += '<p id="'+val.tag+'" class="searched_tags">'+val.country+'</p>';
+				}
+			});
+			$('#tagsearchoutput').html(output);
+		}); 
+	});
+	
+	$(document).on('click', ".searched_tags", function() {
+		var tagid = $(this).attr("id");
+		$("#build-preview").html($("#build-preview").html().replace("TAG",tagid));
+		if ( $( "#add-build" ).length ) {
+			$("#add-build").val($("#add-build").val().replace("TAG",tagid));
+		}
+		$("#tag-box").hide();
+	});
+	
+	//State search
+	$('#searchstates').keyup(function(){
+		var searchField = $('#searchstates').val();
+		var regex = new RegExp(searchField, "i");
+		var count = 1;
+		var output = "";
+		$.getJSON("states.json", function(data) {
+			$.each(data, function(key, val){
+				if ((val.id.search(regex) != -1) || (val.name.search(regex) != -1)) {
+			 		output += '<p id="state_'+val.id+'" class="searched_states">'+val.name+'</p>';
+				}
+			});
+			$('#statesearchoutput').html(output);
+		}); 
+	});
+	
+	$(document).on('click', ".searched_states", function() {
+		var tagid = $(this).attr("id").replace("state_","");
+		$("#build-preview").html($("#build-preview").html().replace("STATEID",tagid));
+		$("#build-preview").html($("#build-preview").html().replace("state_id",tagid));
+		if ( $( "#add-build" ).length ) {
+			$("#add-build").val($("#add-build").val().replace("STATEID",tagid));
+			$("#add-build").val($("#add-build").val().replace("state_id",tagid));
+		}
+		$("#state-box").hide();
+	});
+	
 	
 	//Submit
 	$("#submit-build").click(function(){

@@ -7,13 +7,13 @@
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css?v=1" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
-<link href="css/style.css?v=090" rel='stylesheet' type='text/css' />
+<link href="css/style.css?v=091" rel='stylesheet' type='text/css' />
 <!-- Graph CSS -->
 <link href="css/font-awesome.css?v=1" rel="stylesheet"> 
 <!-- jQuery -->
 <script src="js/jquery-2.1.4.min.js?v=1"></script>
 <!-- //jQuery -->
-<script src="js/script.js?v=090"></script>
+<script src="js/script.js?v=091"></script>
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 <!-- lined-icons -->
 <link rel="stylesheet" href="css/icon-font.min.css?v=1" type='text/css' />
@@ -244,10 +244,10 @@
 			</div>
 		</div>
 	</div>
-	<div id="export-box">	
+	<div id="export-help-box">	
 		<div class="panel" style="left:265px">
 			<div class="panel-head">
-			<p id="close-export" class="close-button">X</p>
+			<p id="close-export-help" class="close-button">X</p>
 				<h3>Export Help</h3>
 			</div>
 			<div class="panel-body">
@@ -299,6 +299,8 @@
 				<p>Input the password of the focus(es) you want to add into the textbox below, or leave it blank to see all public focuses.</p>
 				<input name="import_password" id="import_password">
 				<button id="sub-pass">Submit Password</button>
+				<div id="show-output">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -337,8 +339,60 @@
 			</div>
 		</div>
 	</div>
-	<div id="jsondata">
-	
+	<div id="tag-box" class="secondbox-extra">
+		<div class="panel2-extra">
+			<div class="panel-head">
+			<p id="close-builder" class="close-button">X</p>
+				<h3>TAG Selector</h3>
+			</div>
+			<div class="panel-body">
+				<p>Search</p>
+				<p><input id="searchtags"></p>
+				<div id="tagsearchoutput">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="state-box" class="secondbox-extra">
+		<div class="panel2-extra">
+			<div class="panel-head">
+			<p id="close-builder" class="close-button">X</p>
+				<h3>State Selector</h3>
+			</div>
+			<div class="panel-body">
+				<p>Search</p>
+				<p><input id="searchstates"></p>
+				<div id="statesearchoutput">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="export-box">
+		<div class="panel" style="left:265px">
+			<div class="panel-head">
+			<p id="close-export" class="close-button">X</p>
+				<h3>Export</h3>
+			</div>
+			<div class="panel-body">
+				<p>Focus tree ID (ASCII alphabet characters only - all spaces will be removed)</p>
+				<p><input name="focus-tree-id" id="focus-tree-id"></p>
+				<p>Language ID (braz_por is Portuguese)</p>
+				<select id="tree-language">
+					<option id="braz_por">braz_por</option>
+					<option id="english">english</option>
+					<option id="french">french</option>
+					<option id="german">german</option>
+					<option id="polish">polish</option>
+					<option id="russian">russian</option>
+					<option id="spanish">spanish</option>
+				</select>
+				<p>Country this focus tree is for</p>
+				<p><input id="export-country"></p>
+				<p id="export-country-results">Start typing to search for country</p>
+				<p><button id="export-focus">Export Focus</button></p>
+				<p>After you have your files, you will need to resave the language file (the second file to download) with UTF8 BOM encoding as this tool cannot do that. Once resaved, both of these files can be put directly into the correct folders in your mod's folder, and the focus tree should load as expected.</p>
+			</div>
+		</div>
 	</div>
    <!--/content-inner-->
 <div class="left-content">
@@ -389,11 +443,11 @@
 											<ul class="sub-menu" >
 										  		<li id="savetostorage" ><p>Save To Storage</p></li>
 												<li id="serverpanel" ><p>Save To Server</p></li>
-												<li id="exportcontent" ><p>Export Files</p></li>
-												<li id="export"><p>Save/Export Help</p></li>
+												<li id="export" ><p>Export Files</p></li>
+												<li id="export-help"><p>Save/Export Help</p></li>
 										  	</ul>
 										</li>
-										<li id="menu-academico" ><p><i class="fa fa-file" aria-hidden="true"></i><span>Import</span></p></li>
+										<li id="import" ><p><i class="fa fa-file" aria-hidden="true"></i><span>Import</span></p></li>
 										<li id="help"><p><i class="fa fa-question"></i>  <span>Help</span></p></li>
 										<li><p><i class="fa fa-trash"></i>  <span>Delete Mode</span></p>
 											<ul class="sub-menu" >

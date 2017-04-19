@@ -408,8 +408,17 @@ li.sub-menu{
 	top:0;
 	left:calc(40vw + 80px);
 }
+.secondbox-extra{
+	height:100vh;
+	width:40vw;
+	position:fixed;
+	z-index:16;
+	border:0;
+	top:0;
+	left:calc(40vw + 80px);
+}
 
-.page-container.sidebar-collapsed-back .panel2{
+.page-container.sidebar-collapsed-back .panel2,.page-container.sidebar-collapsed-back .panel2-extra{
 	left:calc(40vw + 270px);
 }
 .panel-head{
@@ -429,7 +438,7 @@ li.sub-menu{
 	padding:1.5rem 0.5rem;
 	overflow-y:scroll;
 }
-#edit,#export-box,#server-box,#help-box,#import-box,#selectfocusarea,#jsondata,#builder{
+#edit,#export-box,#export-help-box,#server-box,#help-box,#import-box,#selectfocusarea,#jsondata,#builder,#tag-box,#state-box{
 	display:none;
 }
 input,textarea{
@@ -476,6 +485,12 @@ small{font-size:0.65em;}
 	height:35vw;
 	overflow-y:scroll;	
 }
+.focus-reward {
+    height: 3rem;
+    overflow-y: scroll;
+    width: 60%;
+	margin-bottom:1rem;
+}
 @media(max-width:600px){
 	.panel{
 		height:100vh;
@@ -489,6 +504,13 @@ small{font-size:0.65em;}
 		width:calc(100vw - 66px);
 		position:fixed;
 		z-index:15;
+		border:0;
+	}
+	.panel2-extra{
+		height:100vh;
+		width:calc(100vw - 66px);
+		position:fixed;
+		z-index:16;
 		border:0;
 	}
 }

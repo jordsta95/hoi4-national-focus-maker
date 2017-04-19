@@ -1,0 +1,329 @@
+[{
+		"country": "France",
+		"tag": "FRA"
+	},
+	{
+		"country": "Italy",
+		"tag": "ITA"
+	},
+	{
+		"country": "Switzerland",
+		"tag": "SWI"
+	},
+	{
+		"country": "Austria",
+		"tag": "AUS"
+	},
+	{
+		"country": "German Reich",
+		"tag": "GER"
+	},
+	{
+		"country": "Belgium",
+		"tag": "BEL"
+	},
+	{
+		"country": "Netherlands",
+		"tag": "HOL"
+	},
+	{
+		"country": "Luxembourg",
+		"tag": "LUX"
+	},
+	{
+		"country": "Czechoslovakia",
+		"tag": "CZE"
+	},
+	{
+		"country": "Poland",
+		"tag": "POL"
+	},
+	{
+		"country": "Lithuania",
+		"tag": "LIT"
+	},
+	{
+		"country": "Latvia",
+		"tag": "LAT"
+	},
+	{
+		"country": "Estonia",
+		"tag": "EST"
+	},
+	{
+		"country": "Denmark",
+		"tag": "DEN"
+	},
+	{
+		"country": "Sweden",
+		"tag": "SWE"
+	},
+	{
+		"country": "Soviet Union",
+		"tag": "SOV"
+	},
+	{
+		"country": "Spain",
+		"tag": "SPR"
+	},
+	{
+		"country": "Hungary",
+		"tag": "HUN"
+	},
+	{
+		"country": "Albania",
+		"tag": "ALB"
+	},
+	{
+		"country": "Yugoslavia",
+		"tag": "YUG"
+	},
+	{
+		"country": "Romania",
+		"tag": "ROM"
+	},
+	{
+		"country": "Greece",
+		"tag": "GRE"
+	},
+	{
+		"country": "Bulgaria",
+		"tag": "BUL"
+	},
+	{
+		"country": "Turkey",
+		"tag": "TUR"
+	},
+	{
+		"country": "Norway",
+		"tag": "NOR"
+	},
+	{
+		"country": "Finland",
+		"tag": "FIN"
+	},
+	{
+		"country": "Portugal",
+		"tag": "POR"
+	},
+	{
+		"country": "Ireland",
+		"tag": "IRE"
+	},
+	{
+		"country": "United Kingdom",
+		"tag": "ENG"
+	},
+	{
+		"country": "United States",
+		"tag": "USA"
+	},
+	{
+		"country": "Iran",
+		"tag": "PER"
+	},
+	{
+		"country": "Afghanistan",
+		"tag": "AFG"
+	},
+	{
+		"country": "Ethiopia",
+		"tag": "ETH"
+	},
+	{
+		"country": "South Africa",
+		"tag": "SAF"
+	},
+	{
+		"country": "Canada",
+		"tag": "CAN"
+	},
+	{
+		"country": "Mexico",
+		"tag": "MEX"
+	},
+	{
+		"country": "Argentina",
+		"tag": "ARG"
+	},
+	{
+		"country": "Chile",
+		"tag": "CHL"
+	},
+	{
+		"country": "Brazil",
+		"tag": "BRA"
+	},
+	{
+		"country": "Japan",
+		"tag": "JAP"
+	},
+	{
+		"country": "Xibei San Ma",
+		"tag": "XSM"
+	},
+	{
+		"country": "New Zealand",
+		"tag": "NZL"
+	},
+	{
+		"country": "Australia",
+		"tag": "AST"
+	},
+	{
+		"country": "Sinkiang",
+		"tag": "SIK"
+	},
+	{
+		"country": "India",
+		"tag": "RAJ"
+	},
+	{
+		"country": "Siam",
+		"tag": "SIA"
+	},
+	{
+		"country": "Iraq",
+		"tag": "IRQ"
+	},
+	{
+		"country": "Saudi Arabia",
+		"tag": "SAU"
+	},
+	{
+		"country": "Yemen",
+		"tag": "YEM"
+	},
+	{
+		"country": "Oman",
+		"tag": "OMA"
+	},
+	{
+		"country": "Liberia",
+		"tag": "LIB"
+	},
+	{
+		"country": "Uruguay",
+		"tag": "URG"
+	},
+	{
+		"country": "Paraguay",
+		"tag": "PAR"
+	},
+	{
+		"country": "Bolivia",
+		"tag": "BOL"
+	},
+	{
+		"country": "Peru",
+		"tag": "PRU"
+	},
+	{
+		"country": "Panama",
+		"tag": "PAN"
+	},
+	{
+		"country": "Ecuador",
+		"tag": "ECU"
+	},
+	{
+		"country": "Colombia",
+		"tag": "COL"
+	},
+	{
+		"country": "Venezuela",
+		"tag": "VEN"
+	},
+	{
+		"country": "Honduras",
+		"tag": "HON"
+	},
+	{
+		"country": "Guatemala",
+		"tag": "GUA"
+	},
+	{
+		"country": "El Salvador",
+		"tag": "ELS"
+	},
+	{
+		"country": "Cuba",
+		"tag": "CUB"
+	},
+	{
+		"country": "Costa Rica",
+		"tag": "COS"
+	},
+	{
+		"country": "Nicaragua",
+		"tag": "NIC"
+	},
+	{
+		"country": "Haiti",
+		"tag": "HAI"
+	},
+	{
+		"country": "Dominican Republic",
+		"tag": "DOM"
+	},
+	{
+		"country": "Tibet",
+		"tag": "TIB"
+	},
+	{
+		"country": "Nepal",
+		"tag": "NEP"
+	},
+	{
+		"country": "Bhutan",
+		"tag": "BHU"
+	},
+	{
+		"country": "Yunnan",
+		"tag": "YUN"
+	},
+	{
+		"country": "Philippines",
+		"tag": "PHI"
+	},
+	{
+		"country": "Manchukuo",
+		"tag": "MAN"
+	},
+	{
+		"country": "Tannu Tuva",
+		"tag": "TAN"
+	},
+	{
+		"country": "Mongolia",
+		"tag": "MON"
+	},
+	{
+		"country": "Republic of Malaysia",
+		"tag": "MAL"
+	},
+	{
+		"country": "Indonesia",
+		"tag": "INS"
+	},
+	{
+		"country": "Guangxi Clique",
+		"tag": "GXC"
+	},
+	{
+		"country": "China",
+		"tag": "CHI"
+	},
+	{
+		"country": "Mengkukuo",
+		"tag": "MEN"
+	},
+	{
+		"country": "Shanxi",
+		"tag": "SHX"
+	},
+	{
+		"country": "People's Republic of China",
+		"tag": "PRC"
+	}
+]
