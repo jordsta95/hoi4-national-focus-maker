@@ -438,7 +438,7 @@ li.sub-menu{
 	padding:1.5rem 0.5rem;
 	overflow-y:scroll;
 }
-#edit,#export-box,#export-help-box,#server-box,#help-box,#import-box,#selectfocusarea,#jsondata,#builder,#tag-box,#state-box{
+#edit,#export-box,#export-help-box,#server-box,#help-box,#import-box,#selectfocusarea,#jsondata,#builder,#tag-box,#state-box,#help-out-box,#editing{
 	display:none;
 }
 input,textarea{
@@ -490,6 +490,23 @@ small{font-size:0.65em;}
     overflow-y: scroll;
     width: 60%;
 	margin-bottom:1rem;
+}
+.page-container.sidebar-collapsed #menu #help-out {
+	opacity: 0;
+	transition: all 50ms linear;
+}
+.donate{
+	background:#009;
+	color:#fff;
+	padding:0.5rem 1rem;
+	border-radius:20px;
+	transition:0.25s;
+}
+.donate:hover{
+	background:#ccc;
+	color:#009;
+	padding:0.5rem 1rem;
+	border-radius:0;	
 }
 @media(max-width:600px){
 	.panel{

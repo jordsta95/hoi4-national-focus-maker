@@ -54,6 +54,20 @@ $(document).ready(function(){
 		var allinfo = '<div class="all-info" id="'+id+'-all-info"><div id="'+id+'_name">'+name+'</div><div id="'+id+'_desc">'+desc+'</div><div id="'+id+'_available">'+available+'</div><div id="'+id+'_reward">'+reward+'</div><div id="'+id+'_time">'+time+'</div><div id="'+id+'_bypass">'+bypass+'</div><div id="'+id+'_tooltip">'+tooltip+'</div><div id="'+id+'_prefocus">'+prefocus+'</div><div id="'+id+'_mutual">'+mutual+'</div><div id="'+id+'_ai">'+ai+'</div><div id="'+id+'_gfx">'+getgfx+'</div></div>		';
 		$("#display").append('<div id="'+id+'" class="focus" style="top:'+ypos+'px;left:'+xpos+'px;" x-pos="'+x+'" y-pos="'+y+'"><div style="position:relative"><div class="mover up">^&nbsp;&nbsp;</div><div class="mover down">&nbsp;&nbsp;v</div><img src="'+getgfx+'" id="'+id+'_gfx" class="gfx"><div class="name">'+'<p id="'+id+'-name">'+name+'</p></div><div class="mover left">&lt;&nbsp;&nbsp;</div><div class="mover right">&nbsp;&nbsp;&gt;</div><div class="tail"></div></div></div>'+allinfo);
 		
+		//For if editing
+		var previousedited = $("#editing").text();
+		$("#"+previousedited).remove();
+		$("#"+previousedited+"-all-info").remove();
+		//Remove connectors too
+		$("*[id*="+previousedited+"-]").each(function() {
+			$(this).remove();
+		});
+		$("*[id*=-"+previousedited+"]").each(function() {
+			$(this).remove();
+		});
+		
+		$("#editing").text("");
+		
 		//Connector - &&
 			//Multiple
 		if(prefocus.length > 1){
@@ -159,6 +173,7 @@ $(document).ready(function(){
 		moveConnections(id);	
 			
 		
+		
 		$("#name").val("");
 		$("#desc").val("");
 		$("#available").val("");
@@ -202,11 +217,17 @@ $(document).ready(function(){
 			$("#chosen-gfx").val(getgfx.replace("images\/","").replace(".png",""));
 			$("#display-gfx").attr("src", getgfx);
 			$("#edit").show();
-			$(this).parent().parent().remove();
-			$("#"+nf+"-all-info").remove();
+			$("#editing").text(nf);
 		}else{
 			$(this).parent().parent().remove();
 			$("#"+nf+"-all-info").remove();
+			//Remove connectors too
+			$("*[id*="+nf+"-]").each(function() {
+				$(this).remove();
+			});
+			$("*[id*=-"+nf+"]").each(function() {
+				$(this).remove();
+			});
 		}
 	});
 	
@@ -576,6 +597,10 @@ $(document).ready(function(){
 	
 	$("#import, #close-import").click(function(){
 		$("#import-box").toggle();	
+	});
+	
+	$("#help-out, #close-help-out").click(function(){
+		$("#help-out-box").toggle();	
 	});
 	
 	$("#sub-pass").click(function(){
