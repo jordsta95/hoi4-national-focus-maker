@@ -26,6 +26,21 @@ $(document).ready(function(){
 	$("#submit-focus").click(function(){
 		$("#edit").hide();
 		$("#builder").hide();
+		
+		if($("#editing").text().length !== 0){
+			var previousedited = $("#editing").text();
+			$("#"+previousedited).remove();
+			$("#"+previousedited+"-all-info").remove();
+			//Remove connectors too
+			$("*[id*="+previousedited+"-]").each(function() {
+				$(this).remove();
+			});
+			$("*[id*=-"+previousedited+"]").each(function() {
+				$(this).remove();
+			});
+			$("#editing").text("");
+		}
+		
 		var	name = $("#name").val();
 		var desc = $("#desc").val();
 		var available = $("#available").val();
@@ -53,20 +68,6 @@ $(document).ready(function(){
 		var ypos = y*180;
 		var allinfo = '<div class="all-info" id="'+id+'-all-info"><div id="'+id+'_name">'+name+'</div><div id="'+id+'_desc">'+desc+'</div><div id="'+id+'_available">'+available+'</div><div id="'+id+'_reward">'+reward+'</div><div id="'+id+'_time">'+time+'</div><div id="'+id+'_bypass">'+bypass+'</div><div id="'+id+'_tooltip">'+tooltip+'</div><div id="'+id+'_prefocus">'+prefocus+'</div><div id="'+id+'_mutual">'+mutual+'</div><div id="'+id+'_ai">'+ai+'</div><div id="'+id+'_gfx">'+getgfx+'</div></div>		';
 		$("#display").append('<div id="'+id+'" class="focus" style="top:'+ypos+'px;left:'+xpos+'px;" x-pos="'+x+'" y-pos="'+y+'"><div style="position:relative"><div class="mover up">^&nbsp;&nbsp;</div><div class="mover down">&nbsp;&nbsp;v</div><img src="'+getgfx+'" id="'+id+'_gfx" class="gfx"><div class="name">'+'<p id="'+id+'-name">'+name+'</p></div><div class="mover left">&lt;&nbsp;&nbsp;</div><div class="mover right">&nbsp;&nbsp;&gt;</div><div class="tail"></div></div></div>'+allinfo);
-		
-		//For if editing
-		var previousedited = $("#editing").text();
-		$("#"+previousedited).remove();
-		$("#"+previousedited+"-all-info").remove();
-		//Remove connectors too
-		$("*[id*="+previousedited+"-]").each(function() {
-			$(this).remove();
-		});
-		$("*[id*=-"+previousedited+"]").each(function() {
-			$(this).remove();
-		});
-		
-		$("#editing").text("");
 		
 		//Connector - &&
 			//Multiple
@@ -172,7 +173,6 @@ $(document).ready(function(){
 		}
 		moveConnections(id);	
 			
-		
 		
 		$("#name").val("");
 		$("#desc").val("");
@@ -431,7 +431,7 @@ $(document).ready(function(){
 	});
 	
 	/* Export text files*/
-	$("#exportcontent").click(function(){
+	$("#export-focus").click(function(){
 		var focustreeid =$("#focus-tree-id").val().replace(/\s+/g, '').replace(/[^a-zA-Z]/g, '').toLowerCase();
 		$("#workplace-focus").val("focus_tree = {<br>id = "+focustreeid+"<br>country = {<br>factor=0<br>modifier = {<br>add = 10\ntag = "+$("#export-country").val()+"<br>}<br>}\ndefault = no<br>#Custom focuses start here<br>");
 		$("#workplace-lang").val("l_"+$("#tree-language").val()+":\n");

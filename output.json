@@ -2286,6 +2286,150 @@
 			"uses_tag":"yes",
 			"uses_state":"no",
 			"default_outcome":" = TAG"
+		},
+		{
+			"id":"IMPROVE_RELATIONS_MAINTAIN_COST_FACTOR",
+			"description":"Improve relation maintain cost factor",	
+			"example":"UNTESTED - Assumed output - IMPROVE_RELATIONS_MAINTAIN_COST_FACTOR = 2 ",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":" = 2"
+		},
+		{
+			"id":"add_relation_modifier",
+			"description":"Add static relation modifier between target and current scope",	
+			"example":"UNTESTED",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":""
+		},
+		{
+			"id":"remove_relation_modifier",
+			"description":"Remove static relation modifier between target and current scope",	
+			"example":"UNTESTED",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":""
+		},
+		{
+			"id":"has_relation_modifier",
+			"description":"Checks if a nation has a relation modifier",	
+			"example":"UNTESTED - Assumed output - ENG = { has_relation_modifier = FRA_CHEESY_PUNS }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":""
+		},
+		{
+			"id":"license_purchase_cost_factor",
+			"description":"Modifies total CIC cost of purchasing a license",	
+			"example":"UNTESTED - Assumed output - license_purchase_cost_factor = 2",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":""
+		},
+		{
+			"id":"license_production_speed_factor",
+			"description":"Modifies production speed for license",	
+			"example":"UNTESTED - Assumed output - license_production_speed_factor = 2",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":""
+		},
+		{
+			"id":" license_tech_difference_speed_factor",
+			"description":"Modifies production speed penalty from tech level difference",	
+			"example":"UNTESTED - Assumed output -  license_tech_difference_speed_factor = 2",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":""
+		},
+		{
+			"id":"cost_factor",
+			"description":"Change the cost factor for political power purchases; e.g. political_advisor_cost_factor",	
+			"example":"UNTESTED - Assumed output - cost_factor = 2",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":""
+		},
+		{
+			"id":"ai_license_acceptance",
+			"description":"Modifies desire for the ai to sell licenses",	
+			"example":"UNTESTED - Assumed output - ai_license_acceptance = 2",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":""
+		},
+		{
+			"id":"purchase_cost_factor",
+			"description":"Modifiers for purchase cost of specific types of licenses. license_air_purchase_cost_factor license_infantry_purchase_cost_factor",	
+			"example":"UNTESTED",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":""
+		},
+		{
+			"id":"is_licensing_to",
+			"description":"Checks if a nation is licensing to a specific nation",	
+			"example":"UNTESTED - Assumed output - USA = { is_licensing_to = ENG }",
+			"uses_tag":"yes",
+			"uses_state":"no",
+			"default_outcome":" = TAG"
+		},
+		{
+			"id":"is_licensing_any_to",
+			"description":"Checks if a nation is licensing to a specific nation",	
+			"example":"UNTESTED - Assumed output - USA = { is_licensing_any_to = ENG }",
+			"uses_tag":"yes",
+			"uses_state":"no",
+			"default_outcome":" = TAG"
+		},
+		{
+			"id":"set_building_level",
+			"description":"Sets the level of specified building",	
+			"example":"UNTESTED",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":""
+		},
+		{
+			"id":"any_province_building_level",
+			"description":"(No verified description) Checks if any province's building level...",	
+			"example":"UNTESTED",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":""
+		},
+		{
+			"id":"amount_research_slots",
+			"description":"Check if a nation has more than <int> building slots",	
+			"example":"amount_research_slots > 3",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":" > 3"
+		},
+		{
+			"id":"manpower_per_military_factory",
+			"description":"(No verified description) Sets manpower per military factory",	
+			"example":"UNTESTED",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":""
+		},
+		{
+			"id":"allow_branch",
+			"description":"(No verified description) Will disable and hide all children of a technology that does not meet the trigger",	
+			"example":"UNTESTED",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":""
+		},
+		{
+			"id":"non_core_manpower",
+			"description":"Can be used to control manpower from non-core territory",	
+			"example":"UNTESTED - Assumed output - non_core_manpower = 2",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":" = 2"
 		}
 
 ]
