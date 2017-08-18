@@ -471,7 +471,7 @@ small{font-size:0.65em;}
 	border:1px solid #fff;
 	margin:0 auto;
 	position:fixed;
-	z-index:15;
+	z-index:9999999;
 	font-size:1.4rem;
 }
 .default-outcome,.build-hover{
@@ -482,7 +482,7 @@ small{font-size:0.65em;}
     padding: 0.25rem;
 }
 #searchoutput{
-	height:35vw;
+	max-height:35vh;
 	overflow-y:scroll;	
 }
 .focus-reward {

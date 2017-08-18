@@ -61,8 +61,12 @@ $(document).ready(function(){
 		var ai = $("#ai").val();
 		var x = parseInt($("#x").val());
 		var y = parseInt($("#y").val());
-		var gfx = $("#chosen-gfx").val();
-		var getgfx = $("#"+gfx).attr("src");
+		if($("#chosen-gfx").val().substring(0,15) == "data:image/png;"){
+			var getgfx = $("#chosen-gfx").val();
+		}else{
+			var gfx = $("#chosen-gfx").val();
+			var getgfx = $("#"+gfx).attr("src");
+		}
 		var id = name.replace(/\s+/g, '').replace(/[^a-zA-Z_0-9]/g, '').toLowerCase();
 		var xpos = x*150;
 		var ypos = y*180;
@@ -433,9 +437,9 @@ $(document).ready(function(){
 	/* Export text files*/
 	$("#export-focus").click(function(){
 		var focustreeid =$("#focus-tree-id").val().replace(/\s+/g, '').replace(/[^a-zA-Z]/g, '').toLowerCase();
-		$("#workplace-focus").val("focus_tree = {<br>id = "+focustreeid+"<br>country = {<br>factor=0<br>modifier = {<br>add = 10\ntag = "+$("#export-country").val()+"<br>}<br>}\ndefault = no<br>#Custom focuses start here<br>");
+		$("#workplace-focus").val('{"treeid":"'+focustreeid+'","start":"focus_tree = {<br>id = \''+focustreeid+'\'<br>country = {<br>factor=0<br>modifier = {<br>add = 10<br>tag = '+$("#export-country").val()+'<br>}<br>}<br>default = no<br>#Custom focuses start here<br>","focuses":[');
 		$("#workplace-lang").val("l_"+$("#tree-language").val()+":\n");
-		$('.all-info').each(function () {
+		$('.all-info').each(function (index, element) {
 			var exportid = $(this).attr("id").replace("-all-info","");
 			var exportname = "#"+exportid+"_name";
 			var exportdesc = "#"+exportid+"_desc";
@@ -453,47 +457,41 @@ $(document).ready(function(){
 			var exportgfx = $(exportimg).attr("src");
 			var fixprefocus = $(exportprefocus).text().replace(/\&\&/g,"}\n prerequisite = { focus =").replace(/\|\|/g,"  focus = ");
 			var fixmutual = $(exportmutual).text().replace(/\&\&/g,"}\n mutually_exclusive = { focus =").replace(/\|\|/g,"  focus = ");
-		
+			
 			$("#workplace-lang").val($("#workplace-lang").val() + exportid + ':0 "' + $(exportname).text() + '"<br>');
 			$("#workplace-lang").val($("#workplace-lang").val() + exportid + '_desc:0 "' + $(exportdesc).text() + '"<br>');
 			
-			$("#workplace-focus").val($("#workplace-focus").val() + '#Focus for - '+ $(exportname).text() + '<br>');
-			$("#workplace-focus").val($("#workplace-focus").val()+'focus = {<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'id ='+ exportid + '<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'icon ='+ exportgfx.replace(".png","").replace("images/","GFX_") + '<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'bypass = {'+ $(exportbypass).text() + '}<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'ai_will_do = { factor = '+ $(exportai).text() + '}<br>');
+			$("#workplace-focus").val($("#workplace-focus").val()+"{");
+			$("#workplace-focus").val($("#workplace-focus").val() + '"name":"'+ $(exportname).text() +'",');
+			$("#workplace-focus").val($("#workplace-focus").val() + '"id":"'+ exportid +'",');
+			$("#workplace-focus").val($("#workplace-focus").val() + '"icon":"'+ exportgfx + '",');
+			$("#workplace-focus").val($("#workplace-focus").val() + '"everythingelse":"');
+			$("#workplace-focus").val($("#workplace-focus").val() + 'bypass = {'+ $(exportbypass).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["']/g, "'") + '}<br>');
+			$("#workplace-focus").val($("#workplace-focus").val() + 'ai_will_do = { factor = '+ $(exportai).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t") + '}<br>');
 			$("#workplace-focus").val($("#workplace-focus").val() + 'x ='+ exportx + '<br>');
 			$("#workplace-focus").val($("#workplace-focus").val() + 'y ='+ exporty + '<br>');
 			if(fixmutual == ""){
 				$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { }<br>');
 			}else{
-				$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { focus = '+ fixmutual + '}<br>');
+				$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { focus = '+ fixmutual.replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '}<br>');
 			}
 			if(fixprefocus == ""){
 				$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { }<br>');
 			}else{
-				$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { focus = '+fixprefocus + '}<br>');
+				$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { focus = '+fixprefocus.replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '}<br>');
 			}
-			$("#workplace-focus").val($("#workplace-focus").val() + 'available = { '+ $(exportavailable).text() + ' }<br>');
+			$("#workplace-focus").val($("#workplace-focus").val() + 'available = { '+ $(exportavailable).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + ' }<br>');
 			if($(exportttc).text() == "" || $(exportttc).text() == "0"){
 				$("#workplace-focus").val($("#workplace-focus").val() + 'cost = 10 <br> available_if_capitulated = yes <br>');
 			}else{
-				$("#workplace-focus").val($("#workplace-focus").val() + 'cost = '+ $(exportttc).text() + ' \n available_if_capitulated = yes <br>');	
+				$("#workplace-focus").val($("#workplace-focus").val() + 'cost = '+ $(exportttc).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + ' <br> available_if_capitulated = yes <br>');	
 			}
-			$("#workplace-focus").val($("#workplace-focus").val() + 'completion_reward = {<br>'+ $(exportreward).text() + '<br>}<br>}<br>');
+			$("#workplace-focus").val($("#workplace-focus").val() + 'completion_reward = {<br>'+ $(exportreward).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '<br>}<br>');
+			$("#workplace-focus").val($("#workplace-focus").val()+'"},');	
 		});
-		$("#workplace-focus").val($("#workplace-focus").val()+"#end<br>}");
+		$("#workplace-focus").val($("#workplace-focus").val().slice(0, -1)+"]}").delay(100);
 		
-		var a = document.body.appendChild(document.createElement("a"));
-		a.download = focustreeid+".txt";
-		a.href = "data:text/plain;charset=utf-8," + $("#workplace-focus").val().replace(/\<br\>/g,"%0D%0A").replace(/\n/g,"%0D%0A").replace(/	/g,"%09");
-		a.click();
-		
-		var a = document.body.appendChild(document.createElement("a"));
-		a.download = focustreeid+"_l_"+$("#tree-language").val()+".yml";
-		a.href = "data:text/plain;charset=utf-8," + $("#workplace-lang").val().replace(/\<br\>/g,"%0D%0A").replace(/\n/g,"%0D%0A");
-		a.click();
+		$('#export-focus-hidden').trigger('click');
 	});
 	
 	$("#savetoserver").click(function(){
@@ -678,10 +676,14 @@ $(document).ready(function(){
 		if($("#"+id).attr("state") == "yes"){
 				$("#state-box").show();
 		}
-		if($("#"+id+"_defaultoutcome").text() == "new-level"){
-			$(".current-build-add-location").removeClass("current-build-add-location").append(id+' = {<br><div class="current-build-add-location"></div><br>}');
+		if($("#"+id+"_defaultoutcome").attr("iscustom") !== "yes"){
+			if($("#"+id+"_defaultoutcome").text() == "new-level"){
+				$(".current-build-add-location").removeClass("current-build-add-location").append(id+' = {<br><div class="current-build-add-location"></div><br>}');
+			}else{
+				$(".current-build-add-location").append(id+'<textarea id="add-build">'+$("#"+id+"_defaultoutcome").text()+'</textarea>');
+			}
 		}else{
-			$(".current-build-add-location").append(id+'<textarea id="add-build">'+$("#"+id+"_defaultoutcome").text()+'</textarea>');
+			$(".current-build-add-location").append('<textarea id="add-build">'+$("#"+id+"_defaultoutcome").text()+'</textarea>');
 		}
 		$("#submit-build").show();
 	});
@@ -752,4 +754,217 @@ $(document).ready(function(){
 		$("#builder").hide();
 		$(this).hide();
 	});
+	
+	//Custom GFX
+	File.prototype.convertToBase64 = function(callback){
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                 callback(e.target.result)
+            };
+            reader.onerror = function(e) {
+                 callback(null, e);
+            };        
+            reader.readAsDataURL(this);
+    };
+
+	$("#customgfx").on("change",function(){
+		var gfxid = $(this).attr("id");
+		var selectedFile = this.files[0];
+		selectedFile.convertToBase64(function(base64){
+			var b64 = gfxid.replace("image","base64");
+			var display = gfxid.replace("image","display");
+			if(base64.substring(0,15) == "data:image/png;"){
+				$("#display-gfx").attr('src',base64);
+				$("#chosen-gfx").val(base64);
+			}else{
+				alert("The image you have uploaded is not a PNG");	
+			}
+		  }); 
+	});
+	
+	
+	// === NF to JSON
+	$("#treetojson").click(function(){
+		$("#show-output").append('<div id="table"><p>Click the focuses below to add them to your focus tree</p><button id="clear-table">Clear Focuses</button></div>');
+		toJSON($("#existing-focus-tree").val().replace(/\t/g,""),0); 
+	});
+	//Just trims lines to remove #comments.
+	//Doesn't handle cases where # characters appear inside strings
+	function preprocess(s) {
+		lines = s.split(/\r?\n/);
+		result = "";
+		for(var i = 0; i < lines.length; ++i) {
+			var line = lines[i];
+			var index = line.indexOf("#");
+			if(index != -1) {
+				line = line.substring(0, index);
+			}
+			result += line + "\n";
+		}
+		return result;
+	}
+	
+	//Probably doesn't handle strings that contain {} or # characters
+	function toJSON(s, level) {
+		let maxLevel = 2;
+		s = preprocess(s);
+		var key = "";
+		var value = "";
+		var buildingKey = true;
+		var braceCount = 0; 
+		var hadBraces = false;
+		var json = {};
+		for(var i = 0; i < s.length; ++i) {
+			let c = s.charAt(i);
+			
+			//If the parser is currently expecting a key
+			if(buildingKey) {
+				//Ignore these characters because they won't be part of a key
+				if(c === "{" || c === "}") {
+					continue;
+				}
+				
+				//As long as we don't hit the = character, we are still building a key.
+				//The assumption here is that keys can contain space characters
+				if(c !== '=') {
+					key += c;
+				}
+				else {
+					buildingKey = false;
+					key = key.trim();
+				}
+			}
+			//The parser is expecting a value
+			else {
+				value += c;
+				//if only whitespace
+				//  continue
+				if(c === "{") {
+					++braceCount;
+					hadBraces = true;
+				}
+				else if(c === "}") {
+					--braceCount;
+				}
+				
+				//If the braces are evenly matched,
+				//and our value string is not just whitespace characters
+				//and the next character to add is whitespace,
+				//then we are done building the value string
+				if(braceCount === 0 && /\S/.test(value) && /\s/.test(c)) {
+					value = value.trim();
+					
+					//In the stupid format, the same key can appear multiple times.
+					//If this happens, then what we really want is to treat that key
+					//as an array
+					if(key in json) {
+						
+						//Convert value stored at that key to
+						//an array if it isn't already one
+						if(!Array.isArray(json[key])) {
+							var obj = json[key];
+							json[key] = [obj];
+						}
+	
+						//If the value had {} characters, then
+						//it will consist of other key/value pairs.
+						if(hadBraces && level < maxLevel) {                    
+							json[key] = json[key].concat(toJSON(value, level+1));
+							hadBraces = false;
+						}
+						else {
+							json[key] = json[key].concat(value);
+						} 
+					}
+					
+					else {
+						if(hadBraces && level < maxLevel) {                    
+							json[key] = toJSON(value, level+1);
+							hadBraces = false;
+						}
+						else {
+							json[key] = value;
+						} 
+					}
+					
+					
+					buildingKey = true;
+					key = "";
+					value = "";
+				}
+			}
+		}
+		$("#existing-focus-tree-output").val(JSON.stringify(json));
+		//console.log(json);
+		//$("#show-output").append(JSON.stringify(json));
+		var obj = JSON.parse($("#existing-focus-tree-output").val());
+	
+		var focus = obj.focus;
+		for(var i in focus){
+			var id = focus[i].id;
+			var name = "undefined";
+			var desc = "undefined";
+			var text = focus[i].id;
+			if(focus[i].hasOwnProperty('text')){
+				text = focus[i].text;
+			}
+			var localisation = $("#existing-localisation").val().split(/\n/);
+			$.each(localisation,function(u, i) {
+				if(i.indexOf(":") !== -1){
+					var splitid = i.split(/:(.+)/);
+					if(splitid[0].replace(/\s+/g, "") == text){
+						name = splitid[1].replace("0 ","").slice(1, -1);
+					}
+					if(splitid[0].replace(/\s+/g, "") == text+"_desc"){
+						desc = splitid[1].replace("0 ","").slice(1, -1);
+					}
+				}
+			});
+			if(focus[i].hasOwnProperty('mutually_exclusive')){
+				var me = focus[i].mutually_exclusive;
+			}else{
+				var me = "";	
+			}
+			if(focus[i].hasOwnProperty('prerequisite')){
+				var pr = focus[i].prerequisite;
+			}else{
+				var pr = "";	
+			}
+			if(focus[i].hasOwnProperty('ai_will_do')){
+				var ai = focus[i].ai_will_do;
+			}else{
+				var ai = "";	
+			}
+			if(focus[i].hasOwnProperty('completion_reward')){
+				var completion_reward = focus[i].completion_reward;
+			}else{
+				var completion_reward = "";	
+			}
+			if(focus[i].hasOwnProperty('available')){
+				var available = focus[i].available;
+			}else{
+				var available = "";	
+			}
+			if(focus[i].hasOwnProperty('bypass')){
+				var bypass = focus[i].bypass;
+			}else{
+				var bypass = "";	
+			}
+			if(focus[i].hasOwnProperty('completion_tooltip')){
+				var completion_tooltip = focus[i].completion_tooltip;
+			}else{
+				var completion_tooltip = "";	
+			}
+			if(focus[i].hasOwnProperty('cost')){
+				var cost = focus[i].cost;
+			}else{
+				var cost = "10";	
+			}
+			$("#table").append('<tr class="import-row" id="'+focus[i].id+'"><td>'+name+'</td><td><div class="focus-reward">'+focus[i].completion_reward+'<div id="'+id+'-import-row" style="display:none;"><div id="'+id+'" class="focus" style="top:'+(parseInt(focus[i].y)*180)+'px;left:'+(parseInt(focus[i].x)*150)+'px;" x-pos="'+focus[i].x+'" y-pos="'+focus[i].y+'"><div style="position:relative"><div class="mover up">^&nbsp;&nbsp;</div><div class="mover down">&nbsp;&nbsp;v</div><img src="images/'+focus[i].icon.replace("GFX_","")+'.png" id="'+id+'_gfx" class="gfx"><div class="name"><p id="'+id+'-name">'+name+'</p></div><div class="mover left">&lt;&nbsp;&nbsp;</div><div class="mover right">&nbsp;&nbsp;&gt;</div><div class="tail"></div></div></div><div class="all-info" id="'+id+'-all-info"><div id="'+id+'_name">'+name+'</div><div id="'+id+'_desc">'+desc+'_desc</div><div id="'+id+'_tooltip">'+completion_tooltip+'</div><div id="'+id+'_available">'+available+'</div><div id="'+id+'_reward">'+completion_reward+'</div><div id="'+id+'_time">'+cost+'</div><div id="'+id+'_bypass">'+bypass+'</div><div id="'+id+'_prefocus">'+pr+'</div><div id="'+id+'_mutual">'+me+'</div><div id="'+id+'_ai">'+ai+'</div><div id="'+id+'_gfx">'+focus[i].icon.replace("GFX_","")+'</div></div></div></div></td></tr>');
+		}
+		return json;
+		
+	}
+
+
 });

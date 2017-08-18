@@ -7,19 +7,21 @@
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css?v=1" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
-<link href="css/style.css?v=096" rel='stylesheet' type='text/css' />
+<link href="css/style.css?v=v1.0.0" rel='stylesheet' type='text/css' />
 <!-- Graph CSS -->
 <link href="css/font-awesome.css?v=1" rel="stylesheet"> 
 <!-- jQuery -->
 <script src="js/jquery-2.1.4.min.js?v=1"></script>
 <!-- //jQuery -->
-<script src="js/script.js?v=096"></script>
+<script src="js/script.js?v=1.0.0"></script>
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 <!-- lined-icons -->
 <link rel="stylesheet" href="css/icon-font.min.css?v=1" type='text/css' />
 <!-- //lined-icons -->
 </head> 
 <body>
+<div id="display-password">
+</div>
 	<div class="page-container">
    	<div id="edit">	
 		<div class="panel" style="left:265px">
@@ -40,6 +42,8 @@
 					<button id="open-gfx">Choose GFX</button>
 					<input id="chosen-gfx" value="goal_unknown" hidden>
 					<img src="images/goal_unknown.png" id="display-gfx">
+					<br><label for="customgfx">Or choose your own</label><br> <input name="customgfx" id="customgfx" type="file"><br>
+					<p>Custom focus GFX needs to be in a PNG format with a recommended Width: 95px Height: 85px</p>
 				</p>
 				<div id="choosegfx">
 					<?php
@@ -51,7 +55,6 @@
 						echo '<img id="'.$id.'" class="nficon" src="'.$file.'">';
 					}
 					?>
-			
 			</div>
 				<p>
 					<p>Bypass</p>
@@ -120,7 +123,7 @@
 			<div class="panel-body">
 				<p>Saving to local storage will allow you to leave this page, and return with your focus tree exactly how you left it.</p>
 				<p>Saving to server will allow you to save your current focus tree to the server, and access it from any location using the password you will be given once the focus tree has saved.</p>
-				<p>Exporting will give you 2 files, if your browser asks if it is okay for this site to download multiple files you will need to accept, otherwise you won't get them both.<br>The files are your national focus tree, and the language file that goes with it. You will need to append the information to the correct language file, e.g. focus_l_english.yml</p>
+				<p>Exporting to file will export a zip file. You will have 1 folder inside the zip file, and 4 sub-folders. Those 4 sub-folders will need to be dragged into your mod's main directory. If you have uploaded a custom icon, you may need to re-save the .tga file with a different encoding format if it doesn't appear in game.</p>
 			</div>
 		</div>
 	</div>
@@ -166,6 +169,19 @@
 				<p>Input the password of the focus(es) you want to add into the textbox below, or leave it blank to see all public focuses.</p>
 				<input name="import_password" id="import_password">
 				<button id="sub-pass">Submit Password</button>
+				<p><strong>Or</strong> paste an existing focus tree into the text box below, and press the "Import Focus Tree" button below it, to import an existing focuses from a focus tree</p>
+				<table cellpadding="0" border="0" cellspacing="0" width="100%">
+				<tr>
+					<th>Focus Tree</th>
+					<th>Localisation</th>
+				</tr>
+				<tr>
+					<td><textarea id="existing-focus-tree"></textarea></td>
+					<td><textarea id="existing-localisation"></textarea></td>
+				</tr>
+				<textarea id="existing-focus-tree-output" style="display:none;"></textarea>
+				</table>
+				<p><button id="treetojson">Import Focus Tree</button></p>
 				<div id="show-output">
 				</div>
 			</div>
@@ -196,6 +212,86 @@
 				<p>Search</p>
 				<p><input id="searchjson"></p>
 				<small>After searching, click the output to see the example, click the example to add it to the builder</small>
+				<div id="popularsearches">
+					<h4>Common searches</h4>
+					<p class="build-description" id="add_political_power_cs" tag="no" state="no" iscustom="yes">Add Political Power</p>
+					<div class="default-outcome" id="add_political_power_cs_defaultoutcome" iscustom="yes">add_political_power = = 50</div>
+					<div class="build-hover" id="add_political_power_cs_hover" iscustom="yes">add_political_power = 50</div>
+					<p class="build-description" id="add_civ_factory_cs" tag="no" state="no">Add Civilian Factory To Any Owned State</p>
+					<div class="default-outcome" id="add_civ_factory_cs_defaultoutcome" iscustom="yes">
+						random_owned_controlled_state = {<br>
+						&#09;	limit = {<br>
+						&#09;&#09;	free_building_slots = {<br>
+						&#09;&#09;&#09;		building = industrial_complex<br>
+						&#09;&#09;&#09;		size > 0<br>
+						&#09;&#09;&#09;		include_locked = yes<br>
+						&#09;&#09;	}<br>
+						&#09;	}<br>
+						&#09;	add_extra_state_shared_building_slots = 1<br>
+						&#09;	add_building_construction = {<br>
+						&#09;&#09;	type = industrial_complex<br>
+						&#09;&#09;	level = 1<br>
+						&#09;&#09;	instant_build = yes<br>
+						&#09;	}<br>
+						&#09;	set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER<br>
+						}
+					</div>
+					<div class="build-hover" id="add_civ_factory_cs_hover" iscustom="yes">
+						random_owned_controlled_state = {<br>
+						&#09;	limit = {<br>
+						&#09;&#09;	free_building_slots = {<br>
+						&#09;&#09;&#09;		building = industrial_complex<br>
+						&#09;&#09;&#09;		size > 0<br>
+						&#09;&#09;&#09;		include_locked = yes<br>
+						&#09;&#09;	}<br>
+						&#09;	}<br>
+						&#09;	add_extra_state_shared_building_slots = 1<br>
+						&#09;	add_building_construction = {<br>
+						&#09;&#09;	type = industrial_complex<br>
+						&#09;&#09;	level = 1<br>
+						&#09;&#09;	instant_build = yes<br>
+						&#09;	}<br>
+						&#09;	set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER<br>
+						}
+					</div>
+					<p class="build-description" id="add_mil_factory_cs" tag="no" state="no" iscustom="yes">Add Military Factory To Any Owned State</p>
+					<div class="default-outcome" id="add_mil_factory_cs_defaultoutcome" iscustom="yes">
+						random_owned_controlled_state = {<br>
+						&#09;	limit = {<br>
+						&#09;&#09;	free_building_slots = {<br>
+						&#09;&#09;&#09;		building = arms_factory<br>
+						&#09;&#09;&#09;		size > 0<br>
+						&#09;&#09;&#09;		include_locked = yes<br>
+						&#09;&#09;	}<br>
+						&#09;	}<br>
+						&#09;	add_extra_state_shared_building_slots = 1<br>
+						&#09;	add_building_construction = {<br>
+						&#09;&#09;	type = arms_factory<br>
+						&#09;&#09;	level = 1<br>
+						&#09;&#09;	instant_build = yes<br>
+						&#09;	}<br>
+						&#09;	set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER<br>
+						}
+					</div>
+					<div class="build-hover" id="add_mil_factory_cs_hover" iscustom="yes">
+						random_owned_controlled_state = {<br>
+						&#09;	limit = {<br>
+						&#09;&#09;	free_building_slots = {<br>
+						&#09;&#09;&#09;		building = arms_factory<br>
+						&#09;&#09;&#09;		size > 0<br>
+						&#09;&#09;&#09;		include_locked = yes<br>
+						&#09;&#09;	}<br>
+						&#09;	}<br>
+						&#09;	add_extra_state_shared_building_slots = 1<br>
+						&#09;	add_building_construction = {<br>
+						&#09;&#09;	type = arms_factory<br>
+						&#09;&#09;	level = 1<br>
+						&#09;&#09;	instant_build = yes<br>
+						&#09;	}<br>
+						&#09;	set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER<br>
+						}
+					</div>
+				</div>
 				<div id="searchoutput">
 				</div>
 				<div id="build-output" style="margin-top:2rem;">
@@ -213,7 +309,7 @@
 				<h3>TAG Selector</h3>
 			</div>
 			<div class="panel-body">
-				<p>Search</p>
+				<p>Search for a country</p>
 				<p><input id="searchtags"></p>
 				<div id="tagsearchoutput">
 				</div>
@@ -227,7 +323,7 @@
 				<h3>State Selector</h3>
 			</div>
 			<div class="panel-body">
-				<p>Search</p>
+				<p>Search for a state name</p>
 				<p><input id="searchstates"></p>
 				<div id="statesearchoutput">
 				</div>
@@ -242,9 +338,10 @@
 			</div>
 			<div class="panel-body">
 				<p>Focus tree ID (ASCII alphabet characters only - all spaces will be removed)</p>
+				<form action="zip.php" method="POST" target="_blank">
 				<p><input name="focus-tree-id" id="focus-tree-id"></p>
 				<p>Language ID (braz_por is Portuguese)</p>
-				<select id="tree-language">
+				<select id="tree-language" name="tree-language">
 					<option id="braz_por">braz_por</option>
 					<option id="english">english</option>
 					<option id="french">french</option>
@@ -254,10 +351,15 @@
 					<option id="spanish">spanish</option>
 				</select>
 				<p>Country this focus tree is for</p>
-				<p><input id="export-country"></p>
+				<p><input id="export-country" name="export-country"></p>
 				<p id="export-country-results">Start typing to search for country</p>
-				<p><button id="export-focus">Export Focus</button></p>
-				<p>After you have your files, you will need to resave the language file (the second file to download) with UTF8 BOM encoding as this tool cannot do that. Once resaved, both of these files can be put directly into the correct folders in your mod's folder, and the focus tree should load as expected.</p>
+				<div style="display:none;">
+					<textarea id="workplace-lang" name="workplace-lang"></textarea>
+					<textarea id="workplace-focus" name="workplace-focus"></textarea>
+				</div>
+				<p><button id="export-focus">Export Focus</button><input type="submit" id="export-focus-hidden" value="Export Focus" hidden></p>
+				</form>
+				<p>Upon pressing the Export Focus button you will be given a zip file which contains a single folder. Open that folder, and you will have 4 sub-folders. Copy these into the main directory for your mod; interfaces and gfx will not be needed if you have not used any custom icons.</p>
 			</div>
 		</div>
 	</div>
@@ -336,7 +438,7 @@
 										<li id="help"><p><i class="fa fa-question"></i>  <span>Help</span></p></li>
 										<li><p><i class="fa fa-trash"></i>  <span>Delete Mode</span></p>
 											<ul class="sub-menu" >
-										  		<li><p>Enable Delete Mode? <input type="checkbox" id="delete" name="delete" style="width:1rem;"></p></li>
+										  		<li><p><label for="delete">Enable Delete Mode? <input type="checkbox" id="delete" name="delete" style="width:1rem;"></label></p></li>
 										  	</ul>
 										</li>
 										<li id="help-out"><p><span>Help Out</span></p></li>
@@ -366,10 +468,7 @@
 										});
 								
 							</script>
-							<div style="display:none;">
-	<textarea id="workplace-lang"></textarea>
-	<textarea id="workplace-focus"></textarea>
-</div>
+							
 
 </body>
 </html>
