@@ -1,18 +1,5 @@
 $(document).ready(function(){
-	
-	//Edit focus view - show from menu button
-	$("#add-focus").click(function(){
-		$("#edit").show();
-	});
-	//Close menu using close button
-	$("#edit-close").click(function(){
-		$("#edit").hide();
-	});
-	//Edit GFX
-	$("#open-gfx").click(function(){
-		$("#choosegfx").toggle();	
-	});
-	
+
 	//Choose NF icon
 	$(".nficon").click(function(){
 		var gfxid = $(this).attr("id");
@@ -21,7 +8,7 @@ $(document).ready(function(){
 		$("#choosegfx").hide();
 		$("#chosen-gfx").val(gfxid);
 	});
-	
+	var focuscount = 0;
 	//Add focus to view area, and clear form when done
 	$("#submit-focus").click(function(){
 		$("#edit").hide();
@@ -40,8 +27,11 @@ $(document).ready(function(){
 			});
 			$("#editing").text("");
 		}
-		
-		var	name = $("#name").val();
+		if($("#name").val() !== ""){
+			var	name = $("#name").val();
+		}else{
+			var name = "generic_name_"+focuscount;
+		}
 		var desc = $("#desc").val();
 		var available = $("#available").val();
 		var reward = $("#reward").val();
@@ -176,7 +166,13 @@ $(document).ready(function(){
 		}
 		}
 		moveConnections(id);	
-			
+		
+		if(parseInt($("#max-x").text()) < x){
+			$("#max-x").text(x);
+		}
+		if(parseInt($("#max-y").text()) < y){
+			$("#max-y").text(y);
+		}
 		
 		$("#name").val("");
 		$("#desc").val("");
@@ -186,10 +182,11 @@ $(document).ready(function(){
 		$("#mutual").val("");
 		$("#bypass").val("");
 		$("#tooltip").val("");
-		$("#x").val("");
-		$("#y").val("");
-		$("#chosen-gfx").val("");
+		$("#x").val("0");
+		$("#y").val("0");
+		$("#chosen-gfx").val("goal_unknown");
 		$("#display-gfx").attr("src","images/goal_unknown.png");
+		focuscount++;
 	});
 	
 	//Edit/delete focus
@@ -200,6 +197,7 @@ $(document).ready(function(){
 			var getdesc = "#"+nf+"_desc";
 			var getprefocus = "#"+nf+"_prefocus";
 			var getavailable = "#"+nf+"_available";
+			var getaifactor = "#"+nf+"_ai";
 			var getmutual = "#"+nf+"_mutual";
 			var img = "#"+nf+"_gfx";
 			var getttc = "#"+nf+"_time";
@@ -216,6 +214,7 @@ $(document).ready(function(){
 			$("#reward").val($(getreward).text());
 			$("#mutual").val($(getmutual).text());
 			$("#tooltip").val($(gettooltip).text());
+			$("#ai").val($(getaifactor).text());
 			$("#x").val(getx);
 			$("#y").val(gety);
 			$("#chosen-gfx").val(getgfx.replace("images\/","").replace(".png",""));
@@ -234,85 +233,28 @@ $(document).ready(function(){
 			});
 		}
 	});
+	$("#delete-all").click(function(){
+		$('.all-info').each(function (index, element) {
+				var id = $(this).attr("id").replace("-all-info","");
+				$("*[id*="+id+"-]").each(function() {
+					$(this).remove();
+				});
+				$("*[id*=-"+id+"]").each(function() {
+					$(this).remove();
+				});
+				$("#"+id).each(function() {
+					$(this).remove();
+				});
+				$(this).remove();
+		});
+	});
 	
 	
 	$(".left, .right, .up, .down, #submit-focus").click(function(){
 		
 	});
 	
-	$("#help, #close-help").click(function(){
-		$( "#help-box" ).slideToggle( "slow", function() {});
-	});
 	
-	//Move focus right 
-	$(document).on('click', ".right", function() {
-		$(this).parent().parent().animate({left: '+=150px'}, 0);
-		$(this).parent().parent().attr("x-pos",parseInt($(this).parent().parent().attr("x-pos"))+1);
-		moveConnections($(this).parent().parent().attr("id"));
-	});
-	//Move focus left
-	$(document).on('click', ".left", function() {
-		if(parseInt($(this).parent().parent().css("left").replace("px","")) > 99){
-			$(this).parent().parent().animate({left: '+=-150px'}, 0);
-			$(this).parent().parent().attr("x-pos",parseInt($(this).parent().parent().attr("x-pos"))-1);
-			moveConnections($(this).parent().parent().attr("id"));
-		}
-	});
-	//Move focus down
-	$(document).on('click', ".down", function() {
-		$(this).parent().parent().animate({top: '+=180px'}, 0);
-		$(this).parent().parent().attr("y-pos",parseInt($(this).parent().parent().attr("y-pos"))+1);
-		moveConnections($(this).parent().parent().attr("id"));
-	});
-	//Move focus up
-	$(document).on('click', ".up", function() {
-		if(parseInt($(this).parent().parent().css("top").replace("px","")) > 149){
-			$(this).parent().parent().animate({top: '+=-180px'}, 0);
-			$(this).parent().parent().attr("y-pos",parseInt($(this).parent().parent().attr("y-pos"))-1);
-			moveConnections($(this).parent().parent().attr("id"));
-		}
-	});
-	
-	function moveConnections(focusid){
-		var xpos = parseInt($("#"+focusid).attr("x-pos"))*150;
-		var ypos = parseInt($("#"+focusid).attr("y-pos"))*180;
-		//Connector 
-		$.each($('.connection[id*="'+$("#"+focusid).attr("id")+'"]'),function(index, value){
-			var connectorid = $(value).attr("id");
-			var connectorclass = $("#"+connectorid).attr("class").replace("-vert","");
-			var focuses = connectorid.split("-");
-			var top = parseInt($("#"+focuses[1]).css("top").replace("px",""))+parseInt($("#"+focuses[1]).css("height").replace("px",""));
-			if(top.toString().charAt(0) == "-"){
-			  var topcalc = top.toString().replace("-","");
-			}else{
-				var topcalc = top;
-			}
-			var verttop = topcalc;
-			var vertical = topcalc-ypos;
-			if(vertical.toString().charAt(0) == "-"){
-			  var verticalcalc = vertical.toString().replace("-","");
-			}else{
-				var verticalcalc = vertical;
-			}
-			var width = parseInt($("#"+focuses[1]).css("left").replace("px",""))-parseInt($("#"+focuses[0]).css("left").replace("px",""));
-			if(width.toString().charAt(0) == "-"){
-			  var widthcalc = width.toString().replace("-","");
-			}else{
-				var widthcalc = width;
-			}
-			if(parseInt($("#"+focuses[1]).css("left").replace("px","")) < parseInt($("#"+focuses[0]).css("left").replace("px",""))){
-				var left = parseInt($("#"+focuses[1]).css("left").replace("px",""))+59;
-				var leftvert = parseInt(left)+parseInt(widthcalc);
-			}else{
-				var left = parseInt($("#"+focuses[0]).css("left").replace("px",""))+59;
-				var leftvert = left;  
-			}
-			$("#"+focuses[0]+'-'+focuses[1]+'-h').remove();
-			$("#"+focuses[0]+'-'+focuses[1]+'-v').remove();
-			$("#display").append('<div class="'+connectorclass+'" id="'+focuses[0]+'-'+focuses[1]+'-h" style="top:'+topcalc+'px;width:'+widthcalc+'px;left:'+left+'px;"></div>');
-			$("#display").append('<div class="'+connectorclass+'-vert" id="'+focuses[0]+'-'+focuses[1]+'-v" style="top:'+verttop+'px;height:'+verticalcalc+'px;left:'+leftvert+'px;"></div>');
-		});	
-	}
 	
 	//No AND OR issues
 	$("#select-and").click(function(){
@@ -388,13 +330,6 @@ $(document).ready(function(){
 			$("#selectfocusarea").hide();
 		}
 	});
-	$("#close-selector").click(function(){
-		$("#selectfocusarea").hide();
-	});
-	
-	$("#serverpanel,#close-server").click(function(){
-		$("#server-box").toggle();	
-	});
 	
 	
 	/* local storage */
@@ -436,11 +371,17 @@ $(document).ready(function(){
 	
 	/* Export text files*/
 	$("#export-focus").click(function(){
+		currentx = 0;
+		currenty = 0;
+		working = 0;
+		var maxx = parseInt($("#max-x").text());
+		var maxy = parseInt($("#max-y").text());
 		var focustreeid =$("#focus-tree-id").val().replace(/\s+/g, '').replace(/[^a-zA-Z]/g, '').toLowerCase();
 		$("#workplace-focus").val('{"treeid":"'+focustreeid+'","start":"focus_tree = {<br>id = \''+focustreeid+'\'<br>country = {<br>factor=0<br>modifier = {<br>add = 10<br>tag = '+$("#export-country").val()+'<br>}<br>}<br>default = no<br>#Custom focuses start here<br>","focuses":[');
 		$("#workplace-lang").val("l_"+$("#tree-language").val()+":\n");
-		$('.all-info').each(function (index, element) {
-			var exportid = $(this).attr("id").replace("-all-info","");
+		//$('.all-info').each(function (index, element) {
+		while(currentx <= maxx && currenty <= maxy){
+			var exportid = $("[x-pos*="+currentx+"][y-pos*="+currenty+"]").attr("id");
 			var exportname = "#"+exportid+"_name";
 			var exportdesc = "#"+exportid+"_desc";
 			var exportprefocus = "#"+exportid+"_prefocus";
@@ -455,40 +396,68 @@ $(document).ready(function(){
 			var exportx = $("#"+exportid).attr("x-pos");
 			var exporty = $("#"+exportid).attr("y-pos");
 			var exportgfx = $(exportimg).attr("src");
-			var fixprefocus = $(exportprefocus).text().replace(/\&\&/g,"}\n prerequisite = { focus =").replace(/\|\|/g,"  focus = ");
-			var fixmutual = $(exportmutual).text().replace(/\&\&/g,"}\n mutually_exclusive = { focus =").replace(/\|\|/g,"  focus = ");
-			
-			$("#workplace-lang").val($("#workplace-lang").val() + exportid + ':0 "' + $(exportname).text() + '"<br>');
-			$("#workplace-lang").val($("#workplace-lang").val() + exportid + '_desc:0 "' + $(exportdesc).text() + '"<br>');
-			
-			$("#workplace-focus").val($("#workplace-focus").val()+"{");
-			$("#workplace-focus").val($("#workplace-focus").val() + '"name":"'+ $(exportname).text() +'",');
-			$("#workplace-focus").val($("#workplace-focus").val() + '"id":"'+ exportid +'",');
-			$("#workplace-focus").val($("#workplace-focus").val() + '"icon":"'+ exportgfx + '",');
-			$("#workplace-focus").val($("#workplace-focus").val() + '"everythingelse":"');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'bypass = {'+ $(exportbypass).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["']/g, "'") + '}<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'ai_will_do = { factor = '+ $(exportai).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t") + '}<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'x ='+ exportx + '<br>');
-			$("#workplace-focus").val($("#workplace-focus").val() + 'y ='+ exporty + '<br>');
-			if(fixmutual == ""){
-				$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { }<br>');
-			}else{
-				$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { focus = '+ fixmutual.replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '}<br>');
+			if(exportid !== "" > 0 && exportid !== "undefined"){
+				if($(exportprefocus).text().length !== 0){
+					var fixprefocus = $(exportprefocus).text().replace(/\&\&/g,"}\n prerequisite = { focus =").replace(/\|\|/g,"  focus = ");
+				}
+				if($(exportmutual).text().length !== 0){
+					var fixmutual = $(exportmutual).text().replace(/\&\&/g,"}\n mutually_exclusive = { focus =").replace(/\|\|/g,"  focus = ");
+				}
+				
+				$("#workplace-lang").val($("#workplace-lang").val() + exportid + ':0 "' + $(exportname).text() + '"<br>');
+				$("#workplace-lang").val($("#workplace-lang").val() + exportid + '_desc:0 "' + $(exportdesc).text() + '"<br>');
+
+
+				$("#workplace-focus").val($("#workplace-focus").val()+"{");
+				$("#workplace-focus").val($("#workplace-focus").val() + '"name":"'+ $(exportname).text() +'",');
+				$("#workplace-focus").val($("#workplace-focus").val() + '"id":"'+ exportid +'",');
+				$("#workplace-focus").val($("#workplace-focus").val() + '"icon":"'+ exportgfx + '",');
+				$("#workplace-focus").val($("#workplace-focus").val() + '"everythingelse":"');
+				if($(exportbypass).text().length > 0){
+					$("#workplace-focus").val($("#workplace-focus").val() + 'bypass = {'+ $(exportbypass).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["']/g, "'") + '}<br>');
+				}
+				if($(exportai).text().length > 0){
+					$("#workplace-focus").val($("#workplace-focus").val() + 'ai_will_do = { factor = '+ $(exportai).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t") + '}<br>');
+				}else{
+					$("#workplace-focus").val($("#workplace-focus").val() + 'ai_will_do = { factor = 0 }<br>');
+				}
+				$("#workplace-focus").val($("#workplace-focus").val() + 'x ='+ exportx + '<br>');
+				$("#workplace-focus").val($("#workplace-focus").val() + 'y ='+ exporty + '<br>');
+
+				
+
+				if($(exportmutual).text().length == 0){
+					$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { }<br>');
+				}else{
+					$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { focus = '+ fixmutual.replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '}<br>');
+				}
+				if($(exportprefocus).text().length == 0){
+					$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { }<br>');
+				}else{
+					$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { focus = '+fixprefocus.replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '}<br>');
+				}
+				if($(exportavailable).text().length > 0){
+					$("#workplace-focus").val($("#workplace-focus").val() + 'available = { '+ $(exportavailable).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + ' }<br>');
+				}
+				if($(exportttc).text() == "" || $(exportttc).text() == "0"){
+					$("#workplace-focus").val($("#workplace-focus").val() + 'cost = 10 <br> available_if_capitulated = yes <br>');
+				}else{
+					$("#workplace-focus").val($("#workplace-focus").val() + 'cost = '+ $(exportttc).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + ' <br> available_if_capitulated = yes <br>');	
+				}
+				if($(exportreward).text().length > 0){
+					$("#workplace-focus").val($("#workplace-focus").val() + 'completion_reward = {<br>'+ $(exportreward).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '<br>}<br>');
+				}
+				$("#workplace-focus").val($("#workplace-focus").val()+'"},');
+				if(currentx == maxx){
+					currentx = 0;
+					currenty++;
+					working = 0;
+				}else{
+					currentx++;	
+				}
 			}
-			if(fixprefocus == ""){
-				$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { }<br>');
-			}else{
-				$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { focus = '+fixprefocus.replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '}<br>');
-			}
-			$("#workplace-focus").val($("#workplace-focus").val() + 'available = { '+ $(exportavailable).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + ' }<br>');
-			if($(exportttc).text() == "" || $(exportttc).text() == "0"){
-				$("#workplace-focus").val($("#workplace-focus").val() + 'cost = 10 <br> available_if_capitulated = yes <br>');
-			}else{
-				$("#workplace-focus").val($("#workplace-focus").val() + 'cost = '+ $(exportttc).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + ' <br> available_if_capitulated = yes <br>');	
-			}
-			$("#workplace-focus").val($("#workplace-focus").val() + 'completion_reward = {<br>'+ $(exportreward).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '<br>}<br>');
-			$("#workplace-focus").val($("#workplace-focus").val()+'"},');	
-		});
+		}
+		//});
 		$("#workplace-focus").val($("#workplace-focus").val().slice(0, -1)+"]}").delay(100);
 		
 		$('#export-focus-hidden').trigger('click');
@@ -593,13 +562,6 @@ $(document).ready(function(){
         });
 	});
 	
-	$("#import, #close-import").click(function(){
-		$("#import-box").toggle();	
-	});
-	
-	$("#help-out, #close-help-out").click(function(){
-		$("#help-out-box").toggle();	
-	});
 	
 	$("#sub-pass").click(function(){
 		$.post( 'import.php', { import_password: $("#import_password").val() },
@@ -609,9 +571,6 @@ $(document).ready(function(){
 			$( "#show-output" ).empty().append( content );
 			
         });
-	});
-	$(document).on('click', "#close-pw", function() {
-		$( "#display-password" ).hide();
 	});
 	
 	$(document).on('click', ".import-row", function() {
@@ -624,135 +583,6 @@ $(document).ready(function(){
 	});
 	$(document).on('click', "#clear-table", function() {
 		$("#table").remove();	
-	});
-	
-	
-	
-	//Available/Bypass/Reward builder
-	$("#close-builder").click(function(){
-			$("#builder").hide();
-	});
-	$("#available").click(function(){
-		$("#builder").show();
-		$("#submit-build").attr("build","available");
-	});
-	$("#bypass").click(function(){
-		$("#builder").show();
-		$("#submit-build").attr("build","bypass");
-	});
-	$("#reward").click(function(){
-		$("#builder").show();
-		$("#submit-build").attr("build","reward");
-	});
-	
-	//JSON
-	$('#searchjson').keyup(function(){
-		var searchField = $('#searchjson').val();
-		var regex = new RegExp(searchField, "i");
-		var count = 1;
-		var output = "";
-		$.getJSON("output.json", function(data) {
-			$.each(data, function(key, val){
-				if ((val.description.search(regex) != -1)) {
-			 		output += '<p class="build-description" id="'+val.id+'" tag="'+val.uses_tag+'" state="'+val.uses_state+'" >'+val.description+'</p>';
-					output += '<div class="default-outcome" id="'+val.id+'_defaultoutcome">'+val.default_outcome+'</div>';
-					output += '<div class="build-hover" id="'+val.id+'_hover">'+val.example+'</div>';
-				}
-			});
-			$('#searchoutput').html(output);
-		}); 
-	});
-	
-	$(document).on('click', ".build-description", function() {
-		var buildid = $(this).attr("id");
-		$("#"+buildid+"_hover").toggle();
-	});
-	
-	$(document).on('click', ".build-hover", function() {
-		var id = $(this).attr("id").replace("_hover","");
-		if($("#"+id).attr("tag") == "yes"){
-				$("#tag-box").show();
-		}
-		if($("#"+id).attr("state") == "yes"){
-				$("#state-box").show();
-		}
-		if($("#"+id+"_defaultoutcome").attr("iscustom") !== "yes"){
-			if($("#"+id+"_defaultoutcome").text() == "new-level"){
-				$(".current-build-add-location").removeClass("current-build-add-location").append(id+' = {<br><div class="current-build-add-location"></div><br>}');
-			}else{
-				$(".current-build-add-location").append(id+'<textarea id="add-build">'+$("#"+id+"_defaultoutcome").text()+'</textarea>');
-			}
-		}else{
-			$(".current-build-add-location").append('<textarea id="add-build">'+$("#"+id+"_defaultoutcome").text()+'</textarea>');
-		}
-		$("#submit-build").show();
-	});
-	
-	//TAG search
-	$('#searchtags').keyup(function(){
-		var searchField = $('#searchtags').val();
-		var regex = new RegExp(searchField, "i");
-		var count = 1;
-		var output = "";
-		$.getJSON("tags.json", function(data) {
-			$.each(data, function(key, val){
-				if ((val.country.search(regex) != -1) || (val.tag.search(regex) != -1)) {
-			 		output += '<p id="'+val.tag+'" class="searched_tags">'+val.country+'</p>';
-				}
-			});
-			$('#tagsearchoutput').html(output);
-		}); 
-	});
-	
-	$(document).on('click', ".searched_tags", function() {
-		var tagid = $(this).attr("id");
-		$("#build-preview").html($("#build-preview").html().replace("TAG",tagid));
-		if ( $( "#add-build" ).length ) {
-			$("#add-build").val($("#add-build").val().replace("TAG",tagid));
-		}
-		$("#tag-box").hide();
-	});
-	
-	//State search
-	$('#searchstates').keyup(function(){
-		var searchField = $('#searchstates').val();
-		var regex = new RegExp(searchField, "i");
-		var count = 1;
-		var output = "";
-		$.getJSON("states.json", function(data) {
-			$.each(data, function(key, val){
-				if ((val.id.search(regex) != -1) || (val.name.search(regex) != -1)) {
-			 		output += '<p id="state_'+val.id+'" class="searched_states">'+val.name+'</p>';
-				}
-			});
-			$('#statesearchoutput').html(output);
-		}); 
-	});
-	
-	$(document).on('click', ".searched_states", function() {
-		var tagid = $(this).attr("id").replace("state_","");
-		$("#build-preview").html($("#build-preview").html().replace("STATEID",tagid));
-		$("#build-preview").html($("#build-preview").html().replace("state_id",tagid));
-		if ( $( "#add-build" ).length ) {
-			$("#add-build").val($("#add-build").val().replace("STATEID",tagid));
-			$("#add-build").val($("#add-build").val().replace("state_id",tagid));
-		}
-		$("#state-box").hide();
-	});
-	
-	
-	//Submit
-	$("#submit-build").click(function(){
-		//#build-preview
-		var buildvalue = $("#add-build").val();
-		$("#add-build").after(buildvalue);
-		$("#add-build").remove();
-		$("#"+$(this).attr("build")).val($("#"+$(this).attr("build")).val()+$("#build-preview").text());
-		$("#build-preview").empty();
-		$("#build-preview").addClass("current-build-add-location");
-		$(this).attr("build","null");
-		$("#builder").hide();
-		$(this).hide();
 	});
 	
 	//Custom GFX
@@ -781,190 +611,16 @@ $(document).ready(function(){
 			}
 		  }); 
 	});
-	
-	
-	// === NF to JSON
-	$("#treetojson").click(function(){
-		$("#show-output").append('<div id="table"><p>Click the focuses below to add them to your focus tree</p><button id="clear-table">Clear Focuses</button></div>');
-		toJSON($("#existing-focus-tree").val().replace(/\t/g,""),0); 
+
+	//Refresh max x/y
+	$(".focus").each(function(){
+		var x = parseInt($(this).attr("x-pos"));
+		var y = parseInt($(this).attr("y-pos"));
+		if(parseInt($("#max-x").text()) < x){
+			$("#max-x").text(x);
+		}
+		if(parseInt($("#max-y").text()) < y){
+			$("#max-y").text(y);
+		}
 	});
-	//Just trims lines to remove #comments.
-	//Doesn't handle cases where # characters appear inside strings
-	function preprocess(s) {
-		lines = s.split(/\r?\n/);
-		result = "";
-		for(var i = 0; i < lines.length; ++i) {
-			var line = lines[i];
-			var index = line.indexOf("#");
-			if(index != -1) {
-				line = line.substring(0, index);
-			}
-			result += line + "\n";
-		}
-		return result;
-	}
-	
-	//Probably doesn't handle strings that contain {} or # characters
-	function toJSON(s, level) {
-		let maxLevel = 2;
-		s = preprocess(s);
-		var key = "";
-		var value = "";
-		var buildingKey = true;
-		var braceCount = 0; 
-		var hadBraces = false;
-		var json = {};
-		for(var i = 0; i < s.length; ++i) {
-			let c = s.charAt(i);
-			
-			//If the parser is currently expecting a key
-			if(buildingKey) {
-				//Ignore these characters because they won't be part of a key
-				if(c === "{" || c === "}") {
-					continue;
-				}
-				
-				//As long as we don't hit the = character, we are still building a key.
-				//The assumption here is that keys can contain space characters
-				if(c !== '=') {
-					key += c;
-				}
-				else {
-					buildingKey = false;
-					key = key.trim();
-				}
-			}
-			//The parser is expecting a value
-			else {
-				value += c;
-				//if only whitespace
-				//  continue
-				if(c === "{") {
-					++braceCount;
-					hadBraces = true;
-				}
-				else if(c === "}") {
-					--braceCount;
-				}
-				
-				//If the braces are evenly matched,
-				//and our value string is not just whitespace characters
-				//and the next character to add is whitespace,
-				//then we are done building the value string
-				if(braceCount === 0 && /\S/.test(value) && /\s/.test(c)) {
-					value = value.trim();
-					
-					//In the stupid format, the same key can appear multiple times.
-					//If this happens, then what we really want is to treat that key
-					//as an array
-					if(key in json) {
-						
-						//Convert value stored at that key to
-						//an array if it isn't already one
-						if(!Array.isArray(json[key])) {
-							var obj = json[key];
-							json[key] = [obj];
-						}
-	
-						//If the value had {} characters, then
-						//it will consist of other key/value pairs.
-						if(hadBraces && level < maxLevel) {                    
-							json[key] = json[key].concat(toJSON(value, level+1));
-							hadBraces = false;
-						}
-						else {
-							json[key] = json[key].concat(value);
-						} 
-					}
-					
-					else {
-						if(hadBraces && level < maxLevel) {                    
-							json[key] = toJSON(value, level+1);
-							hadBraces = false;
-						}
-						else {
-							json[key] = value;
-						} 
-					}
-					
-					
-					buildingKey = true;
-					key = "";
-					value = "";
-				}
-			}
-		}
-		$("#existing-focus-tree-output").val(JSON.stringify(json));
-		//console.log(json);
-		//$("#show-output").append(JSON.stringify(json));
-		var obj = JSON.parse($("#existing-focus-tree-output").val());
-	
-		var focus = obj.focus;
-		for(var i in focus){
-			var id = focus[i].id;
-			var name = "undefined";
-			var desc = "undefined";
-			var text = focus[i].id;
-			if(focus[i].hasOwnProperty('text')){
-				text = focus[i].text;
-			}
-			var localisation = $("#existing-localisation").val().split(/\n/);
-			$.each(localisation,function(u, i) {
-				if(i.indexOf(":") !== -1){
-					var splitid = i.split(/:(.+)/);
-					if(splitid[0].replace(/\s+/g, "") == text){
-						name = splitid[1].replace("0 ","").slice(1, -1);
-					}
-					if(splitid[0].replace(/\s+/g, "") == text+"_desc"){
-						desc = splitid[1].replace("0 ","").slice(1, -1);
-					}
-				}
-			});
-			if(focus[i].hasOwnProperty('mutually_exclusive')){
-				var me = focus[i].mutually_exclusive;
-			}else{
-				var me = "";	
-			}
-			if(focus[i].hasOwnProperty('prerequisite')){
-				var pr = focus[i].prerequisite;
-			}else{
-				var pr = "";	
-			}
-			if(focus[i].hasOwnProperty('ai_will_do')){
-				var ai = focus[i].ai_will_do;
-			}else{
-				var ai = "";	
-			}
-			if(focus[i].hasOwnProperty('completion_reward')){
-				var completion_reward = focus[i].completion_reward;
-			}else{
-				var completion_reward = "";	
-			}
-			if(focus[i].hasOwnProperty('available')){
-				var available = focus[i].available;
-			}else{
-				var available = "";	
-			}
-			if(focus[i].hasOwnProperty('bypass')){
-				var bypass = focus[i].bypass;
-			}else{
-				var bypass = "";	
-			}
-			if(focus[i].hasOwnProperty('completion_tooltip')){
-				var completion_tooltip = focus[i].completion_tooltip;
-			}else{
-				var completion_tooltip = "";	
-			}
-			if(focus[i].hasOwnProperty('cost')){
-				var cost = focus[i].cost;
-			}else{
-				var cost = "10";	
-			}
-			$("#table").append('<tr class="import-row" id="'+focus[i].id+'"><td>'+name+'</td><td><div class="focus-reward">'+focus[i].completion_reward+'<div id="'+id+'-import-row" style="display:none;"><div id="'+id+'" class="focus" style="top:'+(parseInt(focus[i].y)*180)+'px;left:'+(parseInt(focus[i].x)*150)+'px;" x-pos="'+focus[i].x+'" y-pos="'+focus[i].y+'"><div style="position:relative"><div class="mover up">^&nbsp;&nbsp;</div><div class="mover down">&nbsp;&nbsp;v</div><img src="images/'+focus[i].icon.replace("GFX_","")+'.png" id="'+id+'_gfx" class="gfx"><div class="name"><p id="'+id+'-name">'+name+'</p></div><div class="mover left">&lt;&nbsp;&nbsp;</div><div class="mover right">&nbsp;&nbsp;&gt;</div><div class="tail"></div></div></div><div class="all-info" id="'+id+'-all-info"><div id="'+id+'_name">'+name+'</div><div id="'+id+'_desc">'+desc+'_desc</div><div id="'+id+'_tooltip">'+completion_tooltip+'</div><div id="'+id+'_available">'+available+'</div><div id="'+id+'_reward">'+completion_reward+'</div><div id="'+id+'_time">'+cost+'</div><div id="'+id+'_bypass">'+bypass+'</div><div id="'+id+'_prefocus">'+pr+'</div><div id="'+id+'_mutual">'+me+'</div><div id="'+id+'_ai">'+ai+'</div><div id="'+id+'_gfx">'+focus[i].icon.replace("GFX_","")+'</div></div></div></div></td></tr>');
-		}
-		return json;
-		
-	}
-
-
 });

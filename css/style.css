@@ -392,7 +392,7 @@ li.sub-menu{
 .focus > img{
 	margin-bottom:-30px;
 }
-.panel{
+/*.panel{
 	height:100vh;
 	width:40vw;
 	position:fixed;
@@ -407,7 +407,7 @@ li.sub-menu{
 	border:0;
 	top:0;
 	left:calc(40vw + 80px);
-}
+}*/
 .secondbox-extra{
 	height:100vh;
 	width:40vw;
@@ -421,24 +421,14 @@ li.sub-menu{
 .page-container.sidebar-collapsed-back .panel2,.page-container.sidebar-collapsed-back .panel2-extra{
 	left:calc(40vw + 270px);
 }
-.panel-head{
-	background:#1b93e1;
-	height:55px;
-}
-.panel-head > h3{
-	margin: 0;
-    text-align: center;
-    padding-top: 1rem;
-	color:#fff;
-}
-.panel-body{
+/*.panel-body{
 	background:#fff;
 	height:calc(100vh - 57px);
 	width:100%;
 	padding:1.5rem 0.5rem;
 	overflow-y:scroll;
-}
-#edit,#export-box,#export-help-box,#server-box,#help-box,#import-box,#selectfocusarea,#jsondata,#builder,#tag-box,#state-box,#help-out-box,#editing{
+}*/
+#edit-focus,#export-box,#export-help-box,#server-box,#help-box,#import-box,#selectfocusarea,#jsondata,#builder,#tag-box,#state-box,#help-out-box,#editing{
 	display:none;
 }
 input,textarea{
@@ -452,9 +442,13 @@ input,textarea{
 }
 .close-button{
 	float:right;
+	cursor: pointer;
 	margin-right:1.5rem;
 	top:0.25rem;
 	color:#fff;
+}
+#menu li, sidebar-icon{
+	cursor: pointer;
 }
 .alert{
 	background:#96281B;
@@ -508,7 +502,30 @@ small{font-size:0.65em;}
 	padding:0.5rem 1rem;
 	border-radius:0;	
 }
-@media(max-width:600px){
+
+.reward_wrapper{
+	position: relative;
+}
+.reward_wrapper textarea{
+	position: absolute;
+	color:rgba(0,0,0,0.5);
+}
+
+#reward{
+	z-index:5;
+	background: none;
+	color:#000;
+}
+#reward_underlay{
+	resize: none;
+	overflow-y: scroll;
+}
+
+input[type=checkbox]{
+	width:1rem;
+}
+
+/*@media(max-width:600px){
 	.panel{
 		height:100vh;
 		width:calc(100vw - 66px);
@@ -529,5 +546,58 @@ small{font-size:0.65em;}
 		position:fixed;
 		z-index:16;
 		border:0;
+	}
+}*/
+
+.panel{
+	overflow-y: scroll;
+	border: none;
+	border-radius: 0;
+	max-width:32vw;
+}
+.panel-head{
+	background:#1b93e1;
+	height:55px;
+}
+.panel-head > h3{
+	margin: 0;
+    text-align: center;
+    padding-top: 1rem;
+	color:#fff;
+}
+.popup_container_wrapper{
+	position: fixed;
+	z-index: 9999;
+	left:1vw;
+	top:0;
+	width: 98vw;
+}
+.popup_container{
+	display: flex;
+}
+.popup_container .panel{
+	width:calc(50vw - ( 35px + 2vh ));
+	height:98vh;
+	margin: 1vh;
+	display: block;
+	position: static;
+}
+.popup_container .panel-body{
+	height:100%;
+}
+
+@media screen and (max-width: 780px){
+	.panel{
+		max-width:100vw;
+		max-height:45vh;
+	}
+	.popup_container .panel{
+		width:95vw;
+	}
+	.popup_container{
+		flex-wrap: wrap;
+	}
+	#tag-box{
+		margin-top: -47vh;
 	}
 }

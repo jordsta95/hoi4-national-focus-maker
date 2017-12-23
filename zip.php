@@ -1,4 +1,6 @@
 <?php
+if(isset($_POST['workplace-focus'])){
+	
 $json = json_decode($_POST['workplace-focus']);
 $lang = $_POST['workplace-lang'];
 $lan = (string)$_POST['tree-language'];
@@ -13,28 +15,30 @@ $tree = "";
 $tree .= str_replace("<br>","\r\n",$json->start);
 $customGFX = "spriteTypes = { \r\n";
 foreach($json->focuses as $focus){
-	$tree .= '#Focus for '.$focus->name.' 
-	';
-	$tree .= 'focus = { 
-	';
-	if(strpos($focus->icon,"data:image/png;") !== false){
-		$image = base64_decode(str_replace("data:image/png;base64,","",$focus->icon));
-		file_put_contents($folder.'/gfx/interface/goals/'.$focus->id.'.png',$image);
-		$img = new Imagick($folder.'/gfx/interface/goals/'.$focus->id.'.png'); //Load the uploaded image
-		$img->setformat('tga'); //Set the format to tga
-		$img->writeimage($folder.'/gfx/interface/goals/GFX_'.$focus->id.'.tga'); //Write/save the dds texture
-		$icon = 'GFX_'.$focus->id;
-		$customGFX .= "##Icon For: ".$focus->id." \r\n SpriteType = { \r\n name = '".$icon."' \r\n texturefile = 'gfx/interface/goals/".$icon.".tga' \r\n }";
-	}else{
-		$rem_png = str_replace(".png","",$focus->icon);
-		$icon = str_replace("images/","GFX_",$rem_png);
+	if($focus->name !== "" && $focus->name !== "undefined"){
+		$tree .= '#Focus for '.$focus->name.' 
+		';
+		$tree .= 'focus = { 
+		';
+		if(strpos($focus->icon,"data:image/png;") !== false){
+			$image = base64_decode(str_replace("data:image/png;base64,","",$focus->icon));
+			file_put_contents($folder.'/gfx/interface/goals/'.$focus->id.'.png',$image);
+			$img = new Imagick($folder.'/gfx/interface/goals/'.$focus->id.'.png'); //Load the uploaded image
+			$img->setformat('tga'); //Set the format to tga
+			$img->writeimage($folder.'/gfx/interface/goals/GFX_'.$focus->id.'.tga'); //Write/save the dds texture
+			$icon = 'GFX_'.$focus->id;
+			$customGFX .= '##Icon For: '.$focus->id.' \r\n SpriteType = { \r\n name = "'.$icon.'" \r\n texturefile = "gfx/interface/goals/'.$icon.'.tga" \r\n }';
+		}else{
+			$rem_png = str_replace(".png","",$focus->icon);
+			$icon = str_replace("images/","GFX_",$rem_png);
+		}
+		$tree .= 'id = '.$focus->id.' 
+		';
+		$tree .= 'icon = '.$icon.' 
+		';
+		$tree .= str_replace("<br>"," \r\n ",str_replace("'",'"',$focus->everythingelse));
+		$tree .= '}';
 	}
-	$tree .= 'id = '.$focus->id.' 
-	';
-	$tree .= 'icon = '.$icon.' 
-	';
-	$tree .= str_replace("<br>"," \r\n ",str_replace("'",'"',$focus->everythingelse));
-	$tree .= '}';
 }
 $tree .= '#End of focuses 
 }';
@@ -138,15 +142,5 @@ array_map('unlink', glob("$folder/interface/*.*"));
 rmdir($folder.'/interface');
 array_map('unlink', glob("$folder/*.*"));
 rmdir($folder);
-/*
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Untitled Document</title>
-</head>
-
-<body>
-</body>
-</html>*/
+}
 ?>
