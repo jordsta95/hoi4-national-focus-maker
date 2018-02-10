@@ -219,7 +219,7 @@ $(document).ready(function(){
 			$("#y").val(gety);
 			$("#chosen-gfx").val(getgfx.replace("images\/","").replace(".png",""));
 			$("#display-gfx").attr("src", getgfx);
-			$("#edit").show();
+			$("#edit-focus").show();
 			$("#editing").text(nf);
 		}else{
 			$(this).parent().parent().remove();
@@ -341,6 +341,8 @@ $(document).ready(function(){
 		localStorage.setItem('nationalfocus', $('#display').html());
 	});
 	
+
+
 	$("#export-help, #close-export-help").click(function(){
 		$("#export-help-box").toggle();	
 	});
@@ -348,7 +350,80 @@ $(document).ready(function(){
 	$("#export, #close-export").click(function(){
 		$("#export-box").toggle();	
 	});
-	
+
+	$("#export-box-open").on('click', function(){
+		var errors = 0;
+		var errorMessages = '';
+		$('.focus').each(function(){
+			var id = '#'+$(this).attr('id');
+			var name = $(id+'-name').text();
+			if( ($(id+'_available').text().match(/{/g) || []).length !== ($(id+'_available').text().match(/}/g) || []).length ){
+				errors++;
+				errorMessages += 'Uneven amount of braces for '+name+'\'s available<br>';
+			}
+			if( ($(id+'_reward').text().match(/{/g) || []).length !== ($(id+'_reward').text().match(/}/g) || []).length ){
+				errors++;
+				errorMessages += 'Uneven amount of braces for '+name+'\' reward<br>';
+			}
+			if( ($(id+'_bypass').text().match(/{/g) || []).length !== ($(id+'_bypass').text().match(/}/g) || []).length ){
+				errors++;
+				errorMessages += 'Uneven amount of braces for '+name+'\' bypass<br>';
+			}
+			if($(id+'_prefocus').text() != ''){
+				var prefoci = [];
+				var prefocus = $(id+'_prefocus').text();
+				var prefocus = prefocus.split('&&');
+
+				$.each(prefocus, function(){
+					var split = this.split('||');
+					$.each(split, function(){
+						prefoci.push(this);
+					});
+				});
+				$.each(prefoci, function(){
+					if(!$('#'+this).length){
+						errors++;
+						errorMessages += 'Focus with ID "'+this+'" is referenced in '+name+' but does not exist<br>';
+					}
+				});
+			}
+			if($(id+'_mutual').text() != ''){
+				var mutuals = [];
+				var mutual = $(id+'_mutual').text();
+				var mutual = mutual.split('&&');
+
+				$.each(mutual, function(){
+					var split = this.split('||');
+					$.each(split, function(){
+						prefoci.push(this);
+					});
+				});
+				$.each(mutuals, function(){
+					if(!$('#'+this).length){
+						errors++;
+						errorMessages += 'Focus with ID "'+this+'" is referenced in '+name+' but does not exist<br>';
+					}
+				});
+			}
+
+			if(errors > 0){
+				$('.errors .numbers').text(errors);
+				$('.errors .message').html(errorMessages);
+				$('.errors .message').append('<hr>Click box to close');
+				$('.errors').show();
+			}
+		});
+	});
+	$('.errors').on('click', function(){
+		if($(this).hasClass('inactive')){
+			$(this).removeClass('inactive');
+			$(this).addClass('active');
+		}else{
+			$(this).addClass('inactive');
+			$(this).removeClass('active');
+			$(this).hide();
+		}
+	});
 	//TAG search
 	$("#export-country").keyup(function(){
 		var searchField = $("#export-country").val();
@@ -623,4 +698,82 @@ $(document).ready(function(){
 			$("#max-y").text(y);
 		}
 	});
+
+
+	/**
+	===
+		For connectors:
+	===
+	**/
+
+	//Move focus right 
+	$(document).on('click', ".right", function() {
+		$(this).parent().parent().animate({left: '+=150px'}, 0);
+		$(this).parent().parent().attr("x-pos",parseInt($(this).parent().parent().attr("x-pos"))+1);
+		moveConnections($(this).parent().parent().attr("id"));
+	});
+	//Move focus left
+	$(document).on('click', ".left", function() {
+		if(parseInt($(this).parent().parent().css("left").replace("px","")) > 99){
+			$(this).parent().parent().animate({left: '+=-150px'}, 0);
+			$(this).parent().parent().attr("x-pos",parseInt($(this).parent().parent().attr("x-pos"))-1);
+			moveConnections($(this).parent().parent().attr("id"));
+		}
+	});
+	//Move focus down
+	$(document).on('click', ".down", function() {
+		$(this).parent().parent().animate({top: '+=180px'}, 0);
+		$(this).parent().parent().attr("y-pos",parseInt($(this).parent().parent().attr("y-pos"))+1);
+		moveConnections($(this).parent().parent().attr("id"));
+	});
+	//Move focus up
+	$(document).on('click', ".up", function() {
+		if(parseInt($(this).parent().parent().css("top").replace("px","")) > 149){
+			$(this).parent().parent().animate({top: '+=-180px'}, 0);
+			$(this).parent().parent().attr("y-pos",parseInt($(this).parent().parent().attr("y-pos"))-1);
+			moveConnections($(this).parent().parent().attr("id"));
+		}
+	});
+
+	function moveConnections(focusid){
+		var xpos = parseInt($("#"+focusid).attr("x-pos"))*150;
+		var ypos = parseInt($("#"+focusid).attr("y-pos"))*180;
+		//Connector 
+		$.each($('.connection[id*="'+$("#"+focusid).attr("id")+'"]'),function(index, value){
+			var connectorid = $(value).attr("id");
+			var connectorclass = $("#"+connectorid).attr("class").replace("-vert","");
+			var focuses = connectorid.split("-");
+			var top = parseInt($("#"+focuses[1]).css("top").replace("px",""))+parseInt($("#"+focuses[1]).css("height").replace("px",""));
+			if(top.toString().charAt(0) == "-"){
+			  var topcalc = top.toString().replace("-","");
+			}else{
+				var topcalc = top;
+			}
+			var verttop = topcalc;
+			var vertical = topcalc-ypos;
+			if(vertical.toString().charAt(0) == "-"){
+			  var verticalcalc = vertical.toString().replace("-","");
+			}else{
+				var verticalcalc = vertical;
+			}
+			var width = parseInt($("#"+focuses[1]).css("left").replace("px",""))-parseInt($("#"+focuses[0]).css("left").replace("px",""));
+			if(width.toString().charAt(0) == "-"){
+			  var widthcalc = width.toString().replace("-","");
+			}else{
+				var widthcalc = width;
+			}
+			if(parseInt($("#"+focuses[1]).css("left").replace("px","")) < parseInt($("#"+focuses[0]).css("left").replace("px",""))){
+				var left = parseInt($("#"+focuses[1]).css("left").replace("px",""))+59;
+				var leftvert = parseInt(left)+parseInt(widthcalc);
+			}else{
+				var left = parseInt($("#"+focuses[0]).css("left").replace("px",""))+59;
+				var leftvert = left;  
+			}
+			$("#"+focuses[0]+'-'+focuses[1]+'-h').remove();
+			$("#"+focuses[0]+'-'+focuses[1]+'-v').remove();
+			$("#display").append('<div class="'+connectorclass+'" id="'+focuses[0]+'-'+focuses[1]+'-h" style="top:'+topcalc+'px;width:'+widthcalc+'px;left:'+left+'px;"></div>');
+			$("#display").append('<div class="'+connectorclass+'-vert" id="'+focuses[0]+'-'+focuses[1]+'-v" style="top:'+verttop+'px;height:'+verticalcalc+'px;left:'+leftvert+'px;"></div>');
+		});	
+	}
+
 });

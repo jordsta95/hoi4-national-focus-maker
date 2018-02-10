@@ -1,24 +1,33 @@
 <?php
 if(isset($_POST['workplace-focus'])){
-	
+
+$errors = []; 
+
 $json = json_decode($_POST['workplace-focus']);
 $lang = $_POST['workplace-lang'];
 $lan = (string)$_POST['tree-language'];
-$folder = $json->treeid."-".date('Ymdgis');
-//Create directory
-mkdir($folder);
-mkdir($folder.'/gfx');
-mkdir($folder.'/gfx/interface');
-mkdir($folder.'/gfx/interface/goals');
-mkdir($folder.'/interface');
+if($json->treeid){
+    $folder = $json->treeid."-".date('Ymdgis');
+    //Create directory
+    mkdir($folder);
+    mkdir($folder.'/gfx');
+    mkdir($folder.'/gfx/interface');
+    mkdir($folder.'/gfx/interface/goals');
+    mkdir($folder.'/interface');
+}else{
+    $errors[] = 'You tried submitting a focus tree without setting a focus tree ID';
+}
+
 $tree = "";
 $tree .= str_replace("<br>","\r\n",$json->start);
 $customGFX = "spriteTypes = { \r\n";
+
 foreach($json->focuses as $focus){
 	if($focus->name !== "" && $focus->name !== "undefined"){
-		$tree .= '#Focus for '.$focus->name.' 
+        $fortree = '';
+		$fortree .= '#Focus for '.$focus->name.' 
 		';
-		$tree .= 'focus = { 
+		$fortree .= 'focus = { 
 		';
 		if(strpos($focus->icon,"data:image/png;") !== false){
 			$image = base64_decode(str_replace("data:image/png;base64,","",$focus->icon));
@@ -32,16 +41,39 @@ foreach($json->focuses as $focus){
 			$rem_png = str_replace(".png","",$focus->icon);
 			$icon = str_replace("images/","GFX_",$rem_png);
 		}
-		$tree .= 'id = '.$focus->id.' 
+		$fortree .= 'id = '.$focus->id.' 
 		';
-		$tree .= 'icon = '.$icon.' 
+		$fortree .= 'icon = '.$icon.' 
 		';
-		$tree .= str_replace("<br>"," \r\n ",str_replace("'",'"',$focus->everythingelse));
-		$tree .= '}';
+		$fortree .= str_replace("<br>"," \r\n ",str_replace("'",'"',$focus->everythingelse));
+		$fortree .= '}';
+        $opening = substr_count($fortree, '{');
+        $closing = substr_count($fortree, '}');
+        if($opening !== $closing){
+            $errors[] = $focus->name.' has inconsistent braces: <i>'.$opening.'x {</i> & <i>'.$closing.'x }</i><br>This issue will be found in the on of the following: rewards, available, and bypass sections<br><strong>To resolve this issue, you will need to count how many opening/closing braces you have in each of the previously stated text boxes, and add the missing opening/closing braces where it is missing.';
+        }
 	}
 }
 $tree .= '#End of focuses 
 }';
+if($errors){
+    ?>
+    <style>
+    html,body{font-family: monospace;padding: 0;margin: 0;}
+    .h1{background: #1b93e1;color: #fff;margin-bottom: 1rem;}
+    div{padding: 1rem;}
+    </style>
+    <?php
+    echo '<div class="h1"><h1>Your file could not be exported as it contains at least 1 common error</h1></div>';
+    echo '<div>';
+    foreach ($errors as $error) {
+        echo '- '.$error.'<hr>';
+    }
+    echo '<br> <span style="color:red;">Please report these errors <a href="https://github.com/jordsta95/hoi4-national-focus-maker/issues">on Github</a> and make reference to what caused the error.';
+    echo '</div>';
+    die();
+}
+
 mkdir($folder.'/common');
 mkdir($folder.'/common/national_focus');
 $focustreefile = './'.$folder.'/common/national_focus/'.$json->treeid.".txt";

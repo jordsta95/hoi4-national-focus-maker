@@ -601,3 +601,44 @@ input[type=checkbox]{
 		margin-top: -47vh;
 	}
 }
+
+.errors{
+	background:red;
+	color:white;
+	display: none;
+	position: absolute;
+	z-index: 99999;
+	display: none;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+}
+.errors .numbers{
+	width: 20px;
+	height: 20px;
+	font-size: 14px;
+	display: block;
+	text-align: center;
+	border-radius: 50%;
+}
+.errors.inactive:hover{
+	animation-play-state: paused;
+}
+.errors.inactive{
+	border-radius: 50%;
+	animation-name: bounce;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+.errors.inactive .message{
+	display: none;
+}
+.errors.active .message{
+	display: block;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {top: 0;}
+    10% {top: 10px;}
+    30% {top: 5px;}
+}
