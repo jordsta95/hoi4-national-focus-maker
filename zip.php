@@ -50,8 +50,9 @@ foreach($json->focuses as $focus){
         $opening = substr_count($fortree, '{');
         $closing = substr_count($fortree, '}');
         if($opening !== $closing){
-            $errors[] = $focus->name.' has inconsistent braces: <i>'.$opening.'x {</i> & <i>'.$closing.'x }</i><br>This issue will be found in the on of the following: rewards, available, and bypass sections<br><strong>To resolve this issue, you will need to count how many opening/closing braces you have in each of the previously stated text boxes, and add the missing opening/closing braces where it is missing.';
+            $errors[] = $focus->name.' has inconsistent braces: <i>'.$opening.'x {</i> & <i>'.$closing.'x }</i><br>This issue will be found in the one of the following: rewards, available, and bypass sections<br><strong>To resolve this issue, you will need to count how many opening/closing braces you have in each of the previously stated text boxes, and add the missing opening/closing braces where it is missing.';
         }
+        $tree .= $fortree;
 	}
 }
 $tree .= '#End of focuses 
