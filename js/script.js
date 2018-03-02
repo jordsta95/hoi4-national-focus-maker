@@ -449,6 +449,7 @@ $(document).ready(function(){
 		currentx = 0;
 		currenty = 0;
 		working = 0;
+		checked = 0;
 		var maxx = parseInt($("#max-x").text());
 		var maxy = parseInt($("#max-y").text());
 		var focustreeid =$("#focus-tree-id").val().replace(/\s+/g, '').replace(/[^a-zA-Z]/g, '').toLowerCase();
@@ -456,6 +457,7 @@ $(document).ready(function(){
 		$("#workplace-lang").val("l_"+$("#tree-language").val()+":\n");
 		//$('.all-info').each(function (index, element) {
 		while(currentx <= maxx && currenty <= maxy){
+			checked++;
 			var exportid = $("[x-pos*="+currentx+"][y-pos*="+currenty+"]").attr("id");
 			var exportname = "#"+exportid+"_name";
 			var exportdesc = "#"+exportid+"_desc";
@@ -531,6 +533,10 @@ $(document).ready(function(){
 					currentx++;	
 				}
 			}
+		}
+		console.log(checked);
+		if(checked == 0 || checked == 1){
+			alert('There was a problem creating your focus tree. Please report the following on Github: "x-'+maxx+'|y-'+maxy+'" along with your browser and the location of your final focus (the one at the bottom of your tree)');
 		}
 		//});
 		$("#workplace-focus").val($("#workplace-focus").val().slice(0, -1)+"]}").delay(100);

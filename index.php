@@ -13,7 +13,7 @@
 <!-- jQuery -->
 <script src="js/jquery-2.1.4.min.js?v=1"></script>
 <!-- //jQuery -->
-<script src="js/script.js?v=1.102"></script>
+<script src="js/script.js?v=1.1021"></script>
 <script src="js/tree-to-json.js?v=1.001"></script>
 <script src="js/ui-elements.js?v=1.001"></script>
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
@@ -228,7 +228,7 @@
 					<div id="popularsearches">
 						<h4>Common searches</h4>
 						<p class="build-description" id="add_political_power_cs" tag="no" state="no" iscustom="yes">Add Political Power</p>
-						<div class="default-outcome" id="add_political_power_cs_defaultoutcome" iscustom="yes">add_political_power = = 50</div>
+						<div class="default-outcome" id="add_political_power_cs_defaultoutcome" iscustom="yes">add_political_power = 50</div>
 						<div class="build-hover" id="add_political_power_cs_hover" iscustom="yes">add_political_power = 50</div>
 						<p class="build-description" id="add_civ_factory_cs" tag="no" state="no">Add Civilian Factory To Any Owned State</p>
 						<div class="default-outcome" id="add_civ_factory_cs_defaultoutcome" iscustom="yes">
@@ -388,7 +388,7 @@
 					<p>The code behind this tool is available <a href="https://github.com/jordsta95/hoi4-national-focus-maker/">on GitHub</a></p>
 					<h4>Help keep the site running</h4>
 					<p>Being web-based, this tool requires a server to run on. And when it comes to websites, I will never put anything on it which I wouldn't want to see myself, which means no adverts.</p>
-					<p>$3 a month is all it costs to keep this tool online. I am more than happy to pay this myself, though any donations towards the upkeep are greatly appreciated, and I will find a way to honour anyone who donates.</p>
+					<p>$10 a month is all it costs to keep this tool online. I am more than happy to pay this myself, though any donations towards the upkeep are greatly appreciated, and I will find a way to honour anyone who donates.</p>
 					<p style="text-align:center;margin-top:2.5rem;"><a class="donate" href="https://www.paypal.me/hoi4modding" target="_blank">Donate</a></p>
 				</div>
 			</div>
