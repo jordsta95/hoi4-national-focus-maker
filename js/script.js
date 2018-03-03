@@ -372,14 +372,29 @@ $(document).ready(function(){
 			if($(id+'_prefocus').text() != ''){
 				var prefoci = [];
 				var prefocus = $(id+'_prefocus').text();
-				var prefocus = prefocus.split('&&');
+				if(prefocus.indexOf('&&') > 0){
+					var prefocus = prefocus.split('&&');
 
-				$.each(prefocus, function(){
-					var split = this.split('||');
-					$.each(split, function(){
-						prefoci.push(this);
+					$.each(prefocus, function(){
+						if(this.indexOf('||') > 0){
+							var split = this.split('||');
+							$.each(split, function(){
+								prefoci.push(this);
+							});
+						}else{
+							prefoci.push(this);
+						}
 					});
-				});
+				}else{
+					if(prefocus.indexOf('||') > 0){
+						var prefocus = prefocus.split('||');
+
+						$.each(prefocus, function(){
+							prefoci.push(this);
+						});
+					}
+				}
+				
 				$.each(prefoci, function(){
 					if(!$('#'+this).length){
 						errors++;
