@@ -387,6 +387,7 @@ $(document).ready(function(){
 					});
 				}else{
 					if(prefocus.indexOf('||') > 0){
+						var prefoci = [];
 						var prefocus = prefocus.split('||');
 
 						$.each(prefocus, function(){
@@ -394,7 +395,7 @@ $(document).ready(function(){
 						});
 					}
 				}
-				
+
 				$.each(prefoci, function(){
 					if(!$('#'+this).length){
 						errors++;
