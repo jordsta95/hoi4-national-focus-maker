@@ -44,16 +44,16 @@ $(document).ready(function(){
 	});
 
 	$("#available").click(function(){
-		if($("#predictive_available").prop("checked") == false){
+		//if($("#predictive_available").prop("checked") == false){
 			$("#builder").show();
 			$("#submit-build").attr("build","available");
-		}
+		//}
 	});
 	$("#bypass").click(function(){
-		if($("#predictive_bypass").prop("checked") == false){
+		//if($("#predictive_bypass").prop("checked") == false){
 			$("#builder").show();
 			$("#submit-build").attr("build","bypass");
-		}
+		//}
 	});
 	$("#reward").click(function(){
 		if($("#predictive_reward").prop("checked") == false){

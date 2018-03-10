@@ -1321,7 +1321,7 @@
 		},
 				{
 			"id":"add_building_construction",
-			"description":"Starts a building construction within a state or a province",	
+			"description":"Starts a building construction within a state or a province",    
 			"example":"18 = { add_building_construction = { type = bunker province = 5291 level = 2 instant_build = yes } }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1329,7 +1329,7 @@
 		},
 		{
 			"id":"remove_building",
-			"description":"Removes a specified building from a specified state or province",	
+			"description":"Removes a specified building from a specified state or province",    
 			"example":"219 = { remove_building = { type = arms_factory level = 5 } }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1337,7 +1337,7 @@
 		},
 		{
 			"id":"reset_state_name",
-			"description":"Resets state name to original",	
+			"description":"Resets state name to original",  
 			"example":"32 = { reset_state_name = yes }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1345,7 +1345,7 @@
 		},
 		{
 			"id":"set_state_name",
-			"description":"Changes the name of a state",	
+			"description":"Changes the name of a state",    
 			"example":"32 = { set_state_name = 'Funland' }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1353,7 +1353,7 @@
 		},
 		{
 			"id":"clr_state_flag",
-			"description":"Removes a state flag",	
+			"description":"Removes a state flag",   
 			"example":"353 = { clr_state_flag = test_flag }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1361,7 +1361,7 @@
 		},
 		{
 			"id":"set_state_flag",
-			"description":"Sets a state flag",	
+			"description":"Sets a state flag",  
 			"example":"353 = { set_state_flag = test_flag }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1369,7 +1369,7 @@
 		},
 		{
 			"id":"set_border_war",
-			"description":"Starts a border war",	
+			"description":"Starts a border war",    
 			"example":"605 = { set_border_war = yes }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1377,7 +1377,7 @@
 		},
 		{
 			"id":"add_ace",
-			"description":"Adds an air ace",	
+			"description":"Adds an air ace",    
 			"example":"add_ace = { name = 'Amelia' surname = 'Earhart' callsign = 'Revenant' type = fighter_genius is_female = yes }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1385,7 +1385,7 @@
 		},
 		{
 			"id":"add_autonomy_ratio",
-			"description":"Adds autonomy (with custom name)",	
+			"description":"Adds autonomy (with custom name)",   
 			"example":"add_autonomy_ratio = { value = 0.1 localization = LOC_STRING_HERE }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1393,7 +1393,7 @@
 		},
 		{
 			"id":"add_country_leader_trait",
-			"description":"Add a trait to the current country leader",	
+			"description":"Add a trait to the current country leader",  
 			"example":"add_country_leader_trait = warmonger",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1401,7 +1401,7 @@
 		},
 		{
 			"id":"add_equipment_production",
-			"description":"Add equipment production",	
+			"description":"Add equipment production",   
 			"example":"add_equipment_production = { equipment = { type = light_cruiser_1 creator = 'ITA' version_name = 'Montecuccoli Class' } requested_factories = 1 progress = 0.95 amount = 1 }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1409,7 +1409,7 @@
 		},
 		{
 			"id":"add_equipment_to_stockpile",
-			"description":"Adds equipment to stockpile of the country in question",	
+			"description":"Adds equipment to stockpile of the country in question", 
 			"example":"add_equipment_to_stockpile = { type = convoy_1 amount = 50 producer = <TAG> }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1417,7 +1417,7 @@
 		},
 		{
 			"id":"add_ideas",
-			"description":"Adds idea(s) to a country",	
+			"description":"Adds idea(s) to a country",  
 			"example":"add_ideas = ENG_king_edward",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1425,7 +1425,7 @@
 		},
 		{
 			"id":"add_manpower",
-			"description":"Adds manpower to a state or country",	
+			"description":"Adds manpower to a state or country",    
 			"example":"add_manpower = 8000",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1433,7 +1433,7 @@
 		},
 		{
 			"id":"add_named_threat",
-			"description":"Adds country threat",	
+			"description":"Adds country threat",    
 			"example":"add_named_threat = { threat = 2 name = germany.4.t }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1441,7 +1441,7 @@
 		},
 		{
 			"id":"add_national_unity",
-			"description":"Adds national unity",	
+			"description":"Adds national unity",    
 			"example":"add_national_unity = 0.02",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1449,7 +1449,7 @@
 		},
 		{
 			"id":"add_opinion_modifier",
-			"description":"Adds an opinion modifier to a country",	
+			"description":"Adds an opinion modifier to a country",  
 			"example":"add_opinion_modifier = { target = ENG modifier = tizard_refused }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1457,7 +1457,7 @@
 		},
 		{
 			"id":"add_political_power",
-			"description":"Adds political power to a country",	
+			"description":"Adds political power to a country",  
 			"example":"add_political_power = 50",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1465,7 +1465,7 @@
 		},
 		{
 			"id":"add_popularity",
-			"description":"Adds popularity to an ideology",	
+			"description":"Adds popularity to an ideology", 
 			"example":"add_popularity = { ideology = fascism popularity = 0.1 }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1473,7 +1473,7 @@
 		},
 		{
 			"id":"add_research_slot",
-			"description":"Adds set number of research slots",	
+			"description":"Adds set number of research slots",  
 			"example":"add_research_slot = 2",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1481,7 +1481,7 @@
 		},
 		{
 			"id":"add_resource",
-			"description":"Adds resource production to a state",	
+			"description":"Adds resource production to a state",    
 			"example":"add_resource = { type = oil amount = 8 state = 662 }",
 			"uses_tag":"no",
 			"uses_state":"yes",
@@ -1489,7 +1489,7 @@
 		},
 		{
 			"id":"add_state_claim",
-			"description":"Add claims on a state",	
+			"description":"Add claims on a state",  
 			"example":"add_state_claim = 363",
 			"uses_tag":"no",
 			"uses_state":"yes",
@@ -1497,7 +1497,7 @@
 		},
 		{
 			"id":"add_state_core",
-			"description":"Adds cores on a specified state",	
+			"description":"Adds cores on a specified state",    
 			"example":"add_state_core = 345",
 			"uses_tag":"no",
 			"uses_state":"yes",
@@ -1505,7 +1505,7 @@
 		},
 		{
 			"id":"add_tech_bonus",
-			"description":"Adds a limited tech bonus",	
+			"description":"Adds a limited tech bonus",  
 			"example":"add_tech_bonus = { bonus = 0.5 uses = 2 category = radar_tech }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1513,7 +1513,7 @@
 		},
 		{
 			"id":"add_timed_idea",
-			"description":"Adds a time limited idea to a country",	
+			"description":"Adds a time limited idea to a country",  
 			"example":"add_timed_idea = { idea = idea_id days = 50 }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1521,7 +1521,7 @@
 		},
 		{
 			"id":"add_to_faction",
-			"description":"Adds a country to a faction",	
+			"description":"Adds a country to a faction",    
 			"example":"add_to_faction = ITA",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1529,7 +1529,7 @@
 		},
 		{
 			"id":"add_to_tech_sharing_group",
-			"description":"Adds a country to a tech sharing group",	
+			"description":"Adds a country to a tech sharing group", 
 			"example":"add_to_tech_sharing_group = tizard_mission",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1537,7 +1537,7 @@
 		},
 		{
 			"id":"add_to_war",
-			"description":"Adds country to a war",	
+			"description":"Adds country to a war",  
 			"example":"add_to_war = { targeted_alliance = CHI enemy = JAP }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1545,7 +1545,7 @@
 		},
 		{
 			"id":"air_experience",
-			"description":"Adds air experience",	
+			"description":"Adds air experience",    
 			"example":"air_experience = 10",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1553,7 +1553,7 @@
 		},
 		{
 			"id":"annex_country",
-			"description":"Annexes a specified country",	
+			"description":"Annexes a specified country",    
 			"example":"annex_country = { target = EST }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1561,7 +1561,7 @@
 		},
 		{
 			"id":"add_claim_by",
-			"description":"Add state claim by a country",	
+			"description":"Add state claim by a country",   
 			"example":"any_owned_state = { add_claim_by = SOV }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1569,7 +1569,7 @@
 		},
 		{
 			"id":"add_core_of",
-			"description":"Adds cores of a country to a state",	
+			"description":"Adds cores of a country to a state", 
 			"example":"any_owned_state = { add_core_of = SOV }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1577,7 +1577,7 @@
 		},
 		{
 			"id":"remove_claim_by",
-			"description":"Removes state claim from a country",	
+			"description":"Removes state claim from a country", 
 			"example":"any_owned_state = { remove_claim_by = SOV }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1585,7 +1585,7 @@
 		},
 		{
 			"id":"remove_core_of",
-			"description":"Removes cores of a country from a state",	
+			"description":"Removes cores of a country from a state",    
 			"example":"any_owned_state = { remove_core_of = SOV }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1593,7 +1593,7 @@
 		},
 		{
 			"id":"set_demilitarized_zone",
-			"description":"Sets a state as a demilitarized zone",	
+			"description":"Sets a state as a demilitarized zone",   
 			"example":"any_owned_state = { set_demilitarized_zone = yes }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1601,7 +1601,7 @@
 		},
 		{
 			"id":"army_experience",
-			"description":"Adds army experience",	
+			"description":"Adds army experience",   
 			"example":"army_experience = 10",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1609,7 +1609,7 @@
 		},
 		{
 			"id":"change_tag_from",
-			"description":"Changes player to other country",	
+			"description":"Changes player to other country",    
 			"example":"change_tag_from = GER",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1617,7 +1617,7 @@
 		},
 		{
 			"id":"clear_global_event_target",
-			"description":"Removes a global event target",	
+			"description":"Removes a global event target",  
 			"example":"clear_global_event_target = war_target",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1625,7 +1625,7 @@
 		},
 		{
 			"id":"clear_global_event_targets",
-			"description":"Removes all global event targets",	
+			"description":"Removes all global event targets",   
 			"example":"clear_global_event_targets = war_target",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1633,7 +1633,7 @@
 		},
 		{
 			"id":"clr_country_flag",
-			"description":"Removes a country flag",	
+			"description":"Removes a country flag", 
 			"example":"clr_country_flag = anschluss",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1641,7 +1641,7 @@
 		},
 		{
 			"id":"clr_global_flag",
-			"description":"Removes a global flag",	
+			"description":"Removes a global flag",  
 			"example":"clr_global_flag = spanish_civil_war",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1649,7 +1649,7 @@
 		},
 		{
 			"id":"complete_national_focus",
-			"description":"Completes a national focus",	
+			"description":"Completes a national focus", 
 			"example":"complete_national_focus = focus_id",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1657,7 +1657,7 @@
 		},
 		{
 			"id":"country_event",
-			"description":"Fires an event",	
+			"description":"Fires an event", 
 			"example":"country_event = { days = 1 id = finland.1 }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1665,7 +1665,7 @@
 		},
 		{
 			"id":"create_corps_commander",
-			"description":"Creates a corps commander",	
+			"description":"Creates a corps commander",  
 			"example":"create_corps_commander = { name = 'Dude McCoolDude' gfx = 'GFX_CoolDudesFace' traits = { } skill = 3 }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1673,7 +1673,7 @@
 		},
 		{
 			"id":"create_country_leader",
-			"description":"Creates a country leader (head of state)",	
+			"description":"Creates a country leader (head of state)",   
 			"example":"create_country_leader = { name = 'Peter II' desc = 'POLITICS_PETER_II_DESC' picture = 'Portrait_Yugoslavia_Peter_II.dds' expire = '1965.1.1' ideology = despotism traits = { } }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1681,7 +1681,7 @@
 		},
 		{
 			"id":"create_equipment_variant",
-			"description":"Creates a new equipment variant",	
+			"description":"Creates a new equipment variant",    
 			"example":"create_equipment_variant = { name = 'Montecuccoli Class' type = light_cruiser_1 upgrades = { ship_reliability_upgrade = 3 ship_engine_upgrade = 3 ship_gun_upgrade = 3 ship_anti_air_upgrade = 3 }}",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1689,7 +1689,7 @@
 		},
 		{
 			"id":"create_faction",
-			"description":"Creates a faction with a specified name",	
+			"description":"Creates a faction with a specified name",    
 			"example":"create_faction = 'french_entente_alliance'",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1697,7 +1697,7 @@
 		},
 		{
 			"id":"create_field_marshal",
-			"description":"Creates a field marshal",	
+			"description":"Creates a field marshal",    
 			"example":"create_field_marshal = { name = 'Dude McCoolDude' gfx = 'GFX_CoolDudesFace' traits = { } skill = 3 }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1705,7 +1705,7 @@
 		},
 		{
 			"id":"create_import",
-			"description":"Creates trade between countries",	
+			"description":"Creates trade between countries",    
 			"example":"create_import = { resource = steel amount = 20 exporter = SWE }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1713,7 +1713,7 @@
 		},
 		{
 			"id":"create_navy_leader",
-			"description":"Creates a naval leader for a country",	
+			"description":"Creates a naval leader for a country",   
 			"example":"create_navy_leader = { name = 'Boaty McBoatface' gfx = 'GFX_BoatfacesFace' traits = { } skill = 3 }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1721,7 +1721,7 @@
 		},
 		{
 			"id":"create_unit",
-			"description":"Creates a new unit",	
+			"description":"Creates a new unit", 
 			"example":"create_unit = { division = 'name = COOL_NAME division_template = COOL_TEMPLATE starting_experience_factor = 1.0' }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1729,7 +1729,7 @@
 		},
 		{
 			"id":"create_wargoal",
-			"description":"Creates a wargoal",	
+			"description":"Creates a wargoal",  
 			"example":"create_wargoal = { type = annex_everything target = EST }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1737,7 +1737,7 @@
 		},
 		{
 			"id":"damage_building",
-			"description":"Damages a building in state",	
+			"description":"Damages a building in state",    
 			"example":"damage_building = { type = industrial_complex damage = 0.6 }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1745,7 +1745,7 @@
 		},
 		{
 			"id":"declare_war_on",
-			"description":"Declares war on a specified country",	
+			"description":"Declares war on a specified country",    
 			"example":"declare_war_on = { target = POL type = annex_everything }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1753,7 +1753,7 @@
 		},
 		{
 			"id":"diplomatic_relation",
-			"description":"Set up diplomatic relations between two countries",	
+			"description":"Set up diplomatic relations between two countries",  
 			"example":"diplomatic_relation = { country = SOV relation = non_aggression_pact }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1761,7 +1761,7 @@
 		},
 		{
 			"id":"dismantle_faction",
-			"description":"Dismantles the faction led by the current country",	
+			"description":"Dismantles the faction led by the current country",  
 			"example":"dismantle_faction = yes",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1769,7 +1769,7 @@
 		},
 		{
 			"id":"division_template",
-			"description":"Adds a division template to a country",	
+			"description":"Adds a division template to a country",  
 			"example":"division_template = { name = 'Cool Name' regiments = { infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 } } }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1777,7 +1777,7 @@
 		},
 		{
 			"id":"end_puppet",
-			"description":"Ends puppetry over the specified country",	
+			"description":"Ends puppetry over the specified country",   
 			"example":"end_puppet = CRO",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1785,7 +1785,7 @@
 		},
 		{
 			"id":"give_guarantee",
-			"description":"Guarantees specified country",	
+			"description":"Guarantees specified country",   
 			"example":"give_guarantee = POL",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1793,7 +1793,7 @@
 		},
 		{
 			"id":"give_military_access",
-			"description":"Specified country gives military access (bugged tooltip)",	
+			"description":"Specified country gives military access (bugged tooltip)",   
 			"example":"give_military_access = GER",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1801,7 +1801,7 @@
 		},
 		{
 			"id":"goto_province",
-			"description":"Goes to specified province",	
+			"description":"Goes to specified province", 
 			"example":"goto_province = 11302",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1809,7 +1809,7 @@
 		},
 		{
 			"id":"goto_state",
-			"description":"Goes to specified state",	
+			"description":"Goes to specified state",    
 			"example":"goto_state = 150",
 			"uses_tag":"no",
 			"uses_state":"yes",
@@ -1817,7 +1817,7 @@
 		},
 		{
 			"id":"hold_election",
-			"description":"Holds elections",	
+			"description":"Holds elections",    
 			"example":"hold_election = yes",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1825,7 +1825,7 @@
 		},
 		{
 			"id":"kill_country_leader",
-			"description":"Removes a country leader completely",	
+			"description":"Removes a country leader completely",    
 			"example":"kill_country_leader = yes",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1833,7 +1833,7 @@
 		},
 		{
 			"id":"load_oob",
-			"description":"Loads an OOB file",	
+			"description":"Loads an OOB file",  
 			"example":"load_oob = SOV_reinforcements",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1841,7 +1841,7 @@
 		},
 		{
 			"id":"navy_experience",
-			"description":"Adds navy experience",	
+			"description":"Adds navy experience",   
 			"example":"navy_experience = 10",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1849,7 +1849,7 @@
 		},
 		{
 			"id":"randomize_weather",
-			"description":"Randomizes weather",	
+			"description":"Randomizes weather", 
 			"example":"Needs to be tested",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1857,7 +1857,7 @@
 		},
 		{
 			"id":"set_country_leader_ideology",
-			"description":"Changes the ideology of the current country leader",	
+			"description":"Changes the ideology of the current country leader", 
 			"example":"Needs to be tested",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1865,7 +1865,7 @@
 		},
 		{
 			"id":"remove_unit_leader_trait",
-			"description":"Removes a trait from a unit leader",	
+			"description":"Removes a trait from a unit leader", 
 			"example":"Needs to be tested",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1873,7 +1873,7 @@
 		},
 		{
 			"id":"add_unit_leader_trait",
-			"description":"Add a trait to a unit leader",	
+			"description":"Add a trait to a unit leader",   
 			"example":"Needs to be tested",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1881,7 +1881,7 @@
 		},
 		{
 			"id":"add_scaled_political_power",
-			"description":"Adds political power scaled by the difference between ICs of receiver and another country",	
+			"description":"Adds political power scaled by the difference between ICs of receiver and another country",  
 			"example":"Needs to be tested",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1889,7 +1889,7 @@
 		},
 		{
 			"id":"break",
-			"description":"Break execution of effects",	
+			"description":"Break execution of effects", 
 			"example":"Needs to be tested",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1897,7 +1897,7 @@
 		},
 		{
 			"id":"add_threat",
-			"description":"Adds country threat",	
+			"description":"Adds country threat",    
 			"example":"Needs to be tested",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1905,7 +1905,7 @@
 		},
 		{
 			"id":"set_province_controller",
-			"description":"Set controller of a province",	
+			"description":"Set controller of a province",   
 			"example":"Needs to be tested",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1913,7 +1913,7 @@
 		},
 		{
 			"id":"news_event",
-			"description":"Triggers a news event",	
+			"description":"Triggers a news event",  
 			"example":"news_event = news_event.251",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1921,7 +1921,7 @@
 		},
 		{
 			"id":"puppet",
-			"description":"Puppets the specified country",	
+			"description":"Puppets the specified country",  
 			"example":"puppet = LIB",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1929,7 +1929,7 @@
 		},
 		{
 			"id":"random",
-			"description":"Random effect with a probability",	
+			"description":"Random effect with a probability",   
 			"example":"random = { 50 = { add_political_power = 50 } }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1937,7 +1937,7 @@
 		},
 		{
 			"id":"random_list",
-			"description":"Chooses an effect randomly from a list based on their probabilities",	
+			"description":"Chooses an effect randomly from a list based on their probabilities",    
 			"example":"random_list = { 70 = { add_political_power = 200 } 30 = { add_political_power = -100 } }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1945,7 +1945,7 @@
 		},
 		{
 			"id":"add_extra_state_shared_building_slots",
-			"description":"Add extra building slots to a state",	
+			"description":"Add extra building slots to a state",    
 			"example":"random_owned_state = { add_extra_state_shared_building_slots = 2 }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1953,7 +1953,7 @@
 		},
 		{
 			"id":"release",
-			"description":"Releases a specified country",	
+			"description":"Releases a specified country",   
 			"example":"release = CRO",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1961,7 +1961,7 @@
 		},
 		{
 			"id":"release_puppet",
-			"description":"Releases a specified country",	
+			"description":"Releases a specified country",   
 			"example":"release_puppet = LIB",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1969,7 +1969,7 @@
 		},
 		{
 			"id":"remove_country_leader_trait",
-			"description":"Removes a trait from the current country leader",	
+			"description":"Removes a trait from the current country leader",    
 			"example":"remove_country_leader_trait = stout_defender",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1977,7 +1977,7 @@
 		},
 		{
 			"id":"remove_from_faction",
-			"description":"Removes a country from a faction",	
+			"description":"Removes a country from a faction",   
 			"example":"remove_from_faction = ITA",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -1985,7 +1985,7 @@
 		},
 		{
 			"id":"remove_from_tech_sharing_group",
-			"description":"Removes a country from a tech sharing group",	
+			"description":"Removes a country from a tech sharing group",    
 			"example":"remove_from_tech_sharing_group = tizard_mission",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -1993,7 +1993,7 @@
 		},
 		{
 			"id":"remove_ideas",
-			"description":"Removes idea(s) from a country",	
+			"description":"Removes idea(s) from a country", 
 			"example":"remove_ideas = ENG_king_edward",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2001,7 +2001,7 @@
 		},
 		{
 			"id":"remove_ideas_with_trait",
-			"description":"Removes ideas with specific traits",	
+			"description":"Removes ideas with specific traits", 
 			"example":"remove_ideas_with_trait = motorized_equipment_manufacturer",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2009,7 +2009,7 @@
 		},
 		{
 			"id":"remove_opinion_modifier",
-			"description":"Removes an opinion modifer from a country",	
+			"description":"Removes an opinion modifer from a country",  
 			"example":"remove_opinion_modifier = { target = ENG modifier = tizard_refused }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -2017,7 +2017,7 @@
 		},
 		{
 			"id":"remove_state_claim",
-			"description":"Removes claims on a state",	
+			"description":"Removes claims on a state",  
 			"example":"remove_state_claim = 363",
 			"uses_tag":"no",
 			"uses_state":"yes",
@@ -2025,7 +2025,7 @@
 		},
 		{
 			"id":"remove_state_core",
-			"description":"Removes cores from a state",	
+			"description":"Removes cores from a state", 
 			"example":"remove_state_core = 345",
 			"uses_tag":"no",
 			"uses_state":"yes",
@@ -2033,7 +2033,7 @@
 		},
 		{
 			"id":"remove_unit_leader",
-			"description":"Removes a unit leader",	
+			"description":"Removes a unit leader",  
 			"example":"remove_unit_leader = leader_id",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2041,7 +2041,7 @@
 		},
 		{
 			"id":"reset_province_name",
-			"description":"Resets province name to original",	
+			"description":"Resets province name to original",   
 			"example":"reset_province_name = 325",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2049,7 +2049,7 @@
 		},
 		{
 			"id":"retire_country_leader",
-			"description":"Removes a country leader and replaces him with another candidate from the same party",	
+			"description":"Removes a country leader and replaces him with another candidate from the same party",   
 			"example":"retire_country_leader = yes",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2057,7 +2057,7 @@
 		},
 		{
 			"id":"reverse_add_opinion_modifier",
-			"description":"Add opinion modifiers to target",	
+			"description":"Add opinion modifiers to target",    
 			"example":"reverse_add_opinion_modifier = { target = BUL modifier = GER_treaty_of_craiova_other }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -2065,7 +2065,7 @@
 		},
 		{
 			"id":"save_event_target_as",
-			"description":"Save an event target as something",	
+			"description":"Save an event target as something",  
 			"example":"save_event_target_as = war_target",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2073,7 +2073,7 @@
 		},
 		{
 			"id":"save_global_event_target_as",
-			"description":"Save a global event target as something",	
+			"description":"Save a global event target as something",    
 			"example":"save_global_event_target_as = war_target",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2081,7 +2081,7 @@
 		},
 		{
 			"id":"send_equipment",
-			"description":"Sends equipment to a country",	
+			"description":"Sends equipment to a country",   
 			"example":"send_equipment = { target = FIN type = infantry_equipment amount = 500 }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -2089,7 +2089,7 @@
 		},
 		{
 			"id":"set_autonomy",
-			"description":"Sets the autonomy level of a target",	
+			"description":"Sets the autonomy level of a target",    
 			"example":"set_autonomy = { target = RAJ autonomy_state = autonomy_free }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -2097,7 +2097,7 @@
 		},
 		{
 			"id":"set_capital",
-			"description":"Moves capital to specified state",	
+			"description":"Moves capital to specified state",   
 			"example":"set_capital = 345",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2105,7 +2105,7 @@
 		},
 		{
 			"id":"set_cosmetic_tag",
-			"description":"Sets a cosmetic TAG for a country",	
+			"description":"Sets a cosmetic TAG for a country",  
 			"example":"set_cosmetic_tag = SAF_SOV_communism",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2113,7 +2113,7 @@
 		},
 		{
 			"id":"set_country_flag",
-			"description":"Sets a country flag",	
+			"description":"Sets a country flag",    
 			"example":"set_country_flag = anschluss",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2121,7 +2121,7 @@
 		},
 		{
 			"id":"set_equipment_fraction",
-			"description":"Gives a fraction of your equipment to another country",	
+			"description":"Gives a fraction of your equipment to another country",  
 			"example":"set_equipment_fraction = 0.35",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2129,7 +2129,7 @@
 		},
 		{
 			"id":"set_global_flag",
-			"description":"Sets a global flag",	
+			"description":"Sets a global flag", 
 			"example":"set_global_flag = spanish_civil_war",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2137,7 +2137,7 @@
 		},
 		{
 			"id":"set_major",
-			"description":"Makes a country a major",	
+			"description":"Makes a country a major",    
 			"example":"set_major = yes",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2145,7 +2145,7 @@
 		},
 		{
 			"id":"set_national_unity",
-			"description":"Sets the national unity of a country",	
+			"description":"Sets the national unity of a country",   
 			"example":"set_national_unity = 0.80",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2153,7 +2153,7 @@
 		},
 		{
 			"id":"set_party_name",
-			"description":"Changes a party name of a country",	
+			"description":"Changes a party name of a country",  
 			"example":"set_party_name = { ideology = democratic long_name = USA_republican_party name = USA_republican_party }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2161,7 +2161,7 @@
 		},
 		{
 			"id":"set_political_party",
-			"description":"Sets the properties of a political party",	
+			"description":"Sets the properties of a political party",   
 			"example":"set_political_party = { ideology = democratic popularity = 0.5 }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2169,7 +2169,7 @@
 		},
 		{
 			"id":"set_political_power",
-			"description":"Sets political power to a certain value",	
+			"description":"Sets political power to a certain value",    
 			"example":"set_political_power = 100",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2177,7 +2177,7 @@
 		},
 		{
 			"id":"set_politics",
-			"description":"Changes the politics of a country",	
+			"description":"Changes the politics of a country",  
 			"example":"set_politics = { ruling_party = fascism elections_allowed = no }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2185,7 +2185,7 @@
 		},
 		{
 			"id":"set_province_name",
-			"description":"Changes the name of a province",	
+			"description":"Changes the name of a province", 
 			"example":"set_province_name = { id = 325 name = 'Funville' }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2193,7 +2193,7 @@
 		},
 		{
 			"id":"set_research_slots",
-			"description":"Sets the number of research slots",	
+			"description":"Sets the number of research slots",  
 			"example":"set_research_slots = 4",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2201,7 +2201,7 @@
 		},
 		{
 			"id":"set_rule",
-			"description":"Sets a rule to a country",	
+			"description":"Sets a rule to a country",   
 			"example":"set_rule = { can_create_factions = yes }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2209,7 +2209,7 @@
 		},
 		{
 			"id":"set_technology",
-			"description":"Set technology level of a country",	
+			"description":"Set technology level of a country",  
 			"example":"set_technology = { suicide_craft = 1 }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2217,7 +2217,7 @@
 		},
 		{
 			"id":"sound_effect",
-			"description":"Plays a sound effect",	
+			"description":"Plays a sound effect",   
 			"example":"sound_effect = sound_effect_name",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2225,7 +2225,7 @@
 		},
 		{
 			"id":"start_civil_war",
-			"description":"Starts a civil war with the given ideology",	
+			"description":"Starts a civil war with the given ideology", 
 			"example":"start_civil_war = { ideology = fascism size = 0.5 }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2233,7 +2233,7 @@
 		},
 		{
 			"id":"state_event",
-			"description":"Fires a state event",	
+			"description":"Fires a state event",    
 			"example":"state_event = stateevent.1",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2241,7 +2241,7 @@
 		},
 		{
 			"id":"swap_ideas",
-			"description":"Swaps two ideas, showing the difference",	
+			"description":"Swaps two ideas, showing the difference",    
 			"example":"swap_ideas = { remove_idea = REM_IDEA_ID add_idea = ADD_IDEA_ID }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2249,7 +2249,7 @@
 		},
 		{
 			"id":"unlock_national_focus",
-			"description":"Unlocks a national focus for a country",	
+			"description":"Unlocks a national focus for a country", 
 			"example":"unlock_national_focus = focus_id",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2257,7 +2257,7 @@
 		},
 		{
 			"id":"set_state_controller",
-			"description":"Sets the controller of a state",	
+			"description":"Sets the controller of a state", 
 			"example":"USA = { set_state_controller = 353 }",
 			"uses_tag":"no",
 			"uses_state":"yes",
@@ -2265,7 +2265,7 @@
 		},
 		{
 			"id":"set_state_owner",
-			"description":"Sets the owner of a state",	
+			"description":"Sets the owner of a state",  
 			"example":"USA = { set_state_owner = 353 }",
 			"uses_tag":"no",
 			"uses_state":"yes",
@@ -2273,7 +2273,7 @@
 		},
 		{
 			"id":"transfer_state",
-			"description":"Sets the owner and controller of a state",	
+			"description":"Sets the owner and controller of a state",   
 			"example":"USA = { transfer_state = 353 }",
 			"uses_tag":"no",
 			"uses_state":"yes",
@@ -2281,7 +2281,7 @@
 		},
 		{
 			"id":"white_peace",
-			"description":"Creates a white peace between countries",	
+			"description":"Creates a white peace between countries",    
 			"example":"white_peace = ETH",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -2289,7 +2289,7 @@
 		},
 		{
 			"id":"IMPROVE_RELATIONS_MAINTAIN_COST_FACTOR",
-			"description":"Improve relation maintain cost factor",	
+			"description":"Improve relation maintain cost factor",  
 			"example":"UNTESTED - Assumed output - IMPROVE_RELATIONS_MAINTAIN_COST_FACTOR = 2 ",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2297,7 +2297,7 @@
 		},
 		{
 			"id":"add_relation_modifier",
-			"description":"Add static relation modifier between target and current scope",	
+			"description":"Add static relation modifier between target and current scope",  
 			"example":"UNTESTED",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2305,7 +2305,7 @@
 		},
 		{
 			"id":"remove_relation_modifier",
-			"description":"Remove static relation modifier between target and current scope",	
+			"description":"Remove static relation modifier between target and current scope",   
 			"example":"UNTESTED",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2313,7 +2313,7 @@
 		},
 		{
 			"id":"has_relation_modifier",
-			"description":"Checks if a nation has a relation modifier",	
+			"description":"Checks if a nation has a relation modifier", 
 			"example":"UNTESTED - Assumed output - ENG = { has_relation_modifier = FRA_CHEESY_PUNS }",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2321,7 +2321,7 @@
 		},
 		{
 			"id":"license_purchase_cost_factor",
-			"description":"Modifies total CIC cost of purchasing a license",	
+			"description":"Modifies total CIC cost of purchasing a license",    
 			"example":"UNTESTED - Assumed output - license_purchase_cost_factor = 2",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2329,7 +2329,7 @@
 		},
 		{
 			"id":"license_production_speed_factor",
-			"description":"Modifies production speed for license",	
+			"description":"Modifies production speed for license",  
 			"example":"UNTESTED - Assumed output - license_production_speed_factor = 2",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2337,7 +2337,7 @@
 		},
 		{
 			"id":" license_tech_difference_speed_factor",
-			"description":"Modifies production speed penalty from tech level difference",	
+			"description":"Modifies production speed penalty from tech level difference",   
 			"example":"UNTESTED - Assumed output -  license_tech_difference_speed_factor = 2",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2345,7 +2345,7 @@
 		},
 		{
 			"id":"cost_factor",
-			"description":"Change the cost factor for political power purchases; e.g. political_advisor_cost_factor",	
+			"description":"Change the cost factor for political power purchases; e.g. political_advisor_cost_factor",   
 			"example":"UNTESTED - Assumed output - cost_factor = 2",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2353,7 +2353,7 @@
 		},
 		{
 			"id":"ai_license_acceptance",
-			"description":"Modifies desire for the ai to sell licenses",	
+			"description":"Modifies desire for the ai to sell licenses",    
 			"example":"UNTESTED - Assumed output - ai_license_acceptance = 2",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2361,7 +2361,7 @@
 		},
 		{
 			"id":"purchase_cost_factor",
-			"description":"Modifiers for purchase cost of specific types of licenses. license_air_purchase_cost_factor license_infantry_purchase_cost_factor",	
+			"description":"Modifiers for purchase cost of specific types of licenses. license_air_purchase_cost_factor license_infantry_purchase_cost_factor",  
 			"example":"UNTESTED",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2369,7 +2369,7 @@
 		},
 		{
 			"id":"is_licensing_to",
-			"description":"Checks if a nation is licensing to a specific nation",	
+			"description":"Checks if a nation is licensing to a specific nation",   
 			"example":"UNTESTED - Assumed output - USA = { is_licensing_to = ENG }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -2377,7 +2377,7 @@
 		},
 		{
 			"id":"is_licensing_any_to",
-			"description":"Checks if a nation is licensing to a specific nation",	
+			"description":"Checks if a nation is licensing to a specific nation",   
 			"example":"UNTESTED - Assumed output - USA = { is_licensing_any_to = ENG }",
 			"uses_tag":"yes",
 			"uses_state":"no",
@@ -2385,7 +2385,7 @@
 		},
 		{
 			"id":"set_building_level",
-			"description":"Sets the level of specified building",	
+			"description":"Sets the level of specified building",   
 			"example":"UNTESTED",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2393,7 +2393,7 @@
 		},
 		{
 			"id":"any_province_building_level",
-			"description":"(No verified description) Checks if any province's building level...",	
+			"description":"(No verified description) Checks if any province's building level...",   
 			"example":"UNTESTED",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2401,7 +2401,7 @@
 		},
 		{
 			"id":"amount_research_slots",
-			"description":"Check if a nation has more than <int> building slots",	
+			"description":"Check if a nation has more than <int> building slots",   
 			"example":"amount_research_slots > 3",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2409,7 +2409,7 @@
 		},
 		{
 			"id":"manpower_per_military_factory",
-			"description":"(No verified description) Sets manpower per military factory",	
+			"description":"(No verified description) Sets manpower per military factory",   
 			"example":"UNTESTED",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2417,7 +2417,7 @@
 		},
 		{
 			"id":"allow_branch",
-			"description":"(No verified description) Will disable and hide all children of a technology that does not meet the trigger",	
+			"description":"(No verified description) Will disable and hide all children of a technology that does not meet the trigger",    
 			"example":"UNTESTED",
 			"uses_tag":"no",
 			"uses_state":"no",
@@ -2425,11 +2425,939 @@
 		},
 		{
 			"id":"non_core_manpower",
-			"description":"Can be used to control manpower from non-core territory",	
+			"description":"Can be used to control manpower from non-core territory",    
 			"example":"UNTESTED - Assumed output - non_core_manpower = 2",
 			"uses_tag":"no",
 			"uses_state":"no",
 			"default_outcome":" = 2"
+		},
+		{
+			"id":"all_unit_leader",
+			"description":"Check if all unit leaders owned by the current country scope meet the trigger.", 
+			"example":"all_unit_leader = { ... }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":"new-level"
+		},
+		{
+			"id":"any_unit_leader",
+			"description":"Check if any unit leader meets the trigger.",    
+			"example":"any_unit_leader = { ... }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":"new-level"
+		},
+		{
+			"id":"all_army_leader",
+			"description":"Check if all army unit leaders owned by the current country scope meet the trigger", 
+			"example":"all_unit_leader = { ... }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":"new-level"
+		},
+		{
+			"id":"any_army_leader",
+			"description":"Check if any army unit leader owned by the current country scope meets the trigger", 
+			"example":"any_army_leader = { ... }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":"new-level"
+		},
+		{
+			"id":"all_navy_leader",
+			"description":"Check if all navy unit leaders owned by the current country scope meet the trigger", 
+			"example":"all_navy_leader = { ... }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":"new-level"
+		},
+		{
+			"id":"any_navy_leader",
+			"description":"Check if any navy unit leader owned by the current country scope meets the trigger.",    
+			"example":"any_navy_leader = { ... }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":"new-level"
+		},
+		{
+			"id":"random_unit_leader",
+			"description":"Targets a random unit leader owned by the current country scope",    
+			"example":"random_unit_leader = { ... }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":"new-level"
+		},
+		{
+			"id":"every_unit_leader",
+			"description":"Targets every unit leader owned by the current country scope scope", 
+			"example":"every_unit_leader = { ... }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":"new-level"
+		},
+		{
+			"id":"random_army_leader",
+			"description":"Targets a random army unit leader owned by the current country scope",   
+			"example":"random_army_leader = { ... }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":"new-level"
+		},
+		{
+			"id":"every_army_leader",
+			"description":"Targets every army unit leader owned by the current country scope",  
+			"example":"every_army_leader = { ... }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":"new-level"
+		},
+		{
+			"id":"random_navy_leader",
+			"description":"Targets a random naval unit leader owned by the current country scope",  
+			"example":"random_navy_leader = { ... }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":"new-level"
+		},
+		{
+			"id":"every_navy_leader",
+			"description":"Targets every naval unit leader owned by the current country scope", 
+			"example":"every_navy_leader = { ... }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":"new-level"
+		},
+		{
+			"id":"global_every_army_leader",
+			"description":"Targets every army leader for every country in the world (Better to use every_army_leader if you know the country)", 
+			"example":"global_every_army_leader = { ... }",
+			"uses_tag":"no",
+			"uses_state":"no",
+			"default_outcome":"new-level"
+		},
+		{
+			"id": "check_variable",
+			"description": "Compares a variable to a number",
+			"example": "check_variable = { ai_random > temp }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": "ai_random > temp"
+		},
+		{
+			"id": "is_capital",
+			"description": "Is scope state a capital",
+			"example": "9 = { is_capital = yes }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = yes"
+		},
+		{
+			"id": "political_power_daily",
+			"description": "Checks if daily political power increase is more or less that specified value",
+			"example": "political_power_daily > 1.5",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " > 1.5"
+		},
+		{
+			"id": "count_triggers",
+			"description": "Returns true if the specified number of sub-triggers return true",
+			"example": "count_triggers = { amount = 2 <trigger> <trigger> <trigger> }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": "amount = 2 <trigger> <trigger> <trigger>"
+		},
+		{
+			"id": "has_stability",
+			"description": "check value of stability 0-1",
+			"example": "has_stability < 0.6",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " < 0.6"
+		},
+		{
+			"id": "has_war_support",
+			"description": "Check value of war_support 0-1",
+			"example": "has_war_support < 0.6",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " < 0.6"
+		},
+		{
+			"id": "is_assigned",
+			"description": "Checks if the current unit leader is assigned to command an army/navy",
+			"example": "is_assigned = yes",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = yes"
+		},
+		{
+			"id": "num_units",
+			"description": "Check number of units commanded by the unit leader",
+			"example": "num_units > 2",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " > 2"
+		},
+		{
+			"id": "is_field_marshal",
+			"description": "Checks if the current unit leader is a field marshall",
+			"example": "is_field_marshal = yes",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = yes"
+		},
+		{
+			"id": "has_unit_leader_flag",
+			"description": "Has unit leader flag been set. Check flag val date set and days since set.",
+			"example": "has_unit_leader_flag = test_flag",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = test_flag"
+		},
+		{
+			"id": "has_decision",
+			"description": "Check if country has active selected decision",
+			"example": "has_decision = PRC_uprising",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = PRC_uprising"
+		},
+		{
+			"id": "command_power",
+			"description": "Checks if available command power is more or less that specified value",
+			"example": "command_power > 1.5",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " > 1.5"
+		},
+		{
+			"id": "command_power_daily",
+			"description": "Checks if daily command power increase is more or less that specified value",
+			"example": "command_power_daily > 1.5",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " > 1.5"
+		},
+		{
+			"id": "is_fully_controlled_by",
+			"description": "Checks if state is fully controlled by specified tag",
+			"example": "is_fully_controlled_by = ROOT",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = ROOT"
+		},
+		{
+			"id": "has_ability",
+			"description": "Does unit leader have the ability. Checks if a unit leader has the ability.",
+			"example": "has_ability = force_attack",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = force_attack"
+		},
+		{
+			"id": "has_variable",
+			"description": "Checks if a variable exists in a scope",
+			"example": "has_variable = chance_ruling_party",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = chance_ruling_party"
+		},
+		{
+			"id": "has_id",
+			"description": "Check unit leader has specified ID. Don't localize this. Tooltip only for debug.",
+			"example": "any_army_leader = { has_id = 600 }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = 600"
+		},
+		{
+			"id": "can_select_trait",
+			"description": "check if leader can select a trait",
+			"example": "UNTESTED - ASSUMED OUTPUT - = yes",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = yes"
+		},
+		{
+			"id": "add_to_temp_variable",
+			"description": "Adds a value or a variable to a temporary variable",
+			"example": "add_to_temp_variable = { var = num_dogs value = 42 tooltip = loc_str_id_with_LEFT_and_RIGHT }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = num_dogs value = 42 tooltip = loc_str_id_with_LEFT_and_RIGHT }"
+		},
+		{
+			"id": "subtract_from_temp_variable",
+			"description": "Subtracts a value or a variable to a temporary variable",
+			"example": "subtract_from_temp_variable = { var = num_dogs value = 42 tooltip = loc_str_id_with_LEFT_and_RIGHT }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = num_dogs value = 42 tooltip = loc_str_id_with_LEFT_and_RIGHT }"
+		},
+		{
+			"id": "multiply_temp_variable",
+			"description": "Multiplies a temporary variable by a value or another variable",
+			"example": "multiply_temp_variable = { var = af_to_move value = global.CHI_industrial_evacuations_amount_factor }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = af_to_move value = global.CHI_industrial_evacuations_amount_factor }"
+		},
+		{
+			"id": "divide_temp_variable",
+			"description": "Divides a temporary variable by a value or another variable",
+			"example": "divide_temp_variable = { var = num_dogs value = 42 tooltip = loc_str_id_with_LEFT_and_RIGHT }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = num_dogs value = 42 tooltip = loc_str_id_with_LEFT_and_RIGHT }"
+		},
+		{
+			"id": "set_temp_variable",
+			"description": "Sets a temporary variable to a value or another variable",
+			"example": "set_temp_variable = { var = ic_level value = industrial_complex_level }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = ic_level value = industrial_complex_level }"
+		},
+		{
+			"id": "clamp_temp_variable",
+			"description": "Clamps a temp variable between two values/variables",
+			"example": "clamp_temp_variable = { var = chance_opinion_of_us min = -1 max = 1 }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = chance_opinion_of_us min = -1 max = 1 }"
+		},
+		{
+			"id": "num_of_civilian_factories_available_for_projects",
+			"description": "Check amount of civilian factories available for a new project to use",
+			"example": "enable = { num_of_civilian_factories_available_for_projects > 15 }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { num_of_civilian_factories_available_for_projects > 15 }"
+		},
+		{
+			"id": "has_event_target",
+			"description": "Checks if current scope or global scope has the specified event target saved",
+			"example": "visible = { has_event_target = scope_CHI }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = scope_CHI"
+		},
+		{
+			"id": "political_power_growth",
+			"description": "Check the value of political power daily growth.",
+			"example": "political_power_growth > 0",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " > 0"
+		},
+		{
+			"id": "has_border_war",
+			"description": "Checks if a there is any border wars for country/state",
+			"example": "available = { 527 = { has_border_war = no } }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = no"
+		},
+		{
+			"id": "is_border_war",
+			"description": "Checks if the combatant or leader has a border war",
+			"example": "allowed = { is_border_war = no }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = no"
+		},
+		{
+			"id": "has_border_war_between",
+			"description": "Checks if a there is a border war between two states",
+			"example": "UNTESTED - NO ASSUMED OUTPUT",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": ""
+		},
+		{
+			"id": "has_border_war_with",
+			"description": "Checks if a there is a border against a state/country",
+			"example": "visible = { has_border_war_with = FROM }",
+			"uses_tag": "yes",
+			"uses_state": "no",
+			"default_outcome": "has_border_war_with = TAG"
+		},
+		{
+			"id": "average_stats",
+			"description": "Compares the average stats for a unit leader.",
+			"example": "average_stats > 10",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " > 10"
+		},
+		{
+			"id": "attack_skill_level",
+			"description": "Compares attack skill level of a unit leader.",
+			"example": "attack_skill_level > 5",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " > 5"
+		},
+		{
+			"id": "defense_skill_level",
+			"description": "Compares defense skill level of a unit leader.",
+			"example": "defense_skill_level > 5",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " > 5"
+		},
+		{
+			"id": "logistics_skill_level",
+			"description": "Compares logistics skill level of a unit leader.",
+			"example": "logistics_skill_level > 5",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " > 5"
+		},
+		{
+			"id": "planning_skill_level",
+			"description": "Compares planning skill level of a unit leader.",
+			"example": "planning_skill_level > 5",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " > 5"
+		},
+		{
+			"id": "is_leading_army_group",
+			"description": "Checks if the current unit leader is leading an army group (not single army)",
+			"example": "is_leading_army_group = yes",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = yes"
+		},
+		{
+			"id": "is_leading_army",
+			"description": "Checks if the current unit leader is leading a single army",
+			"example": "is_leading_army = yes",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = yes"
+		},
+		{
+			"id": "print_variables",
+			"description": "Prints all variables in scope and temp variables to a file",
+			"example": "print_variables = {file = log_file text = header_text append = yes print_global = yes var_list = { a b c } #optional }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = {file = log_file text = header_text append = yes print_global = yes var_list = { a b c } #optional }"
+		},
+		{
+			"id": "has_active_mission",
+			"description": "Check if country has an active mission with specified ID.",
+			"example": "has_active_mission = my_test_mission",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = my_test_mission"
+		},
+		{
+			"id": "has_attache",
+			"description": "Check if country has an attaché from any other country",
+			"example": "has_attache = yes",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = yes"
+		},
+		{
+			"id": "has_attache_from",
+			"description": "Has attaché from specified country",
+			"example": "any_enemy_country = { has_attache_from = IRE }",
+			"uses_tag": "yes",
+			"uses_state": "no",
+			"default_outcome": " = TAG"
+		},
+		{
+			"id": "amount_manpower_in_deployment_queue",
+			"description": "Checks for amount manpower currently in deployment view.",
+			"example": "amount_manpower_in_training > 10",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " > 10"
+		},
+		{
+			"id": "divisions_in_border_state",
+			"description": "Checks for amount of divisions in specified state owned by current country.",
+			"example": "divisions_in_border_state = { state = 527 border_state = 408 size > 0 }",
+			"uses_tag": "no",
+			"uses_state": "yes",
+			"default_outcome": " = { state = STATEID border_state = STATEID size > 0 }"
+		},
+		{
+			"id": "stockpile_ratio",
+			"description": "Compares the ratio of equipment archetype in stockpile vs used. a value of 2 means we have double in stockpile of what is fielded or in training.",
+			"example": "stockpile_ratio = { archetype = infantry_equipment ratio < 4 }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { archetype = infantry_equipment ratio < 4 }"
+		},
+		{
+			"id": "state_strategic_value",
+			"description": "Checks for state strategic value",
+			"example": "UNTESTED - ASSUMED OUTPUT - state_strategic_value > 0.1",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " > 0.1"
+		},
+		{
+			"id": "state_and_terrain_strategic_value",
+			"description": "Checks for state strategic value",
+			"example": "UNTESTED - ASSUMED OUTPUT - state_and_terrain_strategic_value > 0.1",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " > 0.1"
+		},
+		{
+			"id": "activate_decision",
+			"description": "Activates specified decision for scope country",
+			"example": "activate_decision= GER_more_clowns",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = GER_more_clowns"
+		},
+		{
+			"id": "activate_mission",
+			"description": "Activates mission, ignoring its normal trigger conditions. Cannot activate a mission that is already active.",
+			"example": "activate_mission = some_mission_here",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = some_mission_here"
+		},
+		{
+			"id": "activate_targeted_decision",
+			"description": "Activates targeted decisions or mission, ignoring its normal trigger conditions, cooldown and fire only once. Cannot activate if active in interface.",
+			"example": "activate_targeted_decision = { target = TAG decision = decision_id_here }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { target = TAG decision = decision_id_here }"
+		},
+		{
+			"id": "add_attack",
+			"description": "Adds attack skill to a unit leader",
+			"example": "add_attack = 1",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = 1"
+		},
+		{
+			"id": "add_command_power",
+			"description": "Adds command power to country.",
+			"example": "add_command_power = 50",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = 50"
+		},
+		{
+			"id": "add_defense",
+			"description": "Adds defense skill to a unit leader",
+			"example": "add_defense = 1",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = 1"
+		},
+		{
+			"id": "add_logistics",
+			"description": "Adds logistics skill to a unit leader",
+			"example": "add_logistics = 1",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = 1"
+		},
+		{
+			"id": "add_offsite_building",
+			"description": "Add an offsite building to a country",
+			"example": "add_offsite_building = { type = arms_factory level = 1 }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { type = arms_factory level = 1 }"
+		},
+		{
+			"id": "add_planning",
+			"description": "Adds planning skill to a unit leader",
+			"example": "add_planning = 1",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = 1"
+		},
+		{
+			"id": "add_skill_level",
+			"description": "Adds a skill level to a unit leader",
+			"example": "add_skill_level = 1",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = 1"
+		},
+		{
+			"id": "add_stability",
+			"description": "Adds stability.",
+			"example": "add_stability = 0.05",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = 0.05"
+		},
+		{
+			"id": "add_temporary_buff_to_units",
+			"description": "Add buffs to units that are belongs to the army group/navy of this unit leader",
+			"example": "add_temporary_buff_to_units = { combat_offense = 0.25 combat_breakthrough = 0.25 org_damage_multiplier = -1.0 str_damage_multiplier = 0.25 war_support_reduction_on_damage = 0.2 cannot_retreat_while_attacking = 1.0 days = 7 tooltip = ABILITY_FORCE_ATTACK_TOOLTIP }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { \n combat_offense = 0.25 \n combat_breakthrough = 0.25 \n org_damage_multiplier = -1.0 \n str_damage_multiplier = 0.25 \n war_support_reduction_on_damage = 0.2 \n cannot_retreat_while_attacking = 1.0 \n days = 7 \n tooltip = ABILITY_FORCE_ATTACK_TOOLTIP }"
+		},
+		{
+			"id": "add_timed_unit_leader_trait",
+			"description": "Add a timed trait to unit leader",
+			"example": "add_timed_unit_leader_trait = { trait = sick days = 30 }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { trait = sick \n days = 30 }"
+		},
+		{
+			"id": "add_to_temp_variable",
+			"description": "Adds a value or a variable to a temp variable",
+			"example": "add_to_temp_variable = { var = num_dogs value = 42 tooltip = loc_str_id_with_LEFT_and_RIGHT }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = num_dogs \n value = 42 \n tooltip = loc_str_id_with_LEFT_and_RIGHT }"
+		},
+		{
+			"id": "add_to_variable",
+			"description": "Adds a value or a variable to another one",
+			"example": "add_to_variable = { var = num_dogs value = 42 tooltip = loc_str_id_with_LEFT_and_RIGHT }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = num_dogs \n value = 42 \n tooltip = loc_str_id_with_LEFT_and_RIGHT }"
+		},
+		{
+			"id": "add_war_support",
+			"description": "Adds the war support to the country in scope.",
+			"example": "add_war_support = 5",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = 5"
+		},
+		{
+			"id": "cancel_border_war",
+			"description": "Cancel border war between two states",
+			"example": "cancel_border_war = { defender = 408 attacker = 527 }",
+			"uses_tag": "no",
+			"uses_state": "yes",
+			"default_outcome": " = { defender = STATEID \n attacker = STATEID }"
+		},
+		{
+			"id": "clamp_temp_variable",
+			"description": "Clamps a temp variable a variable bet ween two a values or another variables",
+			"example": "clamp_temp_variable = { var = num_dogs value = 42 tooltip = loc_str_id_with_LEFT_and_RIGHT }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = num_dogs \n value = 42 \n tooltip = loc_str_id_with_LEFT_and_RIGHT }"
+		},
+		{
+			"id": "clamp_variable",
+			"description": "Clamps a variable a variable between two a values or another variable",
+			"example": "clamp_variable = { var = num_dogs min = 0 max = num_cats }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = num_dogs \n min = 0 \n max = num_cats }"
+		},
+		{
+			"id": "clear_variable",
+			"description": "Clears a variable",
+			"example": "clear_variable = num_dogs",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = num_dogs"
+		},
+		{
+			"id": "clr_unit_leader_flag",
+			"description": "Clear unit leader flag",
+			"example": "clr_unit_leader_flag = leader_blind",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = leader_blind"
+		},
+		{
+			"id": "delete_unit_template_and_units",
+			"description": "Delete a template and its units",
+			"example": "delete_unit_template_and_units = { division_template = <name> }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { division_template = <name> }"
+		},
+		{
+			"id": "divide_temp_variable",
+			"description": "Divides a temp variable to a value or another variable",
+			"example": "divide_temp_variable = { var = num_dogs value = 42 tooltip = loc_str_id_with_LEFT_and_RIGHT }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = num_dogs \n value = 42 \n tooltip = loc_str_id_with_LEFT_and_RIGHT }"
+		},
+		{
+			"id": "divide_variable",
+			"description": "Divides a variable to a value or another variable",
+			"example": "divide_variable = { var = num_dogs value = 42 tooltip = loc_str_id_with_LEFT_and_RIGHT }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = num_dogs \n value = 42 \n tooltip = loc_str_id_with_LEFT_and_RIGHT }"
+		},
+		{
+			"id": "destroy_ships",
+			"description": "Destroys ships of specified country and amount",
+			"example": "ENG={ destroy_ships = { type=light_cruiser count=all #or number } }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": "= { type=light_cruiser \n count=all #or number }"
+		},
+		{
+			"id": "add_region_efficiency",
+			"description": "Add efficiency factor to strategic region for from country",
+			"example": "ASSUMED OUTPUT - add_region_efficiency = 0.01",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = 0.01"
+		},
+		{
+			"id": "finalize_border_war",
+			"description": "Finalizes border war between two states, wins or cancels it",
+			"example": "finalize_border_war = { attacker_win = yes attacker = 527 defender = 408 }",
+			"uses_tag": "no",
+			"uses_state": "yes",
+			"default_outcome": " = { attacker_win = yes \n attacker = STATEID defender = STATEID }"
+		},
+		{
+			"id": "modify_building_resources",
+			"description": "Modifies how many resources a building outputs for scope country only.",
+			"example": "GER = { modify_building_resources = { building = synthetic_refinery resource = rubber amount = 2 } }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { building = synthetic_refinery \n resource = rubber \n amount = 2 }"
+		},
+		{
+			"id": "recall_attache",
+			"description": "Scope country recalls attache from target country",
+			"example": "GER = { recall_attache = CHI }",
+			"uses_tag": "yes",
+			"uses_state": "no",
+			"default_outcome": " = TAG"
+		},
+		{
+			"id": "transfer_navy",
+			"description": "Transfers the entire navy of scope country to target country.",
+			"example": "GER = { transfer_navy = ENG }",
+			"uses_tag": "yes",
+			"uses_state": "no",
+			"default_outcome": " = TAG"
+		},
+		{
+			"id": "set_nationality",
+			"description": "Sets the country that owns current scope general",
+			"example": "global_every_army_leader = { limit = { OWNER = { tag = ROOT } has_trait = JAP_samurai_lineage } set_nationality = PREV }",
+			"uses_tag": "yes",
+			"uses_state": "no",
+			"default_outcome": " = TAG"
+		},
+		{
+			"id": "leave_faction",
+			"description": "Leaves the faction that the target is a part of.",
+			"example": "leave_faction = { target = RAJ }",
+			"uses_tag": "yes",
+			"uses_state": "no",
+			"default_outcome": " = TAG"
+		},
+		{
+			"id": "load_focus_tree",
+			"description": "Sets what focus tree a country uses, retains finished shared focuses",
+			"example": "load_focus_tree = china_nationalist_focus",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = china_nationalist_focus"
+		},
+		{
+			"id": "modify_timed_idea",
+			"description": "Modify by adding an amount of days to a timed idea.",
+			"example": "modify_timed_idea = { idea = my_idea_id days = 5 }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { idea = my_idea_id \n days = 5 }"
+		},
+		{
+			"id": "modify_unit_leader_flag",
+			"description": "Modify unit leader flag. Only modifies if flag already exists.",
+			"example": "modify_unit_leader_flag = { flag = <name> value = <number> }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { flag = <name> \n value = <number> }"
+		},
+		{
+			"id": "multiply_temp_variable",
+			"description": "Multiplies a temp variable to a value or another variable",
+			"example": "multiply_temp_variable = { var = af_to_move value = global.CHI_industrial_evacuations_amount_factor }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = af_to_move \n value = global.CHI_industrial_evacuations_amount_factor }"
+		},
+		{
+			"id": "multiply_variable",
+			"description": "Multiplies a variable to a value or another variable",
+			"example": "multiply_variable = { var = af_to_move value = global.CHI_industrial_evacuations_amount_factor }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = af_to_move value = global.CHI_industrial_evacuations_amount_factor }"
+		},
+		{
+			"id": "print_variables",
+			"description": "Prints all variables in scope and temp variables to a file",
+			"example": "print_variables = { file = log_file text = header_text append = yes print_global = yes var_list = { a b c } #optional }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { file = log_file \n text = header_text \n append = yes \n print_global = yes \n var_list = { a b c } #optional }"
+		},
+		{
+			"id": "remove_mission",
+			"description": "Removes a mission.",
+			"example": "remove_mission = GER_clowns_running_wild",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = GER_clowns_running_wild"
+		},
+		{
+			"id": "remove_targeted_decision",
+			"description": "Removes targeted decisions or mission.",
+			"example": "remove_targeted_decision = { target = TAG decision = decision_id_here }",
+			"uses_tag": "yes",
+			"uses_state": "no",
+			"default_outcome": " = { target = TAG \n decision = decision_id_here }"
+		},
+		{
+			"id": "round_variable",
+			"description": "Rounds a variable",
+			"example": "round_variable = num_dogs",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = num_dogs"
+		},
+		{
+			"id": "set_border_war_data",
+			"description": "Update border war properties",
+			"example": "set_border_war_data = { attacker = 527 defender = 408 defender_modifier = 0.15 combat_width = 100 }",
+			"uses_tag": "no",
+			"uses_state": "yes",
+			"default_outcome": " = { attacker = STATEID \n defender = STATEID \n defender_modifier = 0.15 \n combat_width = 100 }"
+		},
+		{
+			"id": "set_division_template_lock",
+			"description": "Set lock status for a division template",
+			"example": "set_division_template_lock = { division_template = <name> is_locked = <bool (default:true)> }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { division_template = <name> \n is_locked = <bool (default:true)> }"
+		},
+		{
+			"id": "set_stability",
+			"description": "Sets the stability to the country in scope",
+			"example": "set_stability = 80",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = 80"
+		},
+		{
+			"id": "set_temp_variable",
+			"description": "Sets a temp variable to a value or another variable",
+			"example": "set_temp_variable = { var = ic_level value = industrial_complex_level }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = ic_level \n value = industrial_complex_level }"
+		},
+		{
+			"id": "set_truce",
+			"description": "Sets a truce between scope country and target for days duration.",
+			"example": "set_truce = { target = GER days = 90 }",
+			"uses_tag": "yes",
+			"uses_state": "no",
+			"default_outcome": " = { target = TAG \n days = 90 }"
+		},
+		{
+			"id": "set_unit_leader_flag",
+			"description": "Set unit leader flag",
+			"example": "set_unit_leader_flag = leader_blind",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = leader_blind"
+		},
+		{
+			"id": "set_war_support",
+			"description": "Sets the war support to the country in scope.",
+			"example": "set_war_support = 80",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = 80"
+		},
+		{
+			"id": "start_border_war",
+			"description": "Start a border war between two states",
+			"example": "start_border_war = { change_state_after_war = no attacker = { state = 527 num_provinces = 4 on_win = japan_border_conflict.2 on_lose = japan_border_conflict.3 on_cancel = japan_border_conflict.4 } defender = { state = 408 num_provinces = 4 on_win = japan_border_conflict.3 on_lose = japan_border_conflict.2 on_cancel = japan_border_conflict.4 } }",
+			"uses_tag": "no",
+			"uses_state": "yes",
+			"default_outcome": " = { change_state_after_war = no \n attacker = { state = STATEID \n num_provinces = 4 \n on_win = japan_border_conflict.2 #Event on win \n on_lose = japan_border_conflict.3 #Event on loss \n on_cancel = japan_border_conflict.4 #Event on cancel \n } \n defender = { state = STATEID \n num_provinces = 4 \n on_win = japan_border_conflict.3 #Even on win \n on_lose = japan_border_conflict.2 #Even on loss \n on_cancel = japan_border_conflict.4 #Event on cancel \n } }"
+		},
+		{
+			"id": "subtract_from_temp_variable",
+			"description": "Subtracts a value or a variable to a temp variable",
+			"example": "subtract_from_temp_variable = { var = num_dogs value = 42 tooltip = loc_str_id_with_LEFT_and_RIGHT }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = num_dogs \n value = 42 \n tooltip = loc_str_id_with_LEFT_and_RIGHT }"
+		},
+		{
+			"id": "subtract_from_variable",
+			"description": "Subtracts a value or a variable to another one",
+			"example": "subtract_from_variable = { var = num_dogs value = 42 tooltip = loc_str_id_with_LEFT_and_RIGHT }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { var = num_dogs \n value = 42 \n tooltip = loc_str_id_with_LEFT_and_RIGHT }"
+		},
+		{
+			"id": "supply_units",
+			"description": "Give supply to units being controlled by this leader.",
+			"example": "supply_units = 24",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = 24"
+		},
+		{
+			"id": "unit_leader_event",
+			"description": "Fires a unit leader event for owner country",
+			"example": "unit_leader_event = { id = generic.17 }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { id = generic.17 }"
+		},
+		{
+			"id": "unlock_decision_category_tooltip",
+			"description": "Localizes name of category and displays tooltip that shows it will be unlocked",
+			"example": "unlock_decision_category_tooltip = CHI_integrate_the_warlords",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = CHI_integrate_the_warlords"
+		},
+		{
+			"id": "unlock_decision_tooltip",
+			"description": "Show what a decision does",
+			"example": "unlock_decision_tooltip = { some_decision_here some_other_decision_here }",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = { some_decision_here some_other_decision_here }"
+		},
+		{
+			"id": "activate_mission_tooltip",
+			"description": "Shows mission will activate and name. Activation needs to be handled manually, effect is just an easier way to display name of mission.",
+			"example": "unlock_mission_tooltip = some_mission_here",
+			"uses_tag": "no",
+			"uses_state": "no",
+			"default_outcome": " = some_mission_here"
 		}
 
 ]

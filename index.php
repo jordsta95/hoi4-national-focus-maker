@@ -3,24 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>HOI4 National Focus Tool</title>
-<meta name="description" content="Tool for making national focuses in Hearts of Iron IV">
-<!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css?v=1" rel='stylesheet' type='text/css' />
-<!-- Custom CSS -->
-<link href="css/style.css?v=v1.101" rel='stylesheet' type='text/css' />
-<!-- Graph CSS -->
-<link href="css/font-awesome.css?v=1" rel="stylesheet"> 
-<!-- jQuery -->
-<script src="js/jquery-2.1.4.min.js?v=1"></script>
-<!-- //jQuery -->
-<script src="js/script.js?v=1.1021"></script>
-<script src="js/tree-to-json.js?v=1.001"></script>
-<script src="js/ui-elements.js?v=1.001"></script>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<!-- lined-icons -->
-<link rel="stylesheet" href="css/icon-font.min.css?v=1" type='text/css' />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- //lined-icons -->
+<?php include 'php/head.php'; ?>
 </head> 
 <body>
 <div id="display-password">
