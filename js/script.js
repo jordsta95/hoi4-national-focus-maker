@@ -411,7 +411,7 @@ $(document).ready(function(){
 				$.each(mutual, function(){
 					var split = this.split('||');
 					$.each(split, function(){
-						prefoci.push(this);
+						mutuals.push(this);
 					});
 				});
 				$.each(mutuals, function(){
