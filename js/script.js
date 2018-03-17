@@ -475,79 +475,81 @@ $(document).ready(function(){
 		while(currentx <= maxx && currenty <= maxy){
 			checked++;
 			var exportid = $("[x-pos*="+currentx+"][y-pos*="+currenty+"]").attr("id");
-			var exportname = "#"+exportid+"_name";
-			var exportdesc = "#"+exportid+"_desc";
-			var exportprefocus = "#"+exportid+"_prefocus";
-			var exportavailable = "#"+exportid+"_available";
-			var exportmutual = "#"+exportid+"_mutual";
-			var exporttooltip = "#"+exportid+"_tooltip";
-			var exportimg = "#"+exportid+"_gfx";
-			var exportreward = "#"+exportid+"_reward";
-			var exportttc = "#"+exportid+"_time";
-			var exportbypass = "#"+exportid+"_bypass";
-			var exportai = "#"+exportid+"_ai";
-			var exportx = $("#"+exportid).attr("x-pos");
-			var exporty = $("#"+exportid).attr("y-pos");
-			var exportgfx = $(exportimg).attr("src");
-			if(exportid !== "" > 0 && exportid !== "undefined"){
-				if($(exportprefocus).text().length !== 0){
-					var fixprefocus = $(exportprefocus).text().replace(/\&\&/g,"}\n prerequisite = { focus =").replace(/\|\|/g,"  focus = ");
-				}
-				if($(exportmutual).text().length !== 0){
-					var fixmutual = $(exportmutual).text().replace(/\&\&/g,"}\n mutually_exclusive = { focus =").replace(/\|\|/g,"  focus = ");
-				}
-				
-				$("#workplace-lang").val($("#workplace-lang").val() + exportid + ':0 "' + $(exportname).text() + '"<br>');
-				$("#workplace-lang").val($("#workplace-lang").val() + exportid + '_desc:0 "' + $(exportdesc).text() + '"<br>');
+			if($("[x-pos*="+currentx+"][y-pos*="+currenty+"]").length){
+				var exportname = "#"+exportid+"_name";
+				var exportdesc = "#"+exportid+"_desc";
+				var exportprefocus = "#"+exportid+"_prefocus";
+				var exportavailable = "#"+exportid+"_available";
+				var exportmutual = "#"+exportid+"_mutual";
+				var exporttooltip = "#"+exportid+"_tooltip";
+				var exportimg = "#"+exportid+"_gfx";
+				var exportreward = "#"+exportid+"_reward";
+				var exportttc = "#"+exportid+"_time";
+				var exportbypass = "#"+exportid+"_bypass";
+				var exportai = "#"+exportid+"_ai";
+				var exportx = $("#"+exportid).attr("x-pos");
+				var exporty = $("#"+exportid).attr("y-pos");
+				var exportgfx = $(exportimg).attr("src");
+				if(exportid !== "" > 0 && exportid !== "undefined"){
+					if($(exportprefocus).text().length !== 0){
+						var fixprefocus = $(exportprefocus).text().replace(/\&\&/g,"}\n prerequisite = { focus =").replace(/\|\|/g,"  focus = ");
+					}
+					if($(exportmutual).text().length !== 0){
+						var fixmutual = $(exportmutual).text().replace(/\&\&/g,"}\n mutually_exclusive = { focus =").replace(/\|\|/g,"  focus = ");
+					}
+					
+					$("#workplace-lang").val($("#workplace-lang").val() + exportid + ':0 "' + $(exportname).text() + '"<br>');
+					$("#workplace-lang").val($("#workplace-lang").val() + exportid + '_desc:0 "' + $(exportdesc).text() + '"<br>');
 
 
-				$("#workplace-focus").val($("#workplace-focus").val()+"{");
-				$("#workplace-focus").val($("#workplace-focus").val() + '"name":"'+ $(exportname).text() +'",');
-				$("#workplace-focus").val($("#workplace-focus").val() + '"id":"'+ exportid +'",');
-				$("#workplace-focus").val($("#workplace-focus").val() + '"icon":"'+ exportgfx + '",');
-				$("#workplace-focus").val($("#workplace-focus").val() + '"everythingelse":"');
-				if($(exportbypass).text().length > 0){
-					$("#workplace-focus").val($("#workplace-focus").val() + 'bypass = {'+ $(exportbypass).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["']/g, "'") + '}<br>');
-				}
-				if($(exportai).text().length > 0){
-					$("#workplace-focus").val($("#workplace-focus").val() + 'ai_will_do = { factor = '+ $(exportai).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t") + '}<br>');
-				}else{
-					$("#workplace-focus").val($("#workplace-focus").val() + 'ai_will_do = { factor = 0 }<br>');
-				}
-				$("#workplace-focus").val($("#workplace-focus").val() + 'x ='+ exportx + '<br>');
-				$("#workplace-focus").val($("#workplace-focus").val() + 'y ='+ exporty + '<br>');
+					$("#workplace-focus").val($("#workplace-focus").val()+"{");
+					$("#workplace-focus").val($("#workplace-focus").val() + '"name":"'+ $(exportname).text() +'",');
+					$("#workplace-focus").val($("#workplace-focus").val() + '"id":"'+ exportid +'",');
+					$("#workplace-focus").val($("#workplace-focus").val() + '"icon":"'+ exportgfx + '",');
+					$("#workplace-focus").val($("#workplace-focus").val() + '"everythingelse":"');
+					if($(exportbypass).text().length > 0){
+						$("#workplace-focus").val($("#workplace-focus").val() + 'bypass = {'+ $(exportbypass).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["']/g, "'") + '}<br>');
+					}
+					if($(exportai).text().length > 0){
+						$("#workplace-focus").val($("#workplace-focus").val() + 'ai_will_do = { factor = '+ $(exportai).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t") + '}<br>');
+					}else{
+						$("#workplace-focus").val($("#workplace-focus").val() + 'ai_will_do = { factor = 0 }<br>');
+					}
+					$("#workplace-focus").val($("#workplace-focus").val() + 'x ='+ exportx + '<br>');
+					$("#workplace-focus").val($("#workplace-focus").val() + 'y ='+ exporty + '<br>');
 
-				
+					
 
-				if($(exportmutual).text().length == 0){
-					$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { }<br>');
-				}else{
-					$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { focus = '+ fixmutual.replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '}<br>');
+					if($(exportmutual).text().length == 0){
+						$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { }<br>');
+					}else{
+						$("#workplace-focus").val($("#workplace-focus").val() + 'mutually_exclusive = { focus = '+ fixmutual.replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '}<br>');
+					}
+					if($(exportprefocus).text().length == 0){
+						$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { }<br>');
+					}else{
+						$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { focus = '+fixprefocus.replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '}<br>');
+					}
+					if($(exportavailable).text().length > 0){
+						$("#workplace-focus").val($("#workplace-focus").val() + 'available = { '+ $(exportavailable).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + ' }<br>');
+					}
+					if($(exportttc).text() == "" || $(exportttc).text() == "0"){
+						$("#workplace-focus").val($("#workplace-focus").val() + 'cost = 10 <br> available_if_capitulated = yes <br>');
+					}else{
+						$("#workplace-focus").val($("#workplace-focus").val() + 'cost = '+ $(exportttc).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + ' <br> available_if_capitulated = yes <br>');	
+					}
+					if($(exportreward).text().length > 0){
+						$("#workplace-focus").val($("#workplace-focus").val() + 'completion_reward = {<br>'+ $(exportreward).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '<br>}<br>');
+					}
+					$("#workplace-focus").val($("#workplace-focus").val()+'"},');
 				}
-				if($(exportprefocus).text().length == 0){
-					$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { }<br>');
-				}else{
-					$("#workplace-focus").val($("#workplace-focus").val() + 'prerequisite = { focus = '+fixprefocus.replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '}<br>');
-				}
-				if($(exportavailable).text().length > 0){
-					$("#workplace-focus").val($("#workplace-focus").val() + 'available = { '+ $(exportavailable).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + ' }<br>');
-				}
-				if($(exportttc).text() == "" || $(exportttc).text() == "0"){
-					$("#workplace-focus").val($("#workplace-focus").val() + 'cost = 10 <br> available_if_capitulated = yes <br>');
-				}else{
-					$("#workplace-focus").val($("#workplace-focus").val() + 'cost = '+ $(exportttc).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + ' <br> available_if_capitulated = yes <br>');	
-				}
-				if($(exportreward).text().length > 0){
-					$("#workplace-focus").val($("#workplace-focus").val() + 'completion_reward = {<br>'+ $(exportreward).text().replace(/\r?\n/g,"<br>").replace(/\t/g,"\\t").replace(/["]/g, "'") + '<br>}<br>');
-				}
-				$("#workplace-focus").val($("#workplace-focus").val()+'"},');
-				if(currentx == maxx){
-					currentx = 0;
-					currenty++;
-					working = 0;
-				}else{
-					currentx++;	
-				}
+			}
+			if(currentx == maxx){
+				currentx = 0;
+				currenty++;
+				working = 0;
+			}else{
+				currentx++;	
 			}
 		}
 		console.log(checked);

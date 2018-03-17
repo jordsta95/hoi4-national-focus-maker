@@ -29,6 +29,7 @@ $ai = $_POST['ai'];
 $tooltip = $_POST['tooltips'];
 $public_private = $_POST['private'];
 $country_tags = $_POST['tags'];
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -59,7 +60,49 @@ if ($result->num_rows > 0) {
 foreach ($ids as $key => $value) {
 	
 		
-	$sql = "INSERT INTO focuses (focus_id, focus_name, focus_description, focus_x, focus_y, focus_bypass, focus_mutual, focus_available, focus_ai, focus_gfx, focus_prefocus, focus_reward, focus_ttc, focus_tooltip, country_affected, public_private, password, tags, notes) VALUES ('".mysqli_real_escape_string($con,$ids[$key])."','".mysqli_real_escape_string($con,$names[$key])."','".mysqli_real_escape_string($con,$descs[$key])."',".mysqli_real_escape_string($con,$xs[$key]).",".mysqli_real_escape_string($con,$ys[$key]).",'".mysqli_real_escape_string($con,$bypasses[$key])."','".mysqli_real_escape_string($con,$mutuals[$key])."','".mysqli_real_escape_string($con,$availables[$key])."','".mysqli_real_escape_string($con,$ai[$key])."','".mysqli_real_escape_string($con,$imgs[$key])."','".mysqli_real_escape_string($con,$prefocuses[$key])."','".mysqli_real_escape_string($con,$rewards[$key])."','".mysqli_real_escape_string($con,$ttcs[$key])."','".mysqli_real_escape_string($con,$tooltips[$key])."','".mysqli_real_escape_string($con,$country_tags)."','".mysqli_real_escape_string($con,$public_private)."','".mysqli_real_escape_string($con,$createpass)."','','')";
+	$sql = "INSERT INTO focuses (
+		focus_id, 
+		focus_name, 
+		focus_description, 
+		focus_x, 
+		focus_y, 
+		focus_bypass, 
+		focus_mutual, 
+		focus_available, 
+		focus_ai, 
+		focus_gfx, 
+		focus_prefocus, 
+		focus_reward, 
+		focus_ttc,
+		focus_tooltip, 
+		country_affected, 
+		public_private, 
+		password, 
+		tags, 
+		notes, 
+		upload_time
+	) VALUES (
+		'".mysqli_real_escape_string($con,$ids[$key])."',
+		'".mysqli_real_escape_string($con,$names[$key])."',
+		'".mysqli_real_escape_string($con,$descs[$key])."',
+		".mysqli_real_escape_string($con,$xs[$key]).",
+		".mysqli_real_escape_string($con,$ys[$key]).",
+		'".mysqli_real_escape_string($con,$bypasses[$key])."',
+		'".mysqli_real_escape_string($con,$mutuals[$key])."',
+		'".mysqli_real_escape_string($con,$availables[$key])."',
+		'".mysqli_real_escape_string($con,$ai[$key])."',
+		'".mysqli_real_escape_string($con,$imgs[$key])."',
+		'".mysqli_real_escape_string($con,$prefocuses[$key])."',
+		'".mysqli_real_escape_string($con,$rewards[$key])."',
+		'".mysqli_real_escape_string($con,$ttcs[$key])."',
+		'".mysqli_real_escape_string($con,$tooltips[$key])."',
+		'".mysqli_real_escape_string($con,$country_tags)."',
+		'".mysqli_real_escape_string($con,$public_private)."',
+		'".mysqli_real_escape_string($con,$createpass)."',
+		'',
+		'',
+		'".date('Y-m-d H:i:s')."'
+	)";
 	//$sql = "INSERT INTO focuses (focus_id) VALUES ($ids[$key])";
 	if ($conn->query($sql) === TRUE) {
 		echo "New record created successfully";

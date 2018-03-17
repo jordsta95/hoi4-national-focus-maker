@@ -2,6 +2,7 @@
 if(isset($_POST['workplace-focus'])){
 
 $errors = []; 
+$added = [];
 
 $json = json_decode($_POST['workplace-focus']);
 $lang = $_POST['workplace-lang'];
@@ -23,7 +24,8 @@ $tree .= str_replace("<br>","\r\n",$json->start);
 $customGFX = "spriteTypes = { \r\n";
 
 foreach($json->focuses as $focus){
-	if($focus->name !== "" && $focus->name !== "undefined"){
+	if($focus->name !== "" && $focus->name !== "undefined" && !in_array($focus->id, $added)){
+        $added[] = $focus->id;
         $fortree = '';
 		$fortree .= '#Focus for '.$focus->name.' 
 		';
@@ -158,22 +160,22 @@ if ($download_file){
 
 //Delete directory
 $dir = $folder;
-unlink($zip_file_name);
-array_map('unlink', glob("$folder/gfx/interface/goals/*.*"));
-rmdir($folder.'/gfx/interface/goals');
-array_map('unlink', glob("$folder/gfx/interface/*.*"));
-rmdir($folder.'/gfx/interface');
-array_map('unlink', glob("$folder/gfx/*.*"));
-rmdir($folder.'/gfx');
-array_map('unlink', glob("$folder/common/national_focus/*.*"));
-rmdir($folder.'/common/national_focus');
-array_map('unlink', glob("$folder/common/*.*"));
-rmdir($folder.'/common');
-array_map('unlink', glob("$folder/localisation/*.*"));
-rmdir($folder.'/localisation');
-array_map('unlink', glob("$folder/interface/*.*"));
-rmdir($folder.'/interface');
-array_map('unlink', glob("$folder/*.*"));
+unlink($zip_file_name);usleep(100);
+array_map('unlink', glob("$folder/gfx/interface/goals/*.*"));usleep(100);
+array_map('unlink', glob("$folder/gfx/interface/*.*"));usleep(100);
+array_map('unlink', glob("$folder/gfx/*.*"));usleep(100);
+array_map('unlink', glob("$folder/common/national_focus/*.*"));usleep(100);
+array_map('unlink', glob("$folder/common/*.*"));usleep(100);
+array_map('unlink', glob("$folder/localisation/*.*"));usleep(100);
+array_map('unlink', glob("$folder/interface/*.*"));usleep(100);
+array_map('unlink', glob("$folder/*.*"));usleep(100);
+rmdir($folder.'/common/national_focus');usleep(100);
+rmdir($folder.'/common');usleep(100);
+rmdir($folder.'/localisation');usleep(100);
+rmdir($folder.'/gfx/interface/goals');usleep(100);
+rmdir($folder.'/gfx/interface');usleep(100);
+rmdir($folder.'/gfx');usleep(100);
+rmdir($folder.'/interface');usleep(100);
 rmdir($folder);
 }
 ?>
