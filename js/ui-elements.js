@@ -1,33 +1,17 @@
 $(document).ready(function(){
 
-	/**
-	===
-		Open/Close Function
-	==
-	**/
-	//Pass
-	// args: 'name', '#'/'.'/''
-	function openClose(elem, selector){
-		elem_string = elem;
-		if(elem_string.indexOf("-close") > -1){
-			elem_string = elem_string.replace('-close', '');
-			elem = $(selector+elem_string);
-			elem.slideUp();
-		}else{
-			if(elem_string.indexOf("-open") > -1){
-				elem_string = elem_string.replace('-open', '');
-				elem = $(selector+elem_string);
-				elem.slideDown();
-			}
-		}
-	}
 	//Classes
 
 	//IDs
-	$('.open-closeable').on('click', function(){
-		var id = $(this).attr('id');
-		openClose(id,'#');
-	})
+	$('.open-closeable[id*="-close"]').on('click', function(){
+		$('#'+$(this).attr('id').replace('-close','')).slideUp();
+	});
+	$('.open-closeable[id*="-open"]').on('click', function(){
+		var id = $(this).attr('id').replace('-open','');
+		$('#'+id).slideDown();
+	});
+
+	
 
 	//Edit GFX
 	$("#open-gfx").click(function(){

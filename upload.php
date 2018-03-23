@@ -79,8 +79,7 @@ foreach ($ids as $key => $value) {
 		public_private, 
 		password, 
 		tags, 
-		notes, 
-		upload_time
+		notes
 	) VALUES (
 		'".mysqli_real_escape_string($con,$ids[$key])."',
 		'".mysqli_real_escape_string($con,$names[$key])."',
@@ -101,7 +100,6 @@ foreach ($ids as $key => $value) {
 		'".mysqli_real_escape_string($con,$createpass)."',
 		'',
 		'',
-		'".date('Y-m-d H:i:s')."'
 	)";
 	//$sql = "INSERT INTO focuses (focus_id) VALUES ($ids[$key])";
 	if ($conn->query($sql) === TRUE) {
