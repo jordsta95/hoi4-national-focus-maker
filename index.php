@@ -377,8 +377,8 @@
 			</div>
 		</div>
 		<div style="display:none;">
-			<p id="max-x">0</p>
-			<p id="max-y">0</p>
+			<p id="max-x">30</p>
+			<p id="max-y">10</p>
 		</div>
 		<div id="editing"></div>
 	</div>
