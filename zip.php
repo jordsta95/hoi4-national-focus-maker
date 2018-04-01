@@ -74,6 +74,15 @@ if($errors){
     }
     echo '<br> <span style="color:red;">Please report these errors <a href="https://github.com/jordsta95/hoi4-national-focus-maker/issues">on Github</a> and make reference to what caused the error.';
     echo '</div>';
+    array_map('unlink', glob("$folder/gfx/interface/goals/*.*"));usleep(100);
+    array_map('unlink', glob("$folder/gfx/interface/*.*"));usleep(100);
+    array_map('unlink', glob("$folder/gfx/*.*"));usleep(100);
+    array_map('unlink', glob("$folder/interface/*.*"));usleep(100);
+    rmdir($folder.'/gfx/interface/goals');usleep(100);
+    rmdir($folder.'/gfx/interface');usleep(100);
+    rmdir($folder.'/gfx');usleep(100);
+    rmdir($folder.'/interface');usleep(100);
+    rmdir($folder);
     die();
 }
 
