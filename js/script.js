@@ -474,7 +474,7 @@ $(document).ready(function(){
 		//$('.all-info').each(function (index, element) {
 		while(currentx <= maxx && currenty <= maxy){
 			checked++;
-			var exportid = $("[x-pos*="+currentx+"][y-pos*="+currenty+"]").attr("id");
+			var exportid = $("[x-pos="+currentx+"][y-pos="+currenty+"]").attr("id");
 			if($("[x-pos*="+currentx+"][y-pos*="+currenty+"]").length){
 				var exportname = "#"+exportid+"_name";
 				var exportdesc = "#"+exportid+"_desc";
@@ -490,7 +490,7 @@ $(document).ready(function(){
 				var exportx = $("#"+exportid).attr("x-pos");
 				var exporty = $("#"+exportid).attr("y-pos");
 				var exportgfx = $(exportimg).attr("src");
-				if(exportid !== "" > 0 && exportid !== "undefined"){
+				if(exportid !== "" && exportid !== "undefined"){
 					if($(exportprefocus).text().length !== 0){
 						var fixprefocus = $(exportprefocus).text().replace(/\&\&/g,"}\n prerequisite = { focus =").replace(/\|\|/g,"  focus = ");
 					}
